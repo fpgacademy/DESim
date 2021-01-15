@@ -1,0 +1,13 @@
+/*
+ * Copyright (c) 2020 FPGAcademy
+ * Please see license at https://github.com/fpgacademy/DESim
+ */
+
+module DESim {
+	requires javafx.swing;
+	requires javafx.graphics;
+	requires javafx.fxml;
+	requires javafx.media;
+	requires javafx.web;
+	exports GUI;
+}

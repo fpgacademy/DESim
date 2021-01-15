@@ -1,0 +1,15 @@
+DEPTH = 32;
+WIDTH = 8;
+ADDRESS_RADIX = HEX;
+DATA_RADIX = DEC;
+CONTENT
+BEGIN
+	00	:	65;   % A %
+	01	:	98;   % b %
+	02	:	67;   % C %
+	03	:	100;  % d %
+	04	:	69;   % E %
+	05	:	70;   % F %
+	06	:	103;  % g %
+	07	:	104;  % h %
+END;
