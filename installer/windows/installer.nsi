@@ -10,7 +10,7 @@ SetCompressor /SOLID lzma
 Name "DESim"
 Caption "DESim Setup"
 ; Icon "teacher.ico"
-UninstallIcon "win-uninstall.ico"
+; UninstallIcon "win-uninstall.ico"
 
 ; The output file to write
 OutFile "desim_setup.exe"
@@ -44,7 +44,7 @@ Var DESIM_INSTALL_PATH_TITLE
 ;--------------------------------
 ; Pages
 ;!define MUI_ICON "teacher.ico"
-!define MUI_UNICON "win-uninstall.ico"
+;!define MUI_UNICON "win-uninstall.ico"
 !define MUI_ABORTWARNING
 
 !define MUI_HEADERIMAGE
@@ -103,9 +103,9 @@ SkipDesktopShortcut:
   CreateDirectory "$SMPROGRAMS\$SOFTWARE_FULLNAME"
   CreateShortcut "$SMPROGRAMS\$SOFTWARE_FULLNAME\$SOFTWARE_NAME.lnk" "$INSTALL_DIR\java\bin\javaw.exe" "-m DESim/GUI.Main"
 
-  CreateDirectory "$SMPROGRAMS\$SOFTWARE_FULLNAME"
-  CreateDirectory "$SMPROGRAMS\$SOFTWARE_FULLNAME"
-  CreateShortcut "$SMPROGRAMS\$SOFTWARE_FULLNAME\Uninstall $SOFTWARE_NAME.lnk" "$INSTALL_DIR\uninstall.exe"
+;  CreateDirectory "$SMPROGRAMS\$SOFTWARE_FULLNAME"
+;  CreateDirectory "$SMPROGRAMS\$SOFTWARE_FULLNAME"
+;  CreateShortcut "$SMPROGRAMS\$SOFTWARE_FULLNAME\Uninstall $SOFTWARE_NAME.lnk" "$INSTALL_DIR\uninstall.exe"
 
   ; Copy the DESim files
   StrCpy $R0 "$INSTALL_DIR"
@@ -135,27 +135,27 @@ Section "" COMMON_FILES_SECTION
 	StrCpy $R0 "$INSTALL_DIR"
 
 	; create the uninstaller
-	CreateDirectory $R0
-	SetOutPath $R0
-	File win-uninstall.ico
-	WriteUninstaller $R0\uninstall.exe
+	;CreateDirectory $R0
+	;SetOutPath $R0
+	;File win-uninstall.ico
+	;WriteUninstaller $R0\uninstall.exe
 SectionEnd ; end the common files section
 
 
 
 
-Section "Uninstall"
-  SetShellVarContext all
-
-  ; Remove the whole installation directory
-  RMDir /r "$INSTDIR"
-
-  ; Remove desktop icons
-  Delete "$DESKTOP\$SOFTWARE_FULLNAME.lnk"
-  
-  ; delete Start Menu shortcuts
-  RMDir /r "$SMPROGRAMS\$SOFTWARE_FULLNAME"
-SectionEnd ; end the uninstall section
+;Section "Uninstall"
+;  SetShellVarContext all
+;
+;  ; Remove the whole installation directory
+;  RMDir /r "$INSTDIR"
+;
+;  ; Remove desktop icons
+;  Delete "$DESKTOP\$SOFTWARE_FULLNAME.lnk"
+;  
+;  ; delete Start Menu shortcuts
+;  RMDir /r "$SMPROGRAMS\$SOFTWARE_FULLNAME"
+;SectionEnd ; end the uninstall section
 
 
 
