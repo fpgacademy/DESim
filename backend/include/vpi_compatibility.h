@@ -10,7 +10,6 @@
 * to implement backwards compatibility mode functionality.
 *
 ******************************************************************************/
-/* $Id: //depot/up/main/DESim/SimVPI/include/vpi_compatibility.h#3 $ */
 
 #ifdef VPI_COMPATIBILITY_H
 #error "The vpi_compatibility.h file can only be included by vpi_user.h directly."
