@@ -1,7 +1,7 @@
 /*******************************************************************************
  * vpi_user.h
  *
- * IEEE Std 1800 Programming Language Interface (PLI)
+ * IEEE 1364-2005 Verilog HDL Programming Language Interface (PLI)
  *
  * This file contains the constant definitions, structure definitions, and
  * routine declarations used by the SystemVerilog Verificatio Procedural 
@@ -13,6 +13,8 @@
  * NOTE: the constant values 1 through 299 are reserved for use in this
  * vpi_user.h file.
  ******************************************************************************/
+
+/* $Id: //depot/up/main/DESim/SimVPI/include/vpi_user.h#3 $ */
 
 #ifndef VPI_USER_H
 #define VPI_USER_H
@@ -60,7 +62,8 @@ typedef unsigned char   PLI_UBYTE8;
 #endif
 
 /* Use to import a symbol */
-#if (defined(_MSC_VER) || defined(__MINGW32__) || defined(__CYGWIN__)) 
+
+#if defined(_MSC_VER)
 #ifndef PLI_DLLISPEC
 #define PLI_DLLISPEC __declspec(dllimport)
 #define VPI_USER_DEFINED_DLLISPEC 1
@@ -72,7 +75,8 @@ typedef unsigned char   PLI_UBYTE8;
 #endif
 
 /* Use to export a symbol */
-#if (defined(_MSC_VER) || defined(__MINGW32__) || defined(__CYGWIN__)) 
+
+#if defined(_MSC_VER)
 #ifndef PLI_DLLESPEC
 #define PLI_DLLESPEC __declspec(dllexport)
 #define VPI_USER_DEFINED_DLLESPEC 1
@@ -246,7 +250,7 @@ typedef void *vpiHandle;
 #define vpiModPathOut         96   /* output terminal of a module path */
 #define vpiOperand            97   /* operand of expression */
 #define vpiPortInst           98   /* connected port instance */
-#define vpiProcess            99   /* process in module, program, or interface */
+#define vpiProcess            99   /* process in module */
 #define vpiVariables         100   /* variables in module */
 #define vpiUse               101   /* usage */
 
@@ -971,8 +975,7 @@ XXTERN vpiHandle  vpi_handle_by_multi_index PROTO_PARAMS((vpiHandle obj,
                                                     PLI_INT32 *index_array));
 /****************************** GLOBAL VARIABLES ******************************/
 
-PLI_VEXTERN PLI_DLLESPEC void (*vlog_startup_routines[])(void);
-
+PLI_VEXTERN PLI_DLLESPEC void (*vlog_startup_routines[])();
 
   /* array of function pointers, last pointer should be null */
 
