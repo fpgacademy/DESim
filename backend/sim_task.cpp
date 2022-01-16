@@ -52,6 +52,7 @@ void StartOfSimCbRegister() {
 	s_cb_data cbdat = {
 		.reason = cbStartOfSimulation,
 		.cb_rtn = StartOfSim,
+		.obj = NULL,
 		.time = &time_type
 	};
 
@@ -71,11 +72,12 @@ void MyTaskRegister() {
 	}
 	strncpy(task_name, "$sim_fpga", 10);
 	s_vpi_systf_data tf_data = {
-		.type      = vpiSysTask,
-		.tfname    = task_name,
-		.calltf    = MyCalltf,
-		.compiletf = MyCompiletf,
-		.user_data = 0
+		.type        = vpiSysTask,
+		.sysfunctype = 0,
+		.tfname      = task_name,
+		.calltf      = MyCalltf,
+		.compiletf   = MyCompiletf,
+		.user_data   = 0
 	};
 
 	vpi_register_systf(&tf_data);
@@ -219,6 +221,10 @@ static int MyCompiletf(PLI_BYTE8 *user_data) {
 	s_cb_data dat = {
 		.reason = cbEndOfSimulation,
 		.cb_rtn = EndOfSimCleanup,
+		.obj = NULL,
+		.time = NULL,
+		.value = NULL,
+		.index = 0,
 		.user_data = (char *)f
 	};
 
@@ -482,7 +488,10 @@ static void RegKeepAliveCb(fpga *f) {
 	s_cb_data cbdat = {
 		.reason = cbAfterDelay,
 		.cb_rtn = KeepAlive,
+		.obj = NULL,
 		.time = &delay,
+		.value = NULL,
+		.index = 0,
 		.user_data = (char *)f
 	};
 
@@ -530,7 +539,10 @@ static void RegRwSyncCb(fpga *f) {
 		s_cb_data cbdat = {
 			.reason = cbReadWriteSynch,
 			.cb_rtn = RwSync,
+			.obj = NULL,
 			.time = &time_type,
+			.value = NULL,
+			.index = 0,
 			.user_data = (char *)f
 		};
 
@@ -559,7 +571,10 @@ static void RegRoSyncCb(fpga *f) {
 		s_cb_data cbdat = {
 			.reason = cbReadOnlySynch,
 			.cb_rtn = RisingEdgeRoSync,
+			.obj = NULL,
 			.time = &time_type,
+			.value = NULL,
+			.index = 0,
 			.user_data = (char *)f
 		};
 
@@ -593,6 +608,7 @@ static void RegVcCb(vpiHandle net, PLI_INT32 format, fpga *f, PLI_INT32 (*callba
 		.obj = net,
 		.time = &time_type,
 		.value = &val_type,
+		.index = 0,
 		.user_data = (char *)f
 	};
 
