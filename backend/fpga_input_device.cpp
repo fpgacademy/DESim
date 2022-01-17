@@ -7,7 +7,7 @@ fpga_input_device::fpga_input_device(int device_num, PLI_INT32 value_format, con
 									 vpiHandle device_handle) {
 	if (device_num <= 0) {
 		std::cerr << "error: number of device should be greater than 0" << std::endl;
-		std::exit(1);
+		exit(1);
 	}
 
 	this->device_num = device_num;
@@ -18,7 +18,7 @@ fpga_input_device::fpga_input_device(int device_num, PLI_INT32 value_format, con
 	// malloc failed
 	if (!this->device_vals) {
 		std::cerr << "error: malloc" << std::endl;
-		std::exit(1);
+		exit(1);
 	}
 	strncpy(this->device_vals, initial_value, device_num + 1);
 	this->device_vals[device_num] = 0;
@@ -83,7 +83,7 @@ fpga_input_device::fpga_input_device(fpga_input_device const &other){
 	// malloc failed
 	if (!this->device_vals) {
 		std::cerr << "error: malloc" << std::endl;
-		std::exit(1);
+		exit(1);
 	}
 	strncpy(this->device_vals, other.device_vals, other.device_num + 1);
 	this->device_vals[other.device_num] = 0;

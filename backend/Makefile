@@ -1,15 +1,15 @@
 # Copyright (c) 2020 FPGAcademy
 # Please see license at https://github.com/fpgacademy/DESim
+#
+# Linux Makefile
+# To compile the DESim software's backend
+#
+# To compile the backend for Windows see the WindowsMake.bat script in this folder
 
-MODELSIM_DIR = C:\intelFPGA\19.1\modelsim_ae
+QUESTASIM_DIR = /home/${USER}/intelFPGA/21.1/questa_fse
 
-CFLAGS = -m32 -static -c -Wall -g -fno-diagnostics-show-caret -fpic -Iinclude -I$(MODELSIM_DIR)/include
-LDFLAGS = -m32 -static -g -shared -lmtipli
-
-ifeq ($(OS),Windows_NT)
-	LDFLAGS += -lws2_32
-	LDFLAGS += -L$(MODELSIM_DIR)/win32aloem
-endif
+CFLAGS = -m64 -c -Wall -g -fno-diagnostics-show-caret -fPIC -Iinclude -I$(QUESTASIM_DIR)/include
+LDFLAGS = -m64 -g -shared -lmtipli -fPIC -L$(QUESTASIM_DIR)/linux_x86_64
 
 all: dist/simfpga.vpi
 
@@ -41,7 +41,6 @@ update_demos: dist/simfpga.vpi
 	cp dist/simfpga.vpi ../demos/Accumulate/sim/.
 	cp dist/simfpga.vpi ../demos/Addern/sim/.
 	cp dist/simfpga.vpi ../demos/Counter/sim/.
-	cp dist/simfpga.vpi ../demos/Counter_LPM/sim/.
 	cp dist/simfpga.vpi ../demos/Display/sim/.
 	cp dist/simfpga.vpi ../demos/GPIO/gpio_bidir_demo/sim/.
 	cp dist/simfpga.vpi ../demos/GPIO/gpio_in_demo/sim/.

@@ -68,7 +68,7 @@ void MyTaskRegister() {
 	char *task_name = static_cast<char *>(malloc(sizeof(char) * 11));
 	if(!task_name){
 		std::cerr << "error: malloc" << std::endl;
-		std::exit(1);
+		exit(1);
 	}
 	strncpy(task_name, "$sim_fpga", 10);
 	s_vpi_systf_data tf_data = {
@@ -76,8 +76,8 @@ void MyTaskRegister() {
 		.sysfunctype = 0,
 		.tfname      = task_name,
 		.calltf      = MyCalltf,
-		.compiletf   = MyCompiletf,
-		.user_data   = 0
+		.compiletf   = MyCompiletf
+//		.user_data   = 0
 	};
 
 	vpi_register_systf(&tf_data);

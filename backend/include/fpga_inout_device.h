@@ -20,6 +20,7 @@
 typedef SOCKET sockfd;
 
 #else
+#include <sys/socket.h>
 typedef int sockfd;
 #endif
 

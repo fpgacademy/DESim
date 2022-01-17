@@ -8,7 +8,7 @@ fpga_inout_device::fpga_inout_device(int device_num,
 									 vpiHandle device_handle) {
 	if (device_num <= 0) {
 		std::cerr << "error: number of device should be greater than 0" << std::endl;
-		std::exit(1);
+		exit(1);
 	}
 	this->device_num = device_num;
 	this->value_format = value_format;
@@ -19,7 +19,7 @@ fpga_inout_device::fpga_inout_device(int device_num,
 
 	if (!this->input_vals || !this->output_vals) {
 		std::cerr << "error: malloc" << std::endl;
-		std::exit(1);
+		exit(1);
 	}
 	for (int i = 0; i < device_num; i++) {
 		this->input_vals[i] = '0';
@@ -116,7 +116,7 @@ fpga_inout_device::fpga_inout_device(fpga_inout_device const &other){
 	this->output_vals = static_cast<char *>(malloc(sizeof(char) * (other.device_num + 1)));
 	if (!this->input_vals || !this->output_vals) {
 		std::cerr << "error: malloc" << std::endl;
-		std::exit(1);
+		exit(1);
 	}
 	strncpy(this->input_vals, other.input_vals, other.device_num + 1);
 	this->input_vals[other.device_num] = 0;
