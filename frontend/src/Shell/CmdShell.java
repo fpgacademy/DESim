@@ -12,6 +12,9 @@ import java.util.Map;
 
 public class CmdShell {
     // <editor-fold defaultstate="collapsed" desc="Private Constants">
+    private static final Message MSG_OS_CHECK_FAILED =
+            new Message("Failed while checking which OS is running", MessageType.ERROR);
+
     private static final Message MSG_OPENING_FAILED =
             new Message("Failed to open cmd shell", MessageType.ERROR);
 
@@ -34,12 +37,33 @@ public class CmdShell {
     // </editor-fold>
 
     // <editor-fold desc="Static Methods">
+    public static String completeScriptNameByOS( String scriptBaseName) {
+        try {
+            String osName = System.getProperty("os.name");
+
+            if (osName.toLowerCase().contains( "windows" )) {
+                return scriptBaseName + ".bat";
+
+            } else if (osName.toLowerCase().contains( "linux" )) {
+                return "./" + scriptBaseName + ".sh";
+            }
+        } catch (Exception err) {
+            Main.messageBox.addMessage(MSG_OS_CHECK_FAILED);
+            return null;
+        }
+
+        return scriptBaseName;
+    }
+
     public static CmdShell getShell( String startInDirectory ) throws IOException {
         try {
             String osName = System.getProperty("os.name");
 
             if (osName.toLowerCase().contains( "windows" )) {
                 return getShellWindows( startInDirectory );
+
+            } else if (osName.toLowerCase().contains( "linux" )) {
+                return getShellLinux( startInDirectory );
             }
         } catch (Exception err) {
             Main.messageBox.addMessage(MSG_OPENING_FAILED);
@@ -59,6 +83,15 @@ public class CmdShell {
 
         String[] shellCmdArray = new String[]{
                 "cmd"
+        };
+
+        return new CmdShell( shellCmdArray, startInDirectory );
+    }
+
+    private static CmdShell getShellLinux( String startInDirectory ) throws IOException {
+
+        String[] shellCmdArray = new String[]{
+                "bash"
         };
 
         return new CmdShell( shellCmdArray, startInDirectory );

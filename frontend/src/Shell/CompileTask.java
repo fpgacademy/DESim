@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 import java.util.Locale;
 
 public class CompileTask extends ShellTask {
+    // <editor-fold desc="Constants">
+    public static final String scriptName = CmdShell.completeScriptNameByOS( "run_compile" );
+
     // <editor-fold defaultstate="collapsed" desc="Private Constants">
     private static final String TASK_NAME = "compiling";
     private static final ButtonConfigs SUCCESS_BTN_CFG = ButtonConfigs.COMPILED;
@@ -19,6 +22,7 @@ public class CompileTask extends ShellTask {
     private static final Message MSG_SUCCESS = new Message("Compilation successful", MessageType.INFO, false);
     private static final Message MSG_FAIL = new Message("Compilation failed", MessageType.ERROR, false);
     private static final String STR_EXCEPTION = "Exception occurred during compilation: ";
+    // </editor-fold>
     // </editor-fold>
 
     // <editor-fold desc="Static Methods">
@@ -41,7 +45,7 @@ public class CompileTask extends ShellTask {
         boolean compilationError = false;
 
         try {
-            shell.stdIn.write("run_compile.bat\n");
+            shell.stdIn.write(scriptName + "\n");
             shell.stdIn.write( "echo testbench_compilation_complete\n" );
             shell.stdIn.flush();
 

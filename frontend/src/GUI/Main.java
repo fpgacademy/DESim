@@ -288,21 +288,23 @@ public class Main extends Application {
                 return 1;
             }
 
-            // check if it has run_compile.bat
-            Path compileBatPath = simPath.resolve("run_compile.bat");
-            File compileBatFile = new File(compileBatPath.toString());
+            // check if it has compile script
+            String compileScript = CompileTask.scriptName;
+            Path compileBatPath = simPath.resolve( compileScript );
+            File compileBatFile = new File( compileBatPath.toString() );
             if (!compileBatFile.exists()) {
-                Message msg = new Message("Project '" + dir.getName() + "' should contain run_compile.bat in sim subfolder.",
+                Message msg = new Message("Project '" + dir.getName() + "' should contain " + compileScript + " in sim subfolder.",
                         MessageType.ERROR);
                 Main.messageBox.addMessage(msg);
                 return 1;
             }
 
-            // check if it has run_sim.bat
-            Path simBatPath = simPath.resolve("run_sim.bat");
-            File simBatFile = new File(simBatPath.toString());
+            // check if it has start sim script
+            String startSimScript = StartSimTask.scriptName;
+            Path simBatPath = simPath.resolve( startSimScript );
+            File simBatFile = new File( simBatPath.toString() );
             if (!simBatFile.exists()) {
-                Message msg = new Message("Project '" + dir.getName() + "' should contain run_sim.bat in sim subfolder.",
+                Message msg = new Message("Project '" + dir.getName() + "' should contain " + startSimScript + " in sim subfolder.",
                         MessageType.ERROR);
                 Main.messageBox.addMessage(msg);
                 return 1;

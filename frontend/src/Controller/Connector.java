@@ -84,7 +84,8 @@ public class Connector implements Runnable {
                 }
             }
         } catch (IOException e) {
-            Main.messageBox.addMessage(MSG_SERVER_FAILED);
+            Main.messageBox.addMessage(MSG_SERVER_FAILED );
+            Main.messageBox.addMessage(new Message( e.getMessage() ));
         }finally{
             try {
                 if(signalOut != null) {

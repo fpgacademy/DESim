@@ -12,6 +12,10 @@ import javafx.stage.Stage;
 import java.util.Locale;
 
 public class StartSimTask extends ShellTask {
+    // <editor-fold desc="Constants">
+    public static final String scriptName = CmdShell.completeScriptNameByOS( "run_sim" );
+    // </editor-fold>
+
     // <editor-fold desc="Variables">
     public static final String TASK_NAME = "starting simulation";
     public static final ButtonConfigs SUCCESS_BTN_CFG = ButtonConfigs.SIMULATING;
@@ -42,7 +46,7 @@ public class StartSimTask extends ShellTask {
         boolean loadingError = false;
 
         try {
-            shell.stdIn.write("run_sim.bat\n");
+            shell.stdIn.write(scriptName  + "\n");
             shell.stdIn.flush();
 
             String s;
