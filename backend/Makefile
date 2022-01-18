@@ -38,10 +38,10 @@ dist/simfpga.vpi: sim_task.o utils.o fpga.o fpga_output_device.o fpga_input_devi
 	g++ -o dist/simfpga.vpi fpga_inout_device.o keyboard_input.o fpga_input_device.o fpga_output_device.o fpga.o sim_task.o utils.o $(LDFLAGS)
 
 update_demos: dist/simfpga.vpi
-	cp dist/simfpga.vpi ../demos/Accumulate/sim/.
-	cp dist/simfpga.vpi ../demos/Addern/sim/.
-	cp dist/simfpga.vpi ../demos/Counter/sim/.
-	cp dist/simfpga.vpi ../demos/Display/sim/.
+	cp dist/simfpga.vpi ../demos/accumulate/sim/.
+	cp dist/simfpga.vpi ../demos/addern/sim/.
+	cp dist/simfpga.vpi ../demos/counter/sim/.
+	cp dist/simfpga.vpi ../demos/display/sim/.
 	cp dist/simfpga.vpi ../demos/GPIO/gpio_bidir_demo/sim/.
 	cp dist/simfpga.vpi ../demos/GPIO/gpio_in_demo/sim/.
 	cp dist/simfpga.vpi ../demos/GPIO/gpio_out_demo/sim/.
