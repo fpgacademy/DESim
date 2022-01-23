@@ -18,7 +18,7 @@ The backend dynamic link library (DLL) for DESim using QuestaSim's Verilog Proce
 1. The backend was compiled using the "build-essential" package on Ubuntu 20.04
     1. To get this package, run the following command: 'sudo apt install build-essential'
 2. Check that the vpi_user.h and vpi_compatibility.h files in the include directory are up-to-date.
-3. Copy the mtipli.lib file from QuestaSim's directory into the lib directory.
+3. Copy the libmtipli.so file from QuestaSim's directory into the lib directory.
 4. Run 'make clean'
 5. Run 'make'
 6. Run 'make update_demos'
