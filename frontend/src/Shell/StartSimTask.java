@@ -78,6 +78,9 @@ public class StartSimTask extends ShellTask {
 
                 if (lcs.contains("# errors:"))
                     break;
+
+                if (lcs.contains("application closing"))
+                    break;
             }
         } catch (Exception err) {
             Message errMsg = new Message(STR_EXCEPTION + err.getMessage(), MessageType.ERROR, false);
