@@ -16,13 +16,13 @@ REM ----------------------------------------------------------------------
 
 copy src\module-info.java.txt src\module-info.java
 dir /s /b src\*.java > sources.txt 
-javac --module-path ../../Java/javafx-sdk-11.0.2/lib -d mods/DESim @sources.txt 
+..\..\Java\jdk-17.0.1\bin\javac --module-path ../../Java/javafx-sdk-11.0.2/lib -d mods/DESim @sources.txt 
 
 REM ----------------------------------------------------------------------
 REM Create a version of Java with the DESim module built-in
 REM ----------------------------------------------------------------------
 
-jlink --module-path "../../Java/javafx-jmods-11.0.2;mods" --add-modules DESim --output dist
+..\..\Java\jdk-17.0.1\bin\jlink --module-path "../../Java/javafx-jmods-11.0.2;mods" --add-modules DESim --output dist
 
 REM ----------------------------------------------------------------------
 REM Clean up temp files
