@@ -5,7 +5,7 @@ of their simulated circuit.
 
 ## Modifying the DESim Frontend
 
-The GUI is written in Java 17.0.1 using IntelliJ IDEA 2021.3.1 (Comminuty Edition). Complete each of the following section in order to modify and update the DESim frontend.
+The GUI is written in Java 17.0.1 using IntelliJ IDEA 2021.3.1 (Community Edition). Complete each of the following section in order to modify and update the DESim frontend.
 
 ### Java
 
@@ -27,7 +27,7 @@ DESim requires JDK, JavaFX and JMods. We obtained Open JDK from https://jdk.java
 
 ### IntelliJ IDEA 2021.3.1
 
-Install IntelliJ IDEA 2021.3.1. Open the frontend project in IntelliJ. After opening the project, check the following settings:
+Install IntelliJ IDEA 2021.3.1 Community Edition. Open the frontend project in IntelliJ. After opening the project, check the following settings:
 1. Project SDK
     1. Open File -> Project Structure. 
     2. Check if Project Settings -> Project -> SDK  is set to an SDK for 17.0.1
