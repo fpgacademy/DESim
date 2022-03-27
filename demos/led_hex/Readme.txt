@@ -1,4 +1,6 @@
-To use this demo:
+The KEYs and SW are used to change the HEX displays.
+
+In this demo:
 
 -- SW are displayed on LEDR
 -- KEY[0] is the synchronous reset. It sets the HEX-display selector to 0.

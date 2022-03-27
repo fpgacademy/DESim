@@ -1,10 +1,11 @@
-To use this demo:
+The circuit displays "characters" stored in a ROM on HEX0.
+
+In this demo:
 
 -- The clock input is created by toggling KEY[0]
 -- The active-low synchronous reset input is SW[0]
 
-The circuit displays "characters" stored in a ROM on HEX0.
-To use the circuit:
+To use:
 
 1. Set SW[0] to 0 to allow the circuit to be reset
 2. pulse KEY[0] down/up to make a clock cycle

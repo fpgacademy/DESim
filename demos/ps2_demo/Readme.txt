@@ -36,6 +36,3 @@ To use:
 1. First press/release KEY[0] to reset the circuit
 2. Type in PS/2 Keyboard
 3. Set SW[7:0] to a command, press/release KEY[1] to send the command to the PS/2 Keyboard
-
-
-
