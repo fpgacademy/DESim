@@ -1,14 +1,18 @@
 // Copyright (c) 2020 FPGAcademy
 // Please see license at https://github.com/fpgacademy/DESim
 
+// Protect against undefined nets
+`default_nettype none
+
 // A multi-bit adder
 module Addern (Cin, X, Y, Sum, Cout);
-	parameter n = 4;
-	input Cin;
-	input [n-1:0] X, Y;
-	output [n-1:0] Sum;
-	output Cout;
+    parameter n = 4;
 
-	assign {Cout, Sum} = X + Y + Cin;
+    input  wire         Cin;
+    input  wire [n-1:0] X, Y;
+    output wire [n-1:0] Sum;
+    output wire         Cout;
+
+    assign {Cout, Sum} = X + Y + Cin;
 
 endmodule

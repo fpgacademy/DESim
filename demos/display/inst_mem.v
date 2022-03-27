@@ -41,9 +41,9 @@ module inst_mem (
 	clock,
 	q);
 
-	input	[4:0]  address;
-	input	  clock;
-	output	[7:0]  q;
+	input  wire [ 4: 0] address;
+	input               clock;
+	output      [ 7: 0] q;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_off
 `endif
