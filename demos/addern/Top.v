@@ -4,8 +4,7 @@
 // Protect against undefined nets
 `default_nettype none
 
-module Top (CLOCK_50, KEY, SW, LEDR);
-    input  wire         CLOCK_50;   // DE-series 50 MHz clock signal
+module Top (KEY, SW, LEDR);
     input  wire [ 3: 0] KEY;        // DE-series pushbuttons
     input  wire [ 9: 0] SW;         // DE-series switches
     output wire [ 9: 0] LEDR;       // DE-series LEDs

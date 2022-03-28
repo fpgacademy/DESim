@@ -13,7 +13,7 @@ module Top (CLOCK_50, KEY, SW, GPIO);
     reg         [31: 0] gpio_comb;
     reg         [31: 0] gpio_reg;
 
-     assign GPIO = gpio_comb;
+    assign GPIO = gpio_comb;
 
     always @(*)
     begin

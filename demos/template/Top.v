@@ -1,4 +1,4 @@
-// Copyright (c) 2020 FPGAcademy
+// Copyright (c) 2022 FPGAcademy
 // Please see license at https://github.com/fpgacademy/DESim
 
 // Protect against undefined nets
@@ -19,8 +19,8 @@ module Top (CLOCK_50, KEY, SW, GPIO, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR,
     output wire [ 6: 0] HEX5;
     output wire [ 9: 0] LEDR;       // DE-series LEDs
 
-    inout  wire         PS2_CLK;
-    inout  wire         PS2_DAT;
+    inout  wire         PS2_CLK;    // PS/2 Clock
+    inout  wire         PS2_DAT;    // PS/2 Data
 
     output wire [ 7: 0] VGA_X;      // "VGA" column
     output wire [ 6: 0] VGA_Y;      // "VGA" row
@@ -38,6 +38,9 @@ module Top (CLOCK_50, KEY, SW, GPIO, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR,
     assign HEX5      = 7'h7F;
 
     assign LEDR      = 10'h155;
+
+    assign PS2_CLK   = 1'bZ;
+    assign PS2_DAT   = 1'bZ;
 
     assign VGA_X     = {4'h0, SW[3:0]};
     assign VGA_Y     = {3'h0, SW[7:4]};
