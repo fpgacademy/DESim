@@ -16,4 +16,8 @@ fi
 vlib work
 vlog ../tb/*.v
 vlog ../*.v
+if [ -f ../Top.vhd ]
+then
+	vcom ../*.vhd
+fi
 
