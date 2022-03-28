@@ -83,7 +83,7 @@ module inst_mem (
 		altsyncram_component.address_aclr_a = "NONE",
 		altsyncram_component.clock_enable_input_a = "BYPASS",
 		altsyncram_component.clock_enable_output_a = "BYPASS",
-		altsyncram_component.init_file = "inst_mem.mif",
+		altsyncram_component.init_file = "inst_mem.ip.mif",
 		altsyncram_component.intended_device_family = "MAX 10",
 		altsyncram_component.lpm_hint = "ENABLE_RUNTIME_MOD=NO",
 		altsyncram_component.lpm_type = "altsyncram",
@@ -118,7 +118,7 @@ endmodule
 // Retrieval info: PRIVATE: JTAG_ENABLED NUMERIC "0"
 // Retrieval info: PRIVATE: JTAG_ID STRING "NONE"
 // Retrieval info: PRIVATE: MAXIMUM_DEPTH NUMERIC "0"
-// Retrieval info: PRIVATE: MIFfilename STRING "inst_mem.mif"
+// Retrieval info: PRIVATE: MIFfilename STRING "inst_mem.ip.mif"
 // Retrieval info: PRIVATE: NUMWORDS_A NUMERIC "32"
 // Retrieval info: PRIVATE: RAM_BLOCK_TYPE NUMERIC "0"
 // Retrieval info: PRIVATE: RegAddr NUMERIC "1"
@@ -133,7 +133,7 @@ endmodule
 // Retrieval info: CONSTANT: ADDRESS_ACLR_A STRING "NONE"
 // Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_A STRING "BYPASS"
 // Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_A STRING "BYPASS"
-// Retrieval info: CONSTANT: INIT_FILE STRING "inst_mem.mif"
+// Retrieval info: CONSTANT: INIT_FILE STRING "inst_mem.ip.mif"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "MAX 10"
 // Retrieval info: CONSTANT: LPM_HINT STRING "ENABLE_RUNTIME_MOD=NO"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "altsyncram"
@@ -155,5 +155,5 @@ endmodule
 // Retrieval info: GEN_FILE: TYPE_NORMAL inst_mem.cmp FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL inst_mem.bsf FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL inst_mem_inst.v FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL inst_mem_bb.v TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL inst_mem_bb.v FALSE
 // Retrieval info: LIB_FILE: altera_mf
