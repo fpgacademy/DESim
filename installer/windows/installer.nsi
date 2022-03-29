@@ -114,9 +114,9 @@ SkipDesktopShortcut:
   ; Get the GUI
   File /nonfatal /r ..\..\frontend\dist\*.*
 
-  SetOutPath "$R0\demos"	            ; installation directory
+  SetOutPath "$R0\demos"            ; installation directory
   ; Get the demos
-  File /nonfatal /r ..\..\demos\*.*
+  File /nonfatal /r /x *.sh ..\dist\demos\*.*
 
   SetOutPath $R0					; installation directory
   ; Get the backend VPI
