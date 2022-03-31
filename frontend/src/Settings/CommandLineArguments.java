@@ -13,7 +13,9 @@ public class CommandLineArguments {
 
     // <editor-fold desc="Constants">
     // List of valid command line arguments
-    // Static strings listed in the Defaults class are also valid arguments
+    public final static String SIMULATOR_PATH  = "simulator-path";
+    public final static String LICENSE_FILE_PATH  = "license-file-path";
+    // Deprecating the "modelsim-path" in favor of "simulator-path";
     public final static String MODELSIM_PATH  = "modelsim-path";
     // List of valid options
     public final static String TRUE  = "true";

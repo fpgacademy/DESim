@@ -6,15 +6,13 @@ package Shell;
 import GUI.Main;
 import GUI.windows.Message;
 import GUI.windows.MessageType;
+import Settings.CommandLineArguments;
 
 import java.io.*;
 import java.util.Map;
 
 public class CmdShell {
     // <editor-fold defaultstate="collapsed" desc="Private Constants">
-    private static final Message MSG_OS_CHECK_FAILED =
-            new Message("Failed while checking which OS is running", MessageType.ERROR);
-
     private static final Message MSG_OPENING_FAILED =
             new Message("Failed to open cmd shell", MessageType.ERROR);
 
@@ -22,7 +20,7 @@ public class CmdShell {
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Private Static Variables">
-    private static String modelsimPath = null;
+    private static CmdShellSettings cmdShellSettings = new CmdShellSettings();
     // </editor-fold>
 
     // <editor-fold desc="Variables">
@@ -37,45 +35,29 @@ public class CmdShell {
     // </editor-fold>
 
     // <editor-fold desc="Static Methods">
+    public static void init(CommandLineArguments clArgs) {
+        cmdShellSettings = cmdShellSettings.update(clArgs);
+    }
+
     public static String completeScriptNameByOS( String scriptBaseName) {
-        try {
-            String osName = System.getProperty("os.name");
-
-            if (osName.toLowerCase().contains( "windows" )) {
-                return scriptBaseName + ".bat";
-
-            } else if (osName.toLowerCase().contains( "linux" )) {
-                return "./" + scriptBaseName + ".sh";
-            }
-        } catch (Exception err) {
-            Main.messageBox.addMessage(MSG_OS_CHECK_FAILED);
-            return null;
-        }
-
-        return scriptBaseName;
+        return switch (cmdShellSettings.osType) {
+            case WINDOWS -> scriptBaseName + ".bat";
+            case LINUX -> "./" + scriptBaseName + ".sh";
+            default -> scriptBaseName;
+        };
     }
 
     public static CmdShell getShell( String startInDirectory ) throws IOException {
         try {
-            String osName = System.getProperty("os.name");
-
-            if (osName.toLowerCase().contains( "windows" )) {
-                return getShellWindows( startInDirectory );
-
-            } else if (osName.toLowerCase().contains( "linux" )) {
-                return getShellLinux( startInDirectory );
-            }
-        } catch (Exception err) {
+            return switch (cmdShellSettings.osType) {
+                case WINDOWS -> getShellWindows( startInDirectory );
+                case LINUX -> getShellLinux( startInDirectory );
+                default -> null;
+            };
+        } catch (IOException e) {
             Main.messageBox.addMessage(MSG_OPENING_FAILED);
-            return null;
+            throw e;
         }
-
-        return null;
-    }
-
-    public static void setModelsimPath (String path) {
-        if ((path != null) && (!path.isBlank()))
-            modelsimPath = path;
     }
 
     // <editor-fold defaultstate="collapsed" desc="Private Static Methods">
@@ -113,11 +95,20 @@ public class CmdShell {
         if (startInDirectory != null) {
             pb.directory(new File(startInDirectory));
         }
-        // Add ModelSim to the path
-        if (modelsimPath != null) {
+        // Update environment variables
+        final String evPATH = cmdShellSettings.evPATH;
+        final String evLM_LICENSE_FILE = cmdShellSettings.evLM_LICENSE_FILE;
+        if ((evPATH != null) || (evLM_LICENSE_FILE != null)) {
             Map<String, String> envs = pb.environment();
-            String currentPath = envs.get("Path");
-            envs.put( "Path", modelsimPath + ";" + currentPath);
+            // Add simulator to the path
+            if (evPATH != null) {
+                String currentPath = envs.get("PATH");
+                envs.put( "PATH", evPATH + currentPath);
+            }
+            // Add an environment variable for the license file
+            if (evLM_LICENSE_FILE != null) {
+                envs.put( "LM_LICENSE_FILE", evLM_LICENSE_FILE );
+            }
         }
         pb.redirectErrorStream(true);
 
@@ -152,7 +143,7 @@ public class CmdShell {
             stdIn.close();
 
             shell.destroy();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
     // </editor-fold>

@@ -60,8 +60,7 @@ public class Main extends Application {
     // <editor-fold desc="Static Methods">
     public static void main(String[] args) {
         CommandLineArguments clArgs = new CommandLineArguments(args);
-        String modelsimPath = clArgs.getCmdLineArg(CommandLineArguments.MODELSIM_PATH, "");
-        CmdShell.setModelsimPath( modelsimPath );
+        CmdShell.init( clArgs );
 
         Thread connThread = new Thread(connector);
         connThread.start();
