@@ -1,6 +1,8 @@
 # DESim Backend
 
-The backend dynamic link library (DLL) for DESim using QuestaSim's Verilog Procedural Interface (VPI) to connect DESim's frontend to circuit's being simulated in QuestaSim. If the backend needs to be rebuilt, follow the steps below. 
+The backend dynamic link library (DLL) for DESim using ModelSim/Questa's 
+Verilog Procedural Interface (VPI) to connect DESim's frontend to circuit's 
+being simulated. If the backend needs to be rebuilt, follow the steps below. 
 
 ## Rebuilding the DESim Backend on Windows
 
@@ -17,8 +19,7 @@ The backend dynamic link library (DLL) for DESim using QuestaSim's Verilog Proce
 
 1. The backend was compiled using the "build-essential" package on Ubuntu 20.04
     1. To get this package, run the following command: 'sudo apt install build-essential'
-2. Check that the vpi_user.h and vpi_compatibility.h files in the include directory are up-to-date.
-3. Copy the libmtipli.so file from QuestaSim's directory into the lib directory.
-4. Run 'make clean'
-5. Run 'make'
-6. Run 'make update_demos'
+2. Make sure that the ModelSim/Questa directories in the Makefile reflect those on your computer
+3. Run 'make clean'
+4. Run 'make' or 'make SIMULATOR=modelsim'
+5. Run 'make release' or 'make SIMULATOR=modelsim release'
