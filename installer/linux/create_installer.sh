@@ -8,10 +8,11 @@
 # The following needs to be built before running this script
 # 1) Frontend
 #    a) Build the frontend in IntelliJ
-#    b) Run frontend/build_release.sh
+#    b) Run ../../frontend/build_release.sh
 # 2) Backend
-#    a) Run backend/make
-#    b) Run backend/make update_demos
+#    a) Run ../../backend/make full
+# 3) Demos
+#    a) Run ../collect_demos.sh
 # 3) Documents
 #    a) Build the document PDFs and put them in ../docs/
 
@@ -32,7 +33,7 @@ cp ../../frontend/scancode.csv ./DESim
 cp DESim.sh ./DESim
 
 # Demos
-rsync -ar --exclude='*/*.bat' ../../demos ./DESim
+rsync -ar --exclude='*/*.bat' ../dist/demos ./DESim
 
 # Documents
 cp -R ../docs ./DESim/docs
