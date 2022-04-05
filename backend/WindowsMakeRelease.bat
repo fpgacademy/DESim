@@ -2,14 +2,13 @@
 :: Please see license at https://github.com/fpgacademy/DESim
 ::
 :: Windows batch script
-:: To remove the DESim software's backend compiled object files and dll file
+:: Release the newly compiled VPI backend
 
 @ECHO OFF
-TITLE Removing compiled object files of DESim's backend
+TITLE Copying the DESim backend library to the installer folder
 
 @ECHO ON
-del *.o
-del /s dist\*.vpi
+xcopy /E /I dist\* ..\installer\dist\backend\.
 
 @ECHO OFF
 PAUSE
