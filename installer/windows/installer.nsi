@@ -53,7 +53,7 @@ Var DESIM_INSTALL_PATH_TITLE
 
 !define MUI_WELCOMEPAGE_TITLE "Welcome to the $SOFTWARE_NAME setup wizard"
 !define MUI_WELCOMEPAGE_TITLE_3LINES
-!define MUI_WELCOMEPAGE_TEXT "This wizard will guide you through the installation of the $SOFTWARE_FULLNAME. Please note that you must have previously installed $MODELSIM_FULLNAME to use this software."
+!define MUI_WELCOMEPAGE_TEXT "This wizard will guide you through the installation of the $SOFTWARE_FULLNAME. Please note that you must have previously installed $MODELSIM_FULLNAME and/or $QUESTA_FULLNAME to use this software."
 !insertmacro MUI_PAGE_WELCOME
 
 !insertmacro MUI_PAGE_LICENSE "..\..\LICENSE"
@@ -192,16 +192,21 @@ Function .onInit
 
   ; Set DESim info
   StrCpy $SOFTWARE_NAME "DESim software"
-  StrCpy $VERSION_MAJOR "1"
+  StrCpy $VERSION_MAJOR "2"
   StrCpy $VERSION_MINOR "0"
   StrCpy $SOFTWARE_FULLNAME "$SOFTWARE_NAME v$VERSION_MAJOR.$VERSION_MINOR"
   StrCpy $SOFTWARE_SHORTCUT "$SOFTWARE_FULLNAME"
 
   ; Set required version of the ModelSim software
-  StrCpy $MODELSIM_NAME "ModelSim${U+00AE} HDL simulator"
+  StrCpy $MODELSIM_NAME "ModelSim${U+00AE}-Intel${U+00AE} FPGA Edition"
   StrCpy $MODELSIM_VERSION_MAJOR "10"
   StrCpy $MODELSIM_VERSION_MINOR "5b"
   StrCpy $MODELSIM_FULLNAME "$MODELSIM_NAME v$MODELSIM_VERSION_MAJOR.$MODELSIM_VERSION_MINOR"
+
+  StrCpy $QUESTA_NAME "Questa${U+00AE}-Intel${U+00AE} FPGA Edition Software"
+  StrCpy $QUESTA_VERSION_MAJOR "2021"
+  StrCpy $QUESTA_VERSION_MINOR "2"
+  StrCpy $QUESTA_FULLNAME "$QUESTA_NAME v$QUESTA_VERSION_MAJOR.$QUESTA_VERSION_MINOR"
 
 
   ; Setup the install path info as if the components were not installed
