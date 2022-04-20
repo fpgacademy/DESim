@@ -1,13 +1,26 @@
-\documentclass[epsfig,10pt,fullpage]{article} \addtolength{\textwidth}{1.5in}
-\addtolength{\oddsidemargin}{-0.75in}
-\addtolength{\topmargin}{-0.75in}
-\addtolength{\textheight}{1.5in}
-\addtolength{\evensidemargin}{0.75in}
-\raggedbottom
-\usepackage{ae,aecompl}
-\usepackage{epsfig,float,times}
-\usepackage{graphicx}
-\usepackage[usenames]{xcolor}
+\documentclass[11pt, twoside, pdftex]{article}
+
+\newcommand{\doctitle}{Using the DESim Application \\ with Verilog Code}
+\newcommand{\dochead}{Using the DESim Application with Verilog Code}
+
+\newcommand{\pdftitle}{\dochead}
+\newcommand{\FPGAcademyOrgTemplatePath}{../../../Common}
+
+% This include all the settings that we should use for the document
+\input{\FPGAcademyOrgTemplatePath/Docs/defaulttext.tex}
+\input{\FPGAcademyOrgTemplatePath/Docs/preamble.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Add title
+%\newcommand{\doctitle}{Using the DESim Application \\ with Verilog Code}
+%\newcommand{\dochead}{Using the DESim Application with Verilog Code}
+% Usually no need to change these two lines
+\title{\fontfamily{phv}\selectfont{\doctitle} }
+\chead{ \small{\textsc{\bfseries \dochead} } }
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\usepackage[usenames]{xcolor}
 
 \newcommand{\red}[1]{{\color{red}\sf{#1}}}
 \newcommand{\blue}[1]{{\color{blue}\sf{#1}}}
@@ -17,26 +30,30 @@
 
 \definecolor{Brass}{rgb}{0.71, 0.4, 0.11}
 
-\usepackage{placeins}
-\usepackage{listings}
-\definecolor{PineGreen}{rgb}{0.0, 0.47, 0.44}
-\lstset{
-%language = C,
-%language = Verilog,
-basicstyle=\small\color{black}\ttfamily, commentstyle=\small\color{PineGreen}\itshape\ttfamily,
-keywordstyle=\small\color{blue}\bfseries\ttfamily,
-showstringspaces=false,
-frame=none, %lines % boxed listings
-breaklines=true,
-breakatwhitespace=true,
-tabsize=3
-}
-
+%%%%%%%%%%%%%%%%%%
+%%% DOCUMENT START
 \begin{document}
-~\\
-\centerline{\huge Using the {\it DESim} Application with Verilog Code}
-~\\
-~\\
+\begin{table}
+    \centering
+    \begin{tabular}{p{5cm}p{4cm}}
+        \hspace{-3cm}
+        &
+        \raisebox{1\height}{\parbox[h]{0.5\textwidth}{\Large\fontfamily{phv}\selectfont{\textsf{\doctitle}}}}
+    \end{tabular}
+    \label{tab:logo}
+\end{table}
+
+\colorbox[rgb]{0,0.384,0.816}{\parbox[h]{\textwidth}{\color{white}\textsf{\textit{\FPGAcademyOrgTextBar}}}}
+
+\thispagestyle{plain}
+ 
+\section{Introduction}
+
+%\begin{document}
+%~\\
+%\centerline{\huge Using the {\it DESim} Application with Verilog Code}
+%~\\
+%~\\
 This tutorial introduces the {\it DESim} application, which you can use to simulate 
 circuits specified with Verilog code. The {\it DESim} application provides a 
 {\it graphical user interface} (GUI) that represents some of the features of a {\it DE1-SoC}
@@ -298,31 +315,30 @@ This {\it ModelSim} capability is known as the {\it Verilog Procedural Interface
 `default_nettype none
 
 // This testbench is designed to hide the details of using the VPI code
-
 |\label{line:tb}|module tb();
-
-    reg CLOCK_50 = 0;               // DE-series 50 MHz clock
-    reg [9:0] SW = 0;               // DE-series SW switches
-    reg [3:0] KEY = 0;              // DE-series pushbutton keys
-    wire [(8*6) -1:0] HEX;          // HEX displays (six ports)
-    wire [9:0] LEDR;                // DE-series LEDs
+    reg CLOCK_50 = 0;           // DE-series 50 MHz clock
+    reg [9:0] SW = 0;           // DE-series SW switches
+    reg [3:0] KEY = 0;          // DE-series pushbutton keys
+    wire [(8*6) -1:0] HEX;      // HEX displays (six ports)
+    wire [9:0] LEDR;            // DE-series LEDs
 
     reg key_action = 0;
     reg [7:0] scan_code = 0;
     wire [2:0] ps2_lock_control;
 
-    wire [7:0] VGA_X;               // "VGA" column
-    wire [6:0] VGA_Y;               // "VGA" row
-    wire [2:0] VGA_COLOR;           // "VGA pixel" colour (0-7)
-    wire plot;                      // "Pixel" is drawn when this is pulsed
-    wire [31:0] GPIO;               // DE-series GPIO port
+    wire [7:0] VGA_X;           // "VGA" column
+    wire [6:0] VGA_Y;           // "VGA" row
+    wire [2:0] VGA_COLOR;       // "VGA pixel" colour (0-7)
+    wire plot;                  // "Pixel" is drawn when this is pulsed
+    wire [31:0] GPIO;           // DE-series GPIO port
 
-    initial $sim_fpga(CLOCK_50, SW, KEY, LEDR, HEX, key_action, scan_code, 
-                      ps2_lock_control, VGA_X, VGA_Y, VGA_COLOR, plot, GPIO);
+    initial $sim_fpga(CLOCK_50, SW, KEY, LEDR, HEX, key_action, 
+		scan_code, ps2_lock_control, VGA_X, VGA_Y, VGA_COLOR, 
+		plot, GPIO);
 
-    wire [6:0] HEX0;                // DE-series HEX0 port
-    wire [6:0] HEX1;                // DE-series HEX1 port
-    wire [6:0] HEX2;                // ...
+    wire [6:0] HEX0;            // DE-series HEX0 port
+    wire [6:0] HEX1;            // DE-series HEX1 port
+    wire [6:0] HEX2;            // ...
     wire [6:0] HEX3;
     wire [6:0] HEX4;
     wire [6:0] HEX5;
@@ -339,9 +355,9 @@ This {\it ModelSim} capability is known as the {\it Verilog Procedural Interface
     assign HEX[15: 8] = {1'b0, HEX4};
     assign HEX[ 7: 0] = {1'b0, HEX5};
     
-    |\label{line:DUT}|top DUT (.CLOCK_50(CLOCK_50), .SW(SW), .LEDR(LEDR), .KEY(KEY), .HEX0(HEX0), 
-             .HEX1(HEX1), .HEX2(HEX2), .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5));
-
+    |\label{line:DUT}|top DUT (.CLOCK_50(CLOCK_50), .SW(SW), .LEDR(LEDR), .KEY(KEY),
+		.HEX0(HEX0), .HEX1(HEX1), .HEX2(HEX2), .HEX3(HEX3), 
+		.HEX4(HEX4), .HEX5(HEX5));
 endmodule
 \end{lstlisting}
 \end{minipage}
@@ -866,12 +882,19 @@ C:$\backslash$DESim$\backslash$demos$\backslash$addern, then this message would 
 
 \noindent
 \begin{minipage}[h]{17.5 cm}
-\lstset{language=command.com,numbers=none,escapechar=|,moredelim=**[is][\color{Brass}]{@}{@}}
+\lstset{language=command.com,numbers=none,escapechar=|,moredelim=**[is][\color{RedOrange}]{@}{@}}
 \begin{lstlisting}[]
 @** Warning: (vlog-31) Unable to unlink file "C:/DESim/demos/addern/sim/work/_lock"@
 \end{lstlisting}
 \end{minipage}
-                
+
+\begin{minipage}[h]{17.5 cm}
+\lstset{language=command.com,numbers=none,escapechar=|,moredelim=**[is][\color{Orange}]{@}{@}}
+\begin{lstlisting}[]
+@** Warning: (vlog-31) Unable to unlink file "C:/DESim/demos/addern/sim/work/_lock"@
+\end{lstlisting}
+\end{minipage}
+
 This problem occurs for unknown reasons and is caused by an issue with the
 {\it ModelSim} software (it happens when directly using the ModelSim GUI
 also, and not only when using the {\it DESim} tool). If the ``unlink'' issue
@@ -880,4 +903,9 @@ solution is to browse with \texttt{File Explorer} into the file-system folder
 \texttt{C:$\backslash$DESim$\backslash$demos$\backslash$addern$\backslash$sim$\backslash$work}
 and manually {\it delete} the file named {\it \_lock}.
 \end{enumerate}
+
+% Copyright and Trademark
+
+\input{\FPGAcademyOrgTemplatePath/Docs/copyright.tex}
+
 \end{document}
