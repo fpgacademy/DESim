@@ -12,7 +12,7 @@ USE ieee.std_logic_unsigned.all;
 --     SW[9:7] selects a HEX display (from 0 to 5) 
 ENTITY LED_HEX IS 
     PORT ( 
-        CLOCK  : IN  STD_LOGIC;
+        CLOCK  : IN    STD_LOGIC;
         KEY    : IN    STD_LOGIC_VECTOR( 1 DOWNTO 0);
         SW     : IN    STD_LOGIC_VECTOR( 9 DOWNTO 0);
         HEX0   : OUT   STD_LOGIC_VECTOR( 6 DOWNTO 0);
