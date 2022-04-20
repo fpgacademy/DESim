@@ -1,91 +1,125 @@
-\documentclass[epsfig,10pt,fullpage]{article} \addtolength{\textwidth}{1.5in}
-\addtolength{\oddsidemargin}{-0.75in}
-\addtolength{\topmargin}{-0.75in}
-\addtolength{\textheight}{1.5in}
-\addtolength{\evensidemargin}{0.75in}
+\documentclass[11pt, twoside, pdftex]{article}
+
+% This include all the settings that we should use for the document
+\newcommand{\PDFTitle}{Getting Started with Intel's DE-Series Boards}
+\newcommand{\commonPath}{../../../Tutorials/Common}
+\input{\commonPath/Docs/defaulttext.tex}
+\input{\commonPath/Docs/preamble.tex}
+\widowpenalty 10000
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Add title
+\newcommand{\doctitle}{DESim Installation Guide}
+\newcommand{\dochead}{DESim Installation Guide}
+% Usually no need to change these two lines
+
+\title{\fontfamily{phv}\selectfont{\doctitle} }
+\chead{ \small{\textsc{\bfseries \dochead} } }
+% Customizations
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Allows multiple figures per page
+
+\renewcommand\floatpagefraction{.9}
+\renewcommand\topfraction{.9}
+\renewcommand\bottomfraction{.9}
+\renewcommand\textfraction{.1}   
+\setcounter{totalnumber}{50}
+\setcounter{topnumber}{50}
+\setcounter{bottomnumber}{50}
 \raggedbottom
-\usepackage{ae,aecompl}
-\usepackage{epsfig,float,times}
-\usepackage{graphicx}
-\usepackage[usenames]{xcolor}
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,      
-    urlcolor=blue,
-    pdftitle={Sharelatex Example},
-    bookmarks=true,
-    pdfpagemode=FullScreen,
+\usepackage{enumitem}
+\setlist{nolistsep}
+
+\usepackage{tikz}
+\usetikzlibrary{shadows}
+
+\newcommand\keystroke[1]{
+  \tikz[baseline=(key.base)]
+    \node[
+      draw,
+      fill=white,
+      drop shadow={shadow xshift=0.25ex,shadow yshift=-0.25ex,fill=black,opacity=0.35},
+      rectangle,
+      rounded corners=2pt,
+      inner xsep=3pt,
+      inner ysep=0.5pt,
+      line width=0.5pt,
+      font=\scriptsize\sffamily
+  ](key) {#1\strut}
+  ;
 }
 
-\usepackage{placeins}
-\usepackage{listings}
+%%%%%%%%%%%%%%%%%%
+%%% DOCUMENT START
+%\begin{document}
+\begin{document}
+\begin{table}
+    \centering
+    \begin{tabular}{p{5cm}p{4cm}}
+        \hspace{-3cm}
+        &
+        \raisebox{1\height}{\parbox[h]{0.5\textwidth}{\Large\fontfamily{phv}\selectfont{\textsf{\doctitle}}}}
+    \end{tabular}
+    \label{tab:logo}
+\end{table}
+
+\colorbox[rgb]{0,0.384,0.816}{\parbox[h]{\textwidth}{\color{white}\textsf{\textit{\textBar}}}}
+
+\thispagestyle{plain}
+
 \definecolor{AppleGreen}{rgb}{0.55, 0.71, 0.0}
 \newcommand{\green}[1]{{\color{AppleGreen}\sf{#1}}}
 \newcommand{\red}[1]{{\color{red}\sf{#1}}}
-\lstset{
-%language = C,
-%language = Verilog,
-basicstyle=\small\color{black}\ttfamily, commentstyle=\small\color{AppleGreen}\itshape\ttfamily,
-keywordstyle=\small\color{blue}\bfseries\ttfamily,
-showstringspaces=false,
-frame=none, %lines % boxed listings
-breaklines=true,
-breakatwhitespace=true,
-tabsize=3
-}
 
-\begin{document}
-~\\
-\centerline{\huge Installing the {\it DESim} Application}
-~\\
-~\\
+
+\section{Introduction}
+
 This tutorial shows you how to download and install the {\it DESim} application
-on a computer that is running a Microsoft Windows operating system or Ubuntu operating system.  
+on a computer that is running a Microsoft Windows or Ubuntu operating systems.  
 To perform the steps given below you will need to have 
 access to the Internet, and have the required permissions to install application software.
 
-~\\
-\noindent
 We do not give detailed instructions in this document for using the {\it DESim} application, 
 but only show how to install it. Separate instructions for using the {\it DESim} application 
-are provided in the tutorial called {\it Using the DESim Software with Verilog Code}.
-Before using the {\it DESim} application it is necessary to install the {\it QuestaSim} 
-simulator. Instructions for installing an appropriate version of {\it QuestaSim} are
-provided in the tutorial {\it Using the QuestaSim-Intel FPGA Simulator with Verilog
-Testbenches}, available on \href{https://www.fpgacademy.org/tutorials.html}{FPGAcademy.org}. 
+are provided in the tutorial called 
+\href{https://github.com/fpgacademy/DESim/releases/download/v2.0/DESim\_tutorial.pdf}
+{Using the DESim Software with Verilog/VHDL Code}.
+Before using the {\it DESim} application it is necessary to install either the {\it ModelSim} 
+or {\it Questa} simulation software. This version of the {\it DESim} application was built for:
+\begin{itemize}
+	\item {\it ModelSim-Intel FPGA} edition software v10.5b which comes with the 
+{\it Quartus Prime} software v19.1. 
+	\item {\it Questa-Intel FPGA} edition software v2021.2 which comes
+		with the 
+{\it Quartus Prime} software v21.1. 
+\end{itemize}
+Instructions for installing the {\it ModelSim} and {\it Questa} applications are
+provided in the tutorials  {\it Using the ModelSim-Intel FPGA Simulator with Verilog/VHDL
+Testbenches} and {\it Using the Questa-Intel FPGA Simulator with Verilog/VHDL Testbenches}, 
+respectively, available on \href{https://www.fpgacademy.org/tutorials.html}{FPGAcademy.org}. 
 
-\section*{Getting Started}
+\section{Getting Started}
 
 The discussion below assumes that you are using the Google {\it Chrome} Internet Browser to
 navigate on the Internet.  If you are using a different browser application, then you may
 notice some minor discrepancies from some of the material presented below. 
 
-~\\
-\noindent
-You can download {\it DESim} software installer from its repository on {\it GitHub}. 
-Open your Internet browser and navigate to \url{https://github.com/fpgacademy/DESim}.
-As indicated in Figure~\ref{fig:github}, the {\it DESim} repository includes the source-code 
+You can download the {\it DESim} software installer from its repository on {\it GitHub}. 
+Open your Internet browser and navigate to \url{https://github.com/fpgacademy/DESim/releases}.
+This action opens the repository's \texttt{Releases} page, part of which is shown in 
+Figure~\ref{fig:release}
+
+The {\it DESim} repository includes the source-code 
 for the application. You can browse through this code if interested, but it is not necessary to
-do so. To download the {\it DESim} installer onto your computer, use the 
-\texttt{Releases} area on the {\it GitHub} display. As illustrated on the right-hand side of
-Figure~\ref{fig:github} click your mouse on the item 
-\includegraphics[height=\baselineskip]{figures/label.png}. This action opens the
-repository's \texttt{Releases} page, part of which is shown in Figure~\ref{fig:release}.
+do so.
 
-\begin{figure}[h]
-	\begin{center}
-        \setlength{\fboxsep}{0pt}
-        \fbox{\includegraphics[width = \textwidth]{figures/github.png}}
-	\end{center}
-          \caption{The {\it DESim} repository on {\it GitHub}.}
-	\label{fig:github}
-\end{figure}
+If using the Microsoft Windows operating system, read section~\ref{sec:win_inst}. If using the
+Ubuntu operating system, jump to section~\ref{sec:ubuntu_inst}. After read either of those sections,
+continue reading at section~\ref{sec:env}
 
-\newpage
-~\\
-\noindent
+\subsection{Windows Installation} \label{sec:win_inst}
+
 Click on the filename {\it desim\_setup.exe}, as illustrated in Figure~\ref{fig:release},
 which downloads this file to your computer. You may be presented with a
 warning message in your browser, because the file that you are downloading is an 
@@ -95,14 +129,12 @@ file so that it is saved onto your computer.
 \begin{figure}[h]
 	\begin{center}
         \setlength{\fboxsep}{0pt}
-        \fbox{\includegraphics[scale=0.75]{figures/github_installer.png}}
+        \fbox{\includegraphics[scale=0.75]{figures/GitHub_releases.png}}
 	\end{center}
           \caption{The \texttt{Releases} page for the {\it DESim} repository.}
 	\label{fig:release}
 \end{figure}
 
-~\\
-\noindent
 The {\it desim\_setup.exe} file is the {\it installer} program for the {\it DESim}
 application. Open this file (execute the program) to reach the \texttt{Welcome} screen 
 shown in Figure~\ref{fig:welcome}. Click \texttt{Next} to see the {\it License Agreement}
@@ -110,7 +142,6 @@ for the {\it DESim} application, and then click \texttt{I Agree} if you accept t
 the license. If you do not accept the terms of the agreement, then the installer will
 exit. Click \texttt{Next} to reach the screen displayed in Figure~\ref{fig:install}.
 
-~\\
 \begin{figure}[h]
 	\begin{center}
         \setlength{\fboxsep}{0pt}
@@ -120,9 +151,8 @@ exit. Click \texttt{Next} to reach the screen displayed in Figure~\ref{fig:insta
 	\label{fig:welcome}
 \end{figure}
 
-\noindent
-In Figure~\ref{fig:install} you can specify an installation folder. In the discussion
-below we assume that you have accepted the default location (\texttt{C:$\backslash$DESim}),
+As shown in Figure~\ref{fig:install}, you can specify an installation folder. In the discussion
+below, we assume that you have accepted the default location (\texttt{C:$\backslash$DESim}),
 but you can change this selection. Click the \texttt{Install} button. 
 During the installation process you have the option of placing an icon onto your
 \texttt{Desktop} for this application. This icon provides an easy way to run the {\it DESim}
@@ -137,7 +167,6 @@ application, and so is recommended.
 	\label{fig:install}
 \end{figure}
 
-\noindent
 The \texttt{C:$\backslash$DESim} folder created in the installation process
 contains the {\it DESim} software and some
 example projects (called {\it demos}). Start the {\it DESim} application by double-clicking its
@@ -146,19 +175,56 @@ example projects (called {\it demos}). Start the {\it DESim} application by doub
 {\it DESim} application by navigating to the \texttt{C:$\backslash$DESim} folder, 
 right-clicking on the {\it batch} file \texttt{DESim\_run.bat}, as illustrated in 
 Figure~\ref{fig:open}, and then selecting \texttt{Open} (or, you can double-click on the 
-batch file to open it). You should now see the {\it DESim} graphical user interface (GUI),
-illustrated in Figure~\ref{fig:GUI}. It should show the message
-``\green{The server is running...}'' near the top of the {\it message pane} in the GUI.
+batch file to open it).
 
-~\\
 \begin{figure}[h]
 	\begin{center}
             \setlength{\fboxsep}{0pt}
             \fbox{\includegraphics[width = 1\textwidth]{figures/DESim_open_local.png}}
 	\end{center}
-          \caption{Starting the {\it DESim} application.}
+          \caption{Starting the {\it DESim} application under Windows.}
 	\label{fig:open}
 \end{figure}
+
+\subsection{Linux Installation} \label{sec:ubuntu_inst}
+
+Click on the filename {\it desim.tar.gz}, as illustrated in Figure~\ref{fig:release},
+which downloads this file to your computer. 
+Extract the contents of the tarball to a folder, such has \texttt{$\sim$/DESim}. This
+newly created directory contains the {\it DESim} software and some
+example projects (called {\it demos}). Start the {\it DESim} application by running the 
+\texttt{./DESim.sh} script. As shown in Figure~\ref{fig:run_linux}, this can be done by: 
+\begin{enumerate}
+	\item Opening a terminal window using keys \keystroke{Ctrl} + \keystroke{Alt} + \keystroke{T}
+	\item Navigating to the newly create directory: `\texttt{cd $\sim$/DESim}'
+	\item Executing the shell script: `\texttt{./DESim.sh}'
+\end{enumerate}
+
+\begin{figure}[h]
+	\begin{center}
+            \setlength{\fboxsep}{0pt}
+            \includegraphics[width = 1\textwidth]{figures/DESim_run_linux.png}
+	\end{center}
+          \caption{Starting the {\it DESim} application under Linux.}
+	\label{fig:run_linux}
+\end{figure}
+
+\subsection{Enviroment configuration} \label{sec:env}
+
+The {\it DESim} software requires that the simulation software's executables are in your 
+{\it PATH} environment variable. Additionally, some versions of the simulation software require a 
+license file. If the installed simulation software on your computer does require a license file, 
+the path to license file must be properly specified by an {\it LM\_LICENSE\_FILE} environment variable. 
+If these environment variables are not set correctly on your computer, appropriate values can be supplied
+as command-line arguments to the {\it DESim} software. To add these command-line arguments,
+modify the \texttt{DESim.bat} (Windows) or \texttt{DESim.sh} (Linux) as described in those files.
+
+
+\section{Running DESim}
+
+You should now see the {\it DESim} graphical user interface (GUI),
+illustrated in Figure~\ref{fig:GUI}. It should show the message
+``\green{The server is running...}'' near the top of the {\it message pane} in the GUI.
 
 \begin{figure}[h]
 	\begin{center}
@@ -168,36 +234,49 @@ illustrated in Figure~\ref{fig:GUI}. It should show the message
 	\label{fig:GUI}
 \end{figure}
 
-\noindent
+
 To ensure that the {\it DESim} application can communicate with the {\it ModelSim} simulator, you
 may wish to try out one (or more) of the {\it demo} projects that come with {\it DESim}. As
-an example, click the \texttt{Open Project} command in the {\it DESim} GUI and then 
-navigate into
-the \texttt{demos} folder. As illustrated in Figure~\ref{fig:demos}, click to select the 
-folder named \texttt{LED\_HEX} and then click on the \fbox{\texttt{Select Folder}} button.
+an example, click the \texttt{Open Project} button in the {\it DESim} GUI and then navigate into
+the \texttt{demos} folder. Next, click to select the appropriate folder, either \texttt{modelsim} 
+or \texttt{questa}, depending on which simulation software is installed. Then, click to select 
+either the \texttt{verilog} or \texttt{vhdl} folder for examples written in your preferred 
+hardware description language (HDL). In Windows, click to select the folder named \texttt{LED\_HEX} 
+and then click the \texttt{Select Folder} button, as illustrated in Figure~\ref{fig:demos_windows}.
+In Linux, navigate to the folder named \texttt{LED\_HEX} and then click the
+\texttt{Open} button, as illustrated in Figure~\ref{fig:demos_linux}.
+In the example, we have chosen the {\it Questa} simulator and the {\it Verilog} HDL. 
+The navigation bar in the dialog will look different, if you chosen other options.
 
 \begin{figure}[h]
 	\begin{center}
         \setlength{\fboxsep}{0pt}
-        \fbox{\includegraphics[width = .9\textwidth]{figures/DESim_project.png}}
+        \fbox{\includegraphics[width = .9\textwidth]{figures/DESim_project_windows.png}}
 	\end{center}
-          \caption{Opening a sample project in the \texttt{demos} folder.}
-	\label{fig:demos}
+    \caption{Opening a sample project in the \texttt{demos} folder under Windows.}
+	\label{fig:demos_windows}
 \end{figure}
 
-~\\
-\noindent
-Click the \texttt{Compile Testbench} command in {\it DESim}. As shown in 
-Figure~\ref{fig:compile}, the ModelSim simulator is executed to compile the Verilog
-code for the sample project, and the compilation messages that are produced by 
-{\it ModelSim} are displayed in the {\it DESim} message pane.
+\floatstyle{plain}
+\restylefloat{figure}
+\begin{figure}[h]
+	\begin{center}
+        \setlength{\fboxsep}{0pt}
+        \includegraphics[width = .9\textwidth]{figures/DESim_project_linux.png}
+	\end{center}
+    \caption{Opening a sample project in the \texttt{demos} folder under Linux.}
+	\label{fig:demos_linux}
+\end{figure}
 
-~\\
-\noindent
-In the {\it DESim} window select the \texttt{Start Simulation} command, which runs the
-ModelSim Verilog simulator. As illustrated in Figure~\ref{fig:sim} any messages produced
-by {\it ModelSim} are displayed in the message pane of the {\it DESim} window. To make your
-display look like the one in the figure, in the {\it DESim} GUI click on 
+Click the \texttt{Compile Testbench} button in {\it DESim}. As shown in 
+Figure~\ref{fig:compile}, the {\it Questa} simulation software is executed to compile the
+Verilog code for the sample project, and the compilation messages that are produced by 
+{\it Questa} are displayed in the {\it DESim} message pane.
+
+In the {\it DESim} window, click the \texttt{Start Simulation} button, which starts the
+{\it Questa} simulation software. As illustrated in Figure~\ref{fig:sim}, any messages
+produced by {\it Questa} are displayed in the message pane of the {\it DESim} window. 
+To make your display look like the one in the figure, in the {\it DESim} GUI click on 
 the \texttt{Switch} with index number
 \texttt{6}, which causes the corresponding \texttt{LED} to turn \red{red}. To activate the
 \texttt{Seven-segment Display} output you have to reset the \texttt{LED\_HEX} circuit. To
@@ -205,14 +284,15 @@ do this, click on \texttt{Push Button} \texttt{0} to press it, and then click ag
 release this button. 
 To learn about the features of the \texttt{LED\_HEX} project, you can follow 
 the instructions in its {\it Readme.txt} file, shown in Figure~\ref{fig:readme}, and/or 
-read through the Verilog source-code file \texttt{LED\_HEX.v}, displayed in 
-Figure~\ref{fig:top}. These files can be found
-using the Microsoft Windows \texttt{File Explorer} in the \texttt{LED\_HEX} folder.
+read through the HDL file. The Verilog source-code file \texttt{LED\_HEX.v} is displayed in 
+Figure~\ref{fig:verilog_top}. The VHDL source-code file \texttt{LED\_HEX.vhd} is displayed in 
+Figure~\ref{fig:vhdl_top}. Each example included with {\it DESim} has its own {\it Readme.txt} 
+file and HDL files, which can be read to learn more about them.
+%These files can be found
+%using the Microsoft Windows \texttt{File Explorer} in the \texttt{LED\_HEX} folder.
 
-~\\
-\noindent
-You can stop the {\it ModelSim} simulation by selecting the \texttt{Stop Simulation}
-command in the {\it DESim} GUI. To close the {\it DESim} program click the $\times$ in 
+You can stop the simulation by clicking the \texttt{Stop Simulation} button 
+in the {\it DESim} GUI. To close the {\it DESim} program click the $\times$ in 
 the upper-right corner of the window.    
 
 \begin{figure}[h]
@@ -233,76 +313,38 @@ the upper-right corner of the window.
 	\label{fig:sim}
 \end{figure}
 
-\lstset{language=make,numbers=none,escapechar=|}
+
 \begin{figure}[h]
 \begin{center}
-\begin{minipage}[t]{12.5 cm}
-\begin{lstlisting}[name=readme]
-To use this demo:
-
--- SW are displayed on LEDR
--- KEY[0] is the synchronous reset. It sets the HEX-display selector to 0.
--- KEY[1] provides the active-low enable for the HEX-display selector
-
-To use:
-1. First press/release KEY[0] to reset the circuit; HEX0 is selected
-   -- HEX0 can be changed using SW[6:0]
-2. Set SW[9:7] to select a different HEX display (from 0 to 5) 
-   -- press/release KEY[1] to store the selected HEX address
-   -- the selected HEX display can now be changed using SW[6:0]
-3. Set SW[9:7] to select another display, etc.
-\end{lstlisting}
+\begin{minipage}[t]{16 cm}
+	\lstinputlisting[numbers=none]{../../demos/led_hex/Readme.txt}
 \end{minipage}
-    \caption{The {\it Readme.txt} file for the \texttt{LED\_HEX} project.}
-\label{fig:readme}
+	\caption{The {\it Readme.txt} file for the \texttt{LED\_HEX} project.}
+	\label{fig:readme}
 \end{center}
 \end{figure}
 
-\lstset{language=Verilog,numbers=none,escapechar=|}
 \begin{figure}[h]
 \begin{center}
 \begin{minipage}[t]{15 cm}
-\begin{lstlisting}[name=addern]
-module LED_HEX (CLOCK_50, SW, KEY, LEDR, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5);
-    input wire CLOCK_50;
-    input wire [9:0] SW;
-    input wire [1:0] KEY;
-    output wire [9:0] LEDR;         // DE-series LEDs   
-
-    output reg [6:0] HEX0;          // DE-series HEX displays
-    output reg [6:0] HEX1;
-    output reg [6:0] HEX2;
-    output reg [6:0] HEX3;
-    output reg [6:0] HEX4;
-    output reg [6:0] HEX5;
-
-    assign LEDR = SW;
-
-    reg [2:0] Addr;                 // used to select a HEX display
-
-    always @ (posedge CLOCK_50)
-        if (KEY[0] == 0)            // sync reset
-            Addr <= 3'b0;
-        else if (KEY[1] == 0)       // select a HEX display
-            Addr <= SW[9:7];
-
-    always @ (posedge CLOCK_50)
-        case (Addr)
-            3'b000:  HEX0 <= SW[6:0];
-            3'b001:  HEX1 <= SW[6:0];
-            3'b010:  HEX2 <= SW[6:0];
-            3'b011:  HEX3 <= SW[6:0];
-            3'b100:  HEX4 <= SW[6:0];
-            3'b101:  HEX5 <= SW[6:0];
-            default: ;
-        endcase
-
-endmodule
-\end{lstlisting}
+	\lstinputlisting[language=Verilog,numbers=none,firstline=12]{../../demos/led_hex/led_hex.v}
 \end{minipage}
-        \caption{The Verilog source-code file \texttt{LED\_HEX.v}.}
-\label{fig:top}
+	\caption{The Verilog source-code file \texttt{LED\_HEX.v}.}
+	\label{fig:verilog_top}
 \end{center}
 \end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\begin{minipage}[t]{15 cm}
+	\lstinputlisting[language=VHDL,numbers=none,firstline=13]{../../demos/led_hex/led_hex.vhd}
+\end{minipage}
+	\caption{The VHDL source-code file \texttt{LED\_HEX.vhd}.}
+	\label{fig:vhdl_top}
+\end{center}
+\end{figure}
+
+
+\input{\commonPath/Docs/copyright.tex}
 
 \end{document}
