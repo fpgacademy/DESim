@@ -17,12 +17,14 @@ module tb();
     reg             key_action = 0;
     reg     [ 7: 0] scan_code = 0;
     wire    [ 2: 0] ps2_lock_control;
+    wire            ps2_clk;
+    wire            ps2_dat;
 
     wire    [ 7: 0] VGA_X;        // "VGA" column
     wire    [ 6: 0] VGA_Y;        // "VGA" row
     wire    [ 2: 0] VGA_COLOR;    // "VGA pixel" colour (0-7)
     wire            plot;         // "Pixel" is drawn when this is pulsed
-    wire    [31: 0] GPIO;         // DE-series GPIO port
+    wire    [31: 0] GPIO;         // DE-series 40-pin header
 
     initial $sim_fpga(CLOCK_50, SW, KEY, LEDR, HEX, key_action, scan_code, 
                       ps2_lock_control, VGA_X, VGA_Y, VGA_COLOR, plot, GPIO);
