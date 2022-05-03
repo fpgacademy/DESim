@@ -29,6 +29,11 @@ Var MODELSIM_VERSION_MAJOR
 Var MODELSIM_VERSION_MINOR
 Var MODELSIM_FULLNAME
 
+Var QUESTA_NAME
+Var QUESTA_VERSION_MAJOR
+Var QUESTA_VERSION_MINOR
+Var QUESTA_FULLNAME
+
 ; Variable for the post-installation message
 Var DESIM_INSTALL_PATH_TITLE
 
@@ -118,9 +123,11 @@ SkipDesktopShortcut:
   ; Get the demos
   File /nonfatal /r /x *.sh ..\dist\demos\*.*
 
+  SetOutPath "$R0\docs"            ; installation directory
+  ; Get the documents
+  File /nonfatal /r ..\dist\docs\*.*
+
   SetOutPath $R0					; installation directory
-  ; Get the backend VPI
-  File /nonfatal ..\..\backend\dist\simfpga.vpi
   ; Get the support files
   File /nonfatal ..\..\frontend\scancode.csv
   File /nonfatal DESim_run.bat
