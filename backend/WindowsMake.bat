@@ -40,7 +40,7 @@ GOTO :build
 
 :: Init for Questa compilation
 :Questa
-set simulator=questasim
+set simulator=questa
 set simulator_dir=C:\intelFPGA\21.1\questa_fse\
 set mingw_dir=%simulator_dir%gcc-7.4.0-mingw64vc15\bin
 

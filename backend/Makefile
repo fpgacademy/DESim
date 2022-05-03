@@ -41,7 +41,7 @@ CC  = $(SIMULATOR_DIR)/gcc-4.7.4-linux/bin/gcc
 CXX = $(SIMULATOR_DIR)/gcc-4.7.4-linux/bin/g++
 
 else
-SIM_NAME      = questasim
+SIM_NAME      = questa
 SIMULATOR_DIR = /home/${USER}/intelFPGA/21.1/questa_fse
 SIM_CFLAGS    = -m64 -fno-diagnostics-show-caret 
 SIM_LDFLAGS   = -L$(SIMULATOR_DIR)/linux_x86_64
