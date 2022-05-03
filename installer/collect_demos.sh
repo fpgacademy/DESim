@@ -2,10 +2,10 @@
 #
 # This scripts organizes the demos for release.
 # It creates 4 directories
-# - modelsim/verilog
-# - modelsim/vhdl
-# - questasim/verilog
-# - questasim/vhdl
+# - dist/demos/modelsim/verilog
+# - dist/demos/modelsim/vhdl
+# - dist/demos/questasim/verilog
+# - dist/demos/questasim/vhdl
 
 if [ -d dist/demos ]
 then
