@@ -13,8 +13,9 @@
 #    a) Run ../../backend/make full
 # 3) Demos
 #    a) Run ../collect_demos.sh
-# 3) Documents
-#    a) Build the document PDFs and put them in ../docs/
+# 4) Documents
+#    a) Build the document PDFs
+#    b) Run ../collect_docs.sh
 
 #  ----------------------------------------------------------------------
 #  Create temporary directories
@@ -36,7 +37,7 @@ cp DESim.sh ./DESim
 rsync -ar --exclude='*/*.bat' ../dist/demos ./DESim
 
 # Documents
-cp -R ../docs ./DESim/docs
+cp -R ../dist/docs ./DESim/docs
 
 #  ----------------------------------------------------------------------
 #  Create the tarball
