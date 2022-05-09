@@ -3,6 +3,10 @@
 
 package Settings;
 
+import GUI.Main;
+import GUI.windows.Message;
+import GUI.windows.MessageType;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +47,21 @@ public class CommandLineArguments {
             {
                 commandLineArguments.put( flag_option[0], flag_option[1].replace("\\", "/") );
             }
+        }
+
+        // Check for deprecated args
+        String msPath = getCmdLineArg( MODELSIM_PATH, null );
+        if (msPath != null) {
+            Message msg;
+
+            msg = new Message("The command-line argument '" + MODELSIM_PATH + "' has been deprecated.", MessageType.WARNING, true);
+            Main.messageBox.addMessage(msg);
+
+            msg = new Message("Please update to the new command-line argument '" + SIMULATOR_PATH + "'.", MessageType.WARNING, true);
+            Main.messageBox.addMessage(msg);
+
+            msg = new Message("If both arguments are used, then " + MODELSIM_PATH + " will be ignored.", MessageType.WARNING, true);
+            Main.messageBox.addMessage(msg);
         }
     }
     // </editor-fold>
