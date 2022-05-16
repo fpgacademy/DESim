@@ -12,11 +12,13 @@ then
 	rm -r dist/demos
 fi
 
+mkdir -p dist/demos/modelsim/systemverilog
 mkdir -p dist/demos/modelsim/verilog
 mkdir -p dist/demos/modelsim/vhdl
 
-rsync -ar --exclude='*.vhd' ../demos/ ./dist/demos/modelsim/verilog
-rsync -ar --include='*.ip.v' --include='tb/*.v' --exclude='*.v' ../demos/ ./dist/demos/modelsim/vhdl
+rsync -ar --include='*.ip.v' --include='tb/*.v' --exclude='*.v' --exclude='*.vhd' ../demos/ ./dist/demos/modelsim/systemverilog
+rsync -ar --exclude='*.sv' --exclude='*.vhd' ../demos/ ./dist/demos/modelsim/verilog
+rsync -ar --include='*.ip.v' --include='tb/*.v' --exclude='*.v' --exclude='*.sv' ../demos/ ./dist/demos/modelsim/vhdl
 cp -r ./dist/demos/modelsim/ ./dist/demos/questa/
 
 find ./dist/demos/modelsim/ -name sim -exec cp ./dist/backend/modelsim/simfpga.vpi {} \;

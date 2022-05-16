@@ -5,6 +5,9 @@ vlog ../tb/*.v
 if exist ../*.v (
 	vlog ../*.v
 )
+if exist ../*.sv (
+	vlog ../*.sv
+)
 if exist ../*.vhd (
 	vcom ../*.vhd
 )

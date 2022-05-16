@@ -116,9 +116,9 @@ named {\it addern}, which is provided as a {\it demo} project that comes with th
 software. Referring to Figure~\ref{fig:gui}, click on the \texttt{Open Project} command 
 to reach the dialogue displayed in Figure~\ref{fig:open_windows} (Windows) or 
 Figure~\ref{fig:open_linux} (Linux). As shown in the figures, navigate
-to the \texttt{demos} folder, select either \texttt{modelsim/questa} and \texttt{verilog/vhdl},
-click to select the \texttt{addern} project, and then click the
-\texttt{Select Folder} button in Windows or the \texttt{Open} button in Linux.
+to the \texttt{demos} folder, select either \texttt{modelsim/questa} and 
+\texttt{systemverilog/verilog/vhdl}, click to select the \texttt{addern} project, and then 
+click the \texttt{Select Folder} button in Windows or the \texttt{Open} button in Linux.
 
 \begin{figure}[h]
 	\begin{center}
@@ -158,7 +158,7 @@ port names include \texttt{KEY}, \texttt{SW}, and  \texttt{LEDR}.
 
 The {\it Addern} \hdlModuleName~is instantiated in {\it top.\hdlFileExt} by the statement
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=12,lastline=12]{../../demos/addern/top.v}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=12,lastline=12]{../../demos/addern/top.\hdlFileExt}}
 	{\lstinputlisting[language=VHDL,numbers=none,firstline=29,lastline=30]{../../demos/addern/top.vhd}}
 %\ifnum \value{\hdlNum}=0 {\lstinputlisting[language=Verilog,numbers=none,firstline=12,lastline=12]{../../demos/addern/top.\hdlFileExt}} \else {{\lstinputlisting[language=VHDL,numbers=none,firstline=12,lastline=12]{../../demos/addern/top.\hdlFileExt}}
 %\ifnum \value{\hdlNum}=0 {Zero} \else {One}
@@ -173,7 +173,7 @@ the carry-out, {\it Cout}, is connected to {\it LEDR}$_4$.
 \begin{center}
 \begin{minipage}[h]{15 cm}
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=8]{../../demos/addern/addern.v}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=8]{../../demos/addern/addern.\hdlFileExt}}
 	{\lstinputlisting[language=VHDL,numbers=none,firstline=9]{../../demos/addern/addern.vhd}}
 \end{minipage}
 	\caption{The \hdlName~source-code file \texttt{addern.\hdlFileExt}.}
@@ -187,7 +187,7 @@ the carry-out, {\it Cout}, is connected to {\it LEDR}$_4$.
 	{\begin{minipage}[h]{15 cm}}
 	{\begin{minipage}[h]{18 cm}}
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/addern/top.v}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/addern/top.\hdlFileExt}}
 	{\lstinputlisting[language=VHDL,numbers=none,firstline=8]{../../demos/addern/top.vhd}}
 \ifthenelse{\value{hdlNum}=0}
 	{\end{minipage}}
@@ -210,12 +210,13 @@ to create a \texttt{work} folder (while first deleting this folder if it already
 The script then invokes the simulation software's Verilog compiler, {\it vlog}, twice. The first invocation
 of the compiler, \texttt{vlog ../tb/*.v}, compiles the Verilog source code in the {\it addern}
 project's \texttt{tb} folder. This folder holds the {\it testbench} for the project, which is
-described shortly. If the Verilog version of the {\it addern} project was opened, the second call 
-to {\it vlog} compiles the source-code of the {\it addern} project, which includes the files 
-{\it Addern.v} and {\it top.v}. If instead the VHDL version of the {\it Addern} project was opened,
-the call to {\it vcom} compiles the source-code of the {\it Addern} project, which includes the files 
-{\it Addern.vhd} and {\it top.vhd}. Any messages produced while executing the {\it run\_compile} script
-are displayed inside the message pane in the {\it DESim} GUI, as illustrated in Figure~\ref{fig:compile}.
+described shortly. If the SystemVerilog or Verilog version of the {\it addern} project was opened, the 
+second call to {\it vlog} compiles the source-code of the {\it addern} project, which includes the files 
+{\it Addern.v} and {\it top.v} or {\it Addern.sv} and {\it top.sv}. If instead the SystemVerilog or VHDL 
+versions of the {\it Addern} project was opened, the call to {\it vcom} compiles the source-code of the 
+{\it Addern} project, which includes the files {\it Addern.vhd} and {\it top.vhd}. Any messages produced 
+while executing the {\it run\_compile} script are displayed inside the message pane in the {\it DESim} 
+GUI, as illustrated in Figure~\ref{fig:compile}.
 
 \begin{figure}[h]
 	\begin{center}
@@ -326,7 +327,7 @@ connected to {\it LEDR}.
 \begin{center}
 \begin{minipage}[h]{15 cm}
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=10]{../../demos/counter/Counter.v}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=10]{../../demos/counter/Counter.\hdlFileExt}}
 	{\lstinputlisting[language=VHDL,numbers=none,firstline=11]{../../demos/counter/Counter.vhd}}
 \end{minipage}
 	\caption{The \hdlName~code for the 24-bit counter.}
@@ -345,7 +346,7 @@ with {\it CLOCK\_50} for the clock signal, and {\it KEY}$_0$ being used for rese
 \begin{center}
 \begin{minipage}[h]{15 cm}
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/counter/Top.v}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/counter/Top.\hdlFileExt}}
 	{\lstinputlisting[language=VHDL,numbers=none,firstline=8]{../../demos/counter/Top.vhd}}
 \end{minipage}
 	\caption{The {\it top} \hdlModuleName~for the {\it counter} project.}
@@ -424,7 +425,7 @@ eight letters displayed by the circuit.
 \begin{center}
 \begin{minipage}[h]{15 cm}
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=9]{../../demos/display/Display.v}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=9]{../../demos/display/Display.\hdlFileExt}}
 	{\lstinputlisting[language=VHDL,numbers=none,linerange={10-28, 43-68}]{../../demos/display/Display.vhd}}
 \end{minipage}
 	\caption{The \hdlName~code for the {\it display} project.}
@@ -497,7 +498,7 @@ if the file is changed in the \texttt{display} folder, then the latest version o
 will always be used when starting a simulation. The rest of the script, which compiles the 
 HDL code, is the same as for the previously-described {\it DESim} projects, except of the 
 {\it vlog ../*.v} line. This line is now always executed, as the memory initialization module 
-is written in Verilog, even if the VHDL demo was chosen.
+is written in Verilog, even if the SystemVerilog or VHDL versions were chosen.
 
 The testbench file {\it tb.v} that is compiled by {\it run\_compile} script for the {\it display}
 project is similar to the one used for the {\it addern} project, shown in Figure~\ref{fig:tb}. The

@@ -10,6 +10,10 @@ if [ -f ../Top.v ]
 then
 	vlog ../*.v
 fi
+if [ -f ../Top.sv ]
+then
+	vlog ../*.sv
+fi
 if [ -f ../Top.vhd ]
 then
 	vcom ../*.vhd
