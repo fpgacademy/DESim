@@ -203,7 +203,7 @@ found in the \texttt{sim} folder of the {\it addern} project. This script compri
 some {\it ModelSim} commands. The {\it run\_compile.bat} script for Windows is shown below 
 (the {\it run\_compile.sh} script for Linux is similar):
 
-\lstinputlisting[language=command.com]{../../demos/addern/sim/run_compile.bat}
+\lstinputlisting[language=command.com]{../../demos/common/sim/run_compile.bat}
 
 The script executes the {\it vlib} command, which is part of the {\it ModelSim/Questa} software,
 to create a \texttt{work} folder (while first deleting this folder if it already exists).
@@ -267,9 +267,9 @@ Figure~\ref{fig:top}. To execute the testbench using the simulator, click on the
 \texttt{Start Simulation} command in the {\it DESim} GUI. This command executes a script 
 called {\it run\_sim}, which is found in the \texttt{sim} folder of the 
 {\it addern} project. This script runs {\it vsim}, the {\it ModelSim/Questa} Verilog
-simulator, using the command:
+simulator, using one of the commands:
 
-\lstinputlisting[language=command.com]{../../demos/addern/sim/run_sim.bat}
+\lstinputlisting[language=command.com]{../../demos/common/sim/run_sim.bat}
 
 The \texttt{-pli} argument for the {\it vsim} program instructs it to link to the
 {\it sim\_fpga} software function that has been (previously) compiled into the 
@@ -488,7 +488,7 @@ command. This command executes the project's {\it run\_compile} script, which
 is in its \texttt{sim} folder. This {\it Windows} batch script is shown below (the {\it Linux}
 shell script is similar):
 
-\lstinputlisting[language=command.com]{../../demos/display/sim/run_compile.bat}
+\lstinputlisting[language=command.com]{../../demos/common/sim/run_compile.bat}
 
 Lines 1 to 3 are used to copy the memory initialization file,
 {\it inst\_mem.mif}, from the \texttt{display} project folder into the \texttt{sim}
@@ -614,8 +614,8 @@ and manually {\it delete} the file named {\it \_lock}.
 
 \item If you click on the \texttt{Start Simulation} command in the {\it DESim} GUI,
 an error message such as \red{Load of "./simfpga.vpi" failed: Bad DLL Format} might happen.
-This error occurs if the \it{./simfpga.vpi} DLL is not compatible with the installed simulator.
-Make sure that you are using the corresponding \it{./simfpga.vpi} DLL generated for 
+This error occurs if the {\it ./simfpga.vpi} DLL is not compatible with the installed simulator.
+Make sure that you are using the corresponding {\it ./simfpga.vpi} DLL generated for 
 {\it ModelSim} when using the {\it ModelSim} simulator, and the one generated for
 {\it Questa} when using the {\it Questa} simulator. They can be found in the corresponding
 demo directories. If the error is still present, verify that the correct version of the
