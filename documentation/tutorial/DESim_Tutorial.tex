@@ -577,6 +577,7 @@ the {\it DESim} software is not working properly and should be closed. One
 reason why this would occur is if you have executed a {\it second}
 instance of the {\it DESim} program. The {\it DESim} software cannot be
 executed more than once concurrently on your computer. 
+
 \item If you click on the \texttt{Compile Project} command in the {\it DESim} GUI, it is
 possible to see an error message such as 
 \red{`vlib' is not recognized as an internal or external command'}. This error means that
@@ -589,6 +590,7 @@ updated to include the location of the {\it ModelSim/Questa} software, or 2) the
 {\it ModelSim/Questa} software can be specified within the batch script that starts
 the {\it DESim} software. This script is called {\it DESim\_run} and is found
 in the file-system folder where {\it DESim} is installed. 
+
 \item Occasionally, when compiling or simulating a project in the {\it DESim} software you may
 see a {\it Warning} message which says that {\it ModelSim/Questa} cannot ``unlink'' a file. 
 For example, if your {\it DESim} project is stored in the folder
@@ -609,6 +611,16 @@ persists (sometime it gets resolved automatically), then a
 solution is to browse with \texttt{File Explorer} into the file-system folder  
 \texttt{C:$\backslash$DESim$\backslash$demos$\backslash$addern$\backslash$sim$\backslash$work}
 and manually {\it delete} the file named {\it \_lock}.
+
+\item If you click on the \texttt{Start Simulation} command in the {\it DESim} GUI,
+an error message such as \red{Load of "./simfpga.vpi" failed: Bad DLL Format} might happen.
+This error occurs if the \it{./simfpga.vpi} DLL is not compatible with the installed simulator.
+Make sure that you are using the corresponding \it{./simfpga.vpi} DLL generated for 
+{\it ModelSim} when using the {\it ModelSim} simulator, and the one generated for
+{\it Questa} when using the {\it Questa} simulator. They can be found in the corresponding
+demo directories. If the error is still present, verify that the correct version of the
+{\it ModelSim/Questa} software is been used. Refer to the {\it DESim} Installation
+Guide for supported versions.
 \end{enumerate}
 
 % Copyright and Trademark
