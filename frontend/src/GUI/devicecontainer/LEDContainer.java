@@ -13,7 +13,7 @@ public class LEDContainer extends DeviceContainer {
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Private Variables">
-    private final LED[] leds;
+    public final LED[] leds;
     // </editor-fold>
 
     // <editor-fold desc="Constructors">

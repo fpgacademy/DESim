@@ -1,0 +1,78 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/intelFPGA_lite/21.1/quartus/DESim/demos/modelsim/systemverilog/led_hex/sim
+vLED_HEX
+Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z2 !s110 1693410878
+!i10b 1
+!s100 GSZSB`3JFJlzWi<P<OJze1
+IDbMkhPA;79cmZo<0dfbGC1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+!s105 LED_HEX_sv_unit
+S1
+R0
+w1652329106
+8../LED_HEX.sv
+F../LED_HEX.sv
+L0 12
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z5 !s108 1693410878.000000
+Z6 !s107 ../Top.sv|../LED_HEX.sv|
+Z7 !s90 ../LED_HEX.sv|../Top.sv|
+!i113 1
+Z8 tCvgOpt 0
+n@l@e@d_@h@e@x
+vtb
+R2
+!i10b 1
+!s100 3YPjWmF8oX2=4VN0S[Eln0
+IUGV6VI3JgdgDd^S4ZK^XF0
+R3
+R0
+w1648399106
+8../tb/tb.v
+F../tb/tb.v
+L0 9
+R4
+r1
+!s85 0
+31
+R5
+!s107 ../tb/tb.v|
+!s90 ../tb/tb.v|
+!i113 1
+R8
+vTop
+R1
+R2
+!i10b 1
+!s100 JLUJd7e<DP`fSM^_Tk3Pk0
+Ia>T[E;06HYLX1bn6FkI[i1
+R3
+!s105 Top_sv_unit
+S1
+R0
+w1652329144
+8../Top.sv
+F../Top.sv
+L0 7
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+n@top

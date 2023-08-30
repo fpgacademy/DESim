@@ -50,10 +50,10 @@ public class Main extends Application {
     private static String projDefault = ".";
     private static ButtonConfigs lastButtonConfig = ButtonConfigs.INITIAL;
 
-    private static final Button openProjButton = new Button("Open Project");
-    private static final Button compileButton = new Button("Compile Testbench");
-    private static final Button startButton = new Button("Start Simulation");
-    private static final Button stopButton = new Button("Stop Simulation");
+    public static final Button openProjButton = new Button("Open Project");
+    public static final Button compileButton = new Button("Compile Testbench");
+    public static final Button startButton = new Button("Start Simulation");
+    public static final Button stopButton = new Button("Stop Simulation");
     // </editor-fold>
     // </editor-fold>
 

@@ -14,7 +14,7 @@ import javafx.scene.text.TextAlignment;
 
 public class KEY extends VBox {
     // <editor-fold defaultstate="collapsed" desc="Private Variables">
-    private final CheckBox checkBox;
+    public final CheckBox checkBox;
     // </editor-fold>
 
     // <editor-fold desc="Constructors">

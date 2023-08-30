@@ -14,7 +14,7 @@ public class SwitchContainer extends DeviceContainer {
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Private Variables">
-    private final Switch[] switches;
+    public final Switch[] switches;
     // </editor-fold>
 
     // <editor-fold desc="Constructors">

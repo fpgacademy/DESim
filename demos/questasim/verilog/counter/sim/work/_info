@@ -1,0 +1,90 @@
+m255
+K4
+z2
+!s99 nomlopt
+!s11f vlog 2021.2 2021.04, Apr 14 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/DESim-main/demos/questasim/verilog/counter/sim
+T_opt
+!s110 1648576792
+VX8=1[LbgbcZO>2G4QzkG12
+04 2 4 work tb fast 0
+=1-bce92fe8b814-62434918-13b-61f8
+!s124 OEM10U3 
+o-quiet +acc -auto_acc_if_foreign -work work -Lf 220model -Lf altera_mf_ver -Lf verilog
+Z1 tCvgOpt 0
+n@_opt
+OL;O;2021.2;73
+vCounter
+Z2 !s110 1648576788
+!i10b 1
+!s100 Mkg0j>UA;R7zOYDImHDcb2
+ISGYW[a19bAD<P:<ZURjPa2
+R0
+Z3 w1648488566
+8../Counter.v
+F../Counter.v
+!i122 1
+L0 10 18
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+Z5 OL;L;2021.2;73
+r1
+!s85 0
+31
+Z6 !s108 1648576788.000000
+Z7 !s107 ../Top.v|../Counter.v|
+Z8 !s90 ../Counter.v|../Top.v|
+!i113 0
+Z9 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+n@counter
+vtb
+R2
+!i10b 1
+!s100 S0:K@8CA1?KfTLJ^[oYhC0
+InT[;@@GlgXD=Hk[231@W02
+R0
+R3
+8../tb/tb.v
+F../tb/tb.v
+!i122 0
+L0 9 41
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 ../tb/tb.v|
+!s90 ../tb/tb.v|
+!i113 0
+R9
+R1
+vTop
+R2
+!i10b 1
+!s100 KRk1iD6IT_S5k9Sma_5JW3
+I1E<Wn[24Qg;J5@A@zUbXW1
+R0
+R3
+8../Top.v
+F../Top.v
+!i122 1
+L0 7 8
+R4
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R1
+n@top

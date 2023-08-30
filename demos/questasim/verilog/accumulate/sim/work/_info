@@ -1,0 +1,90 @@
+m255
+K4
+z2
+!s99 nomlopt
+!s11f vlog 2021.2 2021.04, Apr 14 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/DESim-new/demos/questasim/verilog/accumulate/sim
+T_opt
+!s110 1648493566
+V6ATC<jdPkcUK]39=<^U=B3
+04 2 4 work tb fast 0
+=1-bce92fe8b814-624203fe-a6-1b30
+!s124 OEM10U3 
+o-quiet +acc -auto_acc_if_foreign -work work -Lf 220model -Lf altera_mf_ver -Lf verilog
+Z1 tCvgOpt 0
+n@_opt
+OL;O;2021.2;73
+vAccumulate
+Z2 !s110 1648493563
+!i10b 1
+!s100 Z1kEkl7=UTbaKlABE^SlT0
+IC0jB1NKl=ZYOn?1ah=0GK0
+R0
+Z3 w1648488566
+8../Accumulate.v
+F../Accumulate.v
+!i122 1
+L0 11 35
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+Z5 OL;L;2021.2;73
+r1
+!s85 0
+31
+Z6 !s108 1648493563.000000
+Z7 !s107 ../Top.v|../Accumulate.v|
+Z8 !s90 ../Accumulate.v|../Top.v|
+!i113 0
+Z9 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+n@accumulate
+vtb
+R2
+!i10b 1
+!s100 nGEZOa=9o_ib3TRPLWJ@31
+I<3gNOK8bRfnkLdZRDhf_X1
+R0
+R3
+8../tb/tb.v
+F../tb/tb.v
+!i122 0
+L0 9 41
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 ../tb/tb.v|
+!s90 ../tb/tb.v|
+!i113 0
+R9
+R1
+vTop
+R2
+!i10b 1
+!s100 QW4BMZZJY:eZ]6AL?=ERW2
+IDX^QAVU=^Fl@^HLChWGo`1
+R0
+R3
+8../Top.v
+F../Top.v
+!i122 1
+L0 7 9
+R4
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R1
+n@top

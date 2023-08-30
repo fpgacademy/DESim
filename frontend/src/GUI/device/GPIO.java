@@ -20,7 +20,7 @@ public class GPIO {
     public final VBox gpioDir;
 
     // <editor-fold defaultstate="collapsed" desc="Private Variables">
-    private final CheckBox statusBox;
+    public final CheckBox statusBox;
     private final CheckBox isOutputBox;
     // </editor-fold>
     // </editor-fold>

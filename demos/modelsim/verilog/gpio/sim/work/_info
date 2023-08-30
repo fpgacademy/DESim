@@ -1,0 +1,56 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/DESim-main/demos/modelsim/verilog/gpio/sim
+vtb
+Z1 !s110 1648577009
+!i10b 1
+!s100 @lf]e1n_AZl<Xlh_=Sem42
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+Ia;J0hW;B[2ENQMkbfG4ko1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1648392948
+8../tb/tb.v
+F../tb/tb.v
+!i122 0
+L0 9 41
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+!s108 1648577008.000000
+!s107 ../tb/tb.v|
+!s90 ../tb/tb.v|
+!i113 1
+Z5 tCvgOpt 0
+vTop
+R1
+!i10b 1
+!s100 [FJFmODF5>H?o=56Oh<lN0
+R2
+InWUJ<h6C3UP@Hm8ChGhE13
+R3
+R0
+w1648411278
+8../Top.v
+F../Top.v
+!i122 1
+L0 7 13
+R4
+r1
+!s85 0
+31
+!s108 1648577009.000000
+!s107 ../Top.v|
+!s90 ../Top.v|
+!i113 1
+R5
+n@top

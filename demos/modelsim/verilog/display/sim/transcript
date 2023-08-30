@@ -1,0 +1,23 @@
+# vsim -pli "simfpga.vpi" -Lf 220model -Lf altera_mf_ver -Lf verilog -t 1ns -c -do "run -all" tb 
+# Start time: 14:02:37 on Mar 29,2022
+# Loading work.tb
+# Loading work.Top
+# Loading work.Display
+# Loading work.count3
+# Loading work.inst_mem
+# Loading altera_mf_ver.altsyncram
+# Loading altera_mf_ver.altsyncram_body
+# Loading altera_mf_ver.ALTERA_DEVICE_FAMILIES
+# Loading altera_mf_ver.ALTERA_MF_MEMORY_INITIALIZATION
+# Loading ./simfpga.vpi
+# run -all
+# Time scaling: 0.0001 sim seconds per real-time second
+# 
+# 
+# Connected to server!
+# ** Note: $finish    : $MODEL_TECH/../altera/verilog/src/altera_mf.v(50185)
+#    Time: 111685 us  Iteration: 1  Instance: /tb
+# 
+# Quitting...
+# End time: 14:02:48 on Mar 29,2022, Elapsed time: 0:00:11
+# Errors: 0, Warnings: 0

@@ -13,7 +13,7 @@ public class SevenSegContainer extends DeviceContainer {
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Private Variables">
-    private final SevenSeg[] sevenSegments;
+    public final SevenSeg[] sevenSegments;
     // </editor-fold>
 
     // <editor-fold desc="Constructors">

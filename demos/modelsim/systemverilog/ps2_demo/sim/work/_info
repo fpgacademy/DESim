@@ -1,0 +1,219 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/intelFPGA_lite/21.1/quartus/DESim/demos/modelsim/systemverilog/ps2_demo/sim
+vAltera_UP_PS2_Command_Out
+Z1 !s110 1693410934
+!i10b 1
+!s100 aNPOnoKE9LT_`:OZGRn7L3
+INL8>QJG0WziFT6W3ogE062
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1648476252
+8../Altera_UP_PS2_Command_Out.ip.v
+F../Altera_UP_PS2_Command_Out.ip.v
+Z4 L0 10
+Z5 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z6 !s108 1693410934.000000
+Z7 !s107 ../PS2_Controller.ip.v|../PS2_Comm.ip.v|../Hexadecimal_To_Seven_Segment.ip.v|../Altera_UP_PS2_Data_In.ip.v|../Altera_UP_PS2_Command_Out.ip.v|
+Z8 !s90 ../Altera_UP_PS2_Command_Out.ip.v|../Altera_UP_PS2_Data_In.ip.v|../Hexadecimal_To_Seven_Segment.ip.v|../PS2_Comm.ip.v|../PS2_Controller.ip.v|
+!i113 1
+Z9 tCvgOpt 0
+n@altera_@u@p_@p@s2_@command_@out
+vAltera_UP_PS2_Data_In
+R1
+!i10b 1
+!s100 oXDGJ?a^iVhim`R_B0]Jz0
+I[I`E_[a:=UGOFLOAg@Tc]3
+R2
+R0
+R3
+8../Altera_UP_PS2_Data_In.ip.v
+F../Altera_UP_PS2_Data_In.ip.v
+R4
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+n@altera_@u@p_@p@s2_@data_@in
+vHexadecimal_To_Seven_Segment
+R1
+!i10b 1
+!s100 VN50AhJ8NWf^zOC1?CXcc0
+I1@_dR;ZFT@Ro:k@LMoj=z0
+R2
+R0
+R3
+8../Hexadecimal_To_Seven_Segment.ip.v
+F../Hexadecimal_To_Seven_Segment.ip.v
+R4
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+n@hexadecimal_@to_@seven_@segment
+vkeyboard_interface
+R1
+!i10b 1
+!s100 >hm0UF2OP3EcaPj6JU^2g2
+I;gPfel=7P7ZeiSh_^RlL?0
+R2
+R0
+w1610675396
+8../tb/keyboard_interface.v
+F../tb/keyboard_interface.v
+L0 13
+R5
+r1
+!s85 0
+31
+R6
+Z10 !s107 ../tb/tb.v|../tb/ps2_data_out.v|../tb/ps2_command_in.v|../tb/keyboard_interface.v|
+Z11 !s90 ../tb/keyboard_interface.v|../tb/ps2_command_in.v|../tb/ps2_data_out.v|../tb/tb.v|
+!i113 1
+R9
+vPS2_Comm
+R1
+!i10b 1
+!s100 9E>S0m`EG_=>JZi8i9i@Z2
+IfzLab5j2VzeV]X;?2ZW0S3
+R2
+R0
+R3
+8../PS2_Comm.ip.v
+F../PS2_Comm.ip.v
+L0 3
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+n@p@s2_@comm
+vps2_command_in
+R1
+!i10b 1
+!s100 @:9?2A2:g13:Q1zjO__LM1
+IDHd_7@L`R_KmDzhTf1fkW1
+R2
+R0
+w1610675406
+8../tb/ps2_command_in.v
+F../tb/ps2_command_in.v
+L0 9
+R5
+r1
+!s85 0
+31
+R6
+R10
+R11
+!i113 1
+R9
+vPS2_Controller
+R1
+!i10b 1
+!s100 Iz>eaZVB?jofS8:Zm[Dzd3
+I3@2jhR9a2U5ZB;2N^:1gb3
+R2
+R0
+R3
+8../PS2_Controller.ip.v
+F../PS2_Controller.ip.v
+R4
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+n@p@s2_@controller
+vps2_data_out
+R1
+!i10b 1
+!s100 RJMzQ2z^IIR_K`D?O9Khm0
+IhMN=E2^PSK_SGZK<?:zjL2
+R2
+R0
+w1610675390
+8../tb/ps2_data_out.v
+F../tb/ps2_data_out.v
+L0 9
+R5
+r1
+!s85 0
+31
+R6
+R10
+R11
+!i113 1
+R9
+vtb
+R1
+!i10b 1
+!s100 1VX9BG2S3SGUOibNP^FR@2
+INbdLj9^C;WbdS?dA=J20g2
+R2
+R0
+w1648436514
+8../tb/tb.v
+F../tb/tb.v
+L0 9
+R5
+r1
+!s85 0
+31
+R6
+R10
+R11
+!i113 1
+R9
+vTop
+DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+R1
+!i10b 1
+!s100 FzK^7_A?lSdc4Hm`SOABF0
+I[J70Y5_E_Eh09B[F?46nV1
+R2
+!s105 Top_sv_unit
+S1
+R0
+w1652329300
+8../Top.sv
+F../Top.sv
+L0 7
+R5
+r1
+!s85 0
+31
+R6
+!s107 ../Top.sv|
+!s90 ../Top.sv|
+!i113 1
+R9
+n@top

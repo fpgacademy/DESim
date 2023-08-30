@@ -1,0 +1,131 @@
+m255
+K4
+z2
+!s99 nomlopt
+!s11e MIXED_VERSIONS
+!s11f vlog 2021.2 2021.04, Apr 14 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/DESim-main/demos/questasim/vhdl/led_hex/sim
+T_opt
+!s110 1648666472
+VYMF1>H[QPTB0;>WO__k<>2
+04 2 4 work tb fast 0
+=1-bce92fe8b814-6244a767-322-d7c
+!s124 OEM10U3 
+o-quiet +acc -auto_acc_if_foreign -work work -Lf 220model -Lf altera_mf_ver -Lf verilog
+Z1 tCvgOpt 0
+n@_opt
+OL;O;2021.2;73
+Eled_hex
+Z2 w1648488566
+Z3 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z4 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z5 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z6 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 1
+R0
+Z7 8../LED_HEX.vhd
+Z8 F../LED_HEX.vhd
+l0
+L13 1
+VnG3N[_JQQk@n;1SS_YBEk0
+!s100 P_WKV2gEmD7:a:FFiK:D10
+Z9 OL;C;2021.2;73
+32
+Z10 !s110 1648666467
+!i10b 1
+Z11 !s108 1648666467.000000
+Z12 !s90 ../LED_HEX.vhd|../Top.vhd|
+Z13 !s107 ../Top.vhd|../LED_HEX.vhd|
+!i113 0
+Z14 tExplicit 1 CvgOpt 0
+Abehavior
+R3
+R4
+R5
+R6
+DEx4 work 7 led_hex 0 22 nG3N[_JQQk@n;1SS_YBEk0
+!i122 1
+l30
+L28 33
+Vo^g@GnOBMGJo9M^?E7:XS0
+!s100 ^O2`5254zT^e9lA_oz?Zc1
+R9
+32
+R10
+!i10b 1
+R11
+R12
+R13
+!i113 0
+R14
+vtb
+R10
+!i10b 1
+!s100 69S<_o`NV?iLbmTNHeZFo3
+IcU]@RS[jMczQ30ImlT@c`1
+R0
+R2
+8../tb/tb.v
+F../tb/tb.v
+!i122 0
+L0 9 41
+VDg1SIo80bB@j0V0VzS_@n1
+OL;L;2021.2;73
+r1
+!s85 0
+31
+R11
+!s107 ../tb/tb.v|
+!s90 ../tb/tb.v|
+!i113 0
+o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+Etop
+R2
+R3
+R4
+R5
+R6
+!i122 1
+R0
+Z15 8../Top.vhd
+Z16 F../Top.vhd
+l0
+L8 1
+VX;F724eGG`B=6bZXWJ0TE0
+!s100 eI1nicH`27PeW_VYJKR`O2
+R9
+32
+R10
+!i10b 1
+R11
+R12
+R13
+!i113 0
+R14
+Abehavior
+R3
+R4
+R5
+R6
+DEx4 work 3 top 0 22 X;F724eGG`B=6bZXWJ0TE0
+!i122 1
+l38
+L23 20
+V1S[zY;UfC2bWXC1;O`4QN0
+!s100 <0dHdn^m^nOlcdA9TIYQj2
+R9
+32
+R10
+!i10b 1
+R11
+R12
+R13
+!i113 0
+R14

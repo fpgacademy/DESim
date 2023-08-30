@@ -1,0 +1,18 @@
+# vsim -pli "simfpga.vpi" -Lf 220model -Lf altera_mf_ver -Lf verilog -t 1ns -c -do "run -all" tb 
+# Start time: 11:53:44 on Aug 30,2023
+# Loading work.tb
+# Loading sv_std.std
+# Loading work.Top
+# Loading work.Counter
+# Loading ./simfpga.vpi
+# run -all
+# Time scaling: 0.0001 sim seconds per real-time second
+# 
+# 
+# Connected to server!
+# ** Note: $finish    : ../tb/tb.v(29)
+#    Time: 69320 us  Iteration: 1  Instance: /tb
+# 
+# Quitting...
+# End time: 11:53:56 on Aug 30,2023, Elapsed time: 0:00:12
+# Errors: 0, Warnings: 0

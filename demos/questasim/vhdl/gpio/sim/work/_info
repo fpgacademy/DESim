@@ -1,0 +1,88 @@
+m255
+K4
+z2
+!s99 nomlopt
+!s11e MIXED_VERSIONS
+!s11f vlog 2021.2 2021.04, Apr 14 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/DESim-main/demos/questasim/vhdl/gpio/sim
+T_opt
+!s110 1648666314
+VRfBNI0CVZVoC3TK3_U^TI0
+04 2 4 work tb fast 0
+=1-bce92fe8b814-6244a6ca-12e-751c
+!s124 OEM10U2 
+o-quiet +acc -auto_acc_if_foreign -work work -Lf 220model -Lf altera_mf_ver -Lf verilog
+Z1 tCvgOpt 0
+n@_opt
+OL;O;2021.2;73
+vtb
+Z2 !s110 1648666310
+!i10b 1
+!s100 @lf]e1n_AZl<Xlh_=Sem42
+I3=3BaMaUD:Gd_6A?_nB?l1
+R0
+Z3 w1648488566
+8../tb/tb.v
+F../tb/tb.v
+!i122 0
+L0 9 41
+VDg1SIo80bB@j0V0VzS_@n1
+OL;L;2021.2;73
+r1
+!s85 0
+31
+Z4 !s108 1648666310.000000
+!s107 ../tb/tb.v|
+!s90 ../tb/tb.v|
+!i113 0
+o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+Etop
+R3
+Z5 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z6 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z7 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z8 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 1
+R0
+Z9 8../Top.vhd
+Z10 F../Top.vhd
+l0
+L8 1
+VZA<fzhnORnf;iB9XBEAaS0
+!s100 7l[Qld_bM]>RX5DQG04[52
+Z11 OL;C;2021.2;73
+32
+R2
+!i10b 1
+R4
+Z12 !s90 ../Top.vhd|
+Z13 !s107 ../Top.vhd|
+!i113 0
+Z14 tExplicit 1 CvgOpt 0
+Abehavior
+R5
+R6
+R7
+R8
+DEx4 work 3 top 0 22 ZA<fzhnORnf;iB9XBEAaS0
+!i122 1
+l16
+L15 25
+VY5zZ3oOcTAImE;Tn03XNN1
+!s100 IRQ1n;ZMg3`3NK6?YAJI^1
+R11
+32
+R2
+!i10b 1
+R4
+R12
+R13
+!i113 0
+R14

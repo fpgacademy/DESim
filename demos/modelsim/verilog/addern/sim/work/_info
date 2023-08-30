@@ -1,0 +1,79 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/DESim-main/demos/modelsim/verilog/addern/sim
+vAddern
+Z1 !s110 1648577027
+!i10b 1
+!s100 9kf9m7Z0Q0=gT:2APHCk<1
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I>9[J`3[PN0MH:?`j[e@F70
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1648397636
+8../Addern.v
+F../Addern.v
+!i122 1
+L0 8 11
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1648577027.000000
+!s107 ../Top.v|../Addern.v|
+Z6 !s90 ../Addern.v|../Top.v|
+!i113 1
+Z7 tCvgOpt 0
+n@addern
+vtb
+R1
+!i10b 1
+!s100 ^b<bS8PVk2e;6IaRSGA:U3
+R2
+I?MZU5TCnc1lBi4=`R?V8S0
+R3
+R0
+w1648438856
+8../tb/tb.v
+F../tb/tb.v
+!i122 0
+L0 9 41
+R4
+r1
+!s85 0
+31
+R5
+!s107 ../tb/tb.v|
+!s90 ../tb/tb.v|
+!i113 1
+R7
+vTop
+R1
+!i10b 1
+!s100 cgRB]^CA6C0BghoDHGD]f1
+R2
+IdgY@h9U=_K0NCDH<GC0gk0
+R3
+R0
+w1648438846
+8../Top.v
+F../Top.v
+!i122 1
+L0 7 8
+R4
+r1
+!s85 0
+31
+R5
+Z8 !s107 ../Top.v|../Addern.v|
+R6
+!i113 1
+R7
+n@top

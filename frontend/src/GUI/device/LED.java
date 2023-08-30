@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 public class LED extends Button {
     // <editor-fold defaultstate="collapsed" desc="Private Variables">
     // true if LED is on, false if LED is off
-    private boolean status;
+    public boolean status;
     // </editor-fold>
 
     // <editor-fold desc="Constructors">

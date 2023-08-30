@@ -1,0 +1,79 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/DESim-main/demos/modelsim/verilog/counter/sim
+vCounter
+Z1 !s110 1648576933
+!i10b 1
+!s100 Mkg0j>UA;R7zOYDImHDcb2
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IEDna_2nOEKi0l330hD3lU1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1648397676
+8../Counter.v
+F../Counter.v
+!i122 1
+L0 10 18
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1648576933.000000
+!s107 ../Top.v|../Counter.v|
+Z6 !s90 ../Counter.v|../Top.v|
+!i113 1
+Z7 tCvgOpt 0
+n@counter
+vtb
+R1
+!i10b 1
+!s100 S0:K@8CA1?KfTLJ^[oYhC0
+R2
+I6e97?MPfB^8;?gBU1]0Ua1
+R3
+R0
+w1648422380
+8../tb/tb.v
+F../tb/tb.v
+!i122 0
+L0 9 41
+R4
+r1
+!s85 0
+31
+R5
+!s107 ../tb/tb.v|
+!s90 ../tb/tb.v|
+!i113 1
+R7
+vTop
+R1
+!i10b 1
+!s100 KRk1iD6IT_S5k9Sma_5JW3
+R2
+I9_j4NhIEaPKO@:R=NR;>L2
+R3
+R0
+w1648421866
+8../Top.v
+F../Top.v
+!i122 1
+L0 7 8
+R4
+r1
+!s85 0
+31
+R5
+Z8 !s107 ../Top.v|../Counter.v|
+R6
+!i113 1
+R7
+n@top

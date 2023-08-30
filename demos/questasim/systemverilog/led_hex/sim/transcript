@@ -1,0 +1,15 @@
+# vsim -pli "simfpga.vpi" -Lf 220model -Lf altera_mf_ver -Lf verilog -t 1ns -c -do "run -all" tb 
+# Start time: 13:32:16 on Aug 23,2022
+# Loading work.tb
+# Loading sv_std.std
+# Loading work.Top
+# Loading work.LED_HEX
+# Loading ./simfpga.vpi
+# ** Error: (vsim-3193) Load of "./simfpga.vpi" failed: Bad DLL format.
+# ** Error (suppressible): (vsim-PLI-3002) Failed to load PLI object file "./simfpga.vpi".
+#    Time: 0 ns  Iteration: 0  Root: /
+# ** Warning: (vsim-PLI-3003) ../tb/tb.v(29): [TOFD] - System task or function '$sim_fpga' is not defined.
+#    Time: 0 ns  Iteration: 0  Instance: /tb File: ../tb/tb.v
+# Error loading design
+# End time: 13:32:17 on Aug 23,2022, Elapsed time: 0:00:01
+# Errors: 2, Warnings: 1

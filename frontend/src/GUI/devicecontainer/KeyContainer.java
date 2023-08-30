@@ -13,7 +13,7 @@ public class KeyContainer extends DeviceContainer {
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Private Variables">
-    private final KEY[] keys;
+    public final KEY[] keys;
     // </editor-fold>
 
     // <editor-fold desc="Constructors">
