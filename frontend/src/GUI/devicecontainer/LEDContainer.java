@@ -12,7 +12,7 @@ public class LEDContainer extends DeviceContainer {
     private static final int NUMBER_OF_LEDS = 10;
     // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="Private Variables">
+    // <editor-fold  desc="Variables">
     public final LED[] leds;
     // </editor-fold>
 

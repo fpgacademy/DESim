@@ -43,11 +43,15 @@ public class GPIOContainer extends DeviceContainer {
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Private Variables">
-    public final GPIO[] ports;
+
     // Checkbox for setting all GPIO signal direction.
     // NOTE: Do not convert to local variable!
     private final CheckBox allOut;
     // </editor-fold>
+
+    //<editor-fold desc="Variables">
+    public final GPIO[] ports;
+    //</editor-fold>
 
     // <editor-fold desc="Constructors">
     public GPIOContainer() {

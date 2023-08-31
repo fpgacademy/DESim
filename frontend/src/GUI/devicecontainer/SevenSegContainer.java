@@ -12,7 +12,7 @@ public class SevenSegContainer extends DeviceContainer {
     private static final int NUMBER_OF_SEGMENTS = 6;
     // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="Private Variables">
+    // <editor-fold desc="Variables">
     public final SevenSeg[] sevenSegments;
     // </editor-fold>
 

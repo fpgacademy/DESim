@@ -18,7 +18,7 @@ import javafx.scene.shape.*;
  *     3
  */
 public class SevenSeg extends AnchorPane {
-    // <editor-fold defaultstate="collapsed" desc="Private Variables">
+    // <editor-fold desc="Variables">
     public final Rectangle[] strokes;
     // </editor-fold>
 

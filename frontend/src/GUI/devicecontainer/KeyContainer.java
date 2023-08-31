@@ -12,7 +12,7 @@ public class KeyContainer extends DeviceContainer {
     private static final int NUMBER_OF_KEYS = 4;
     // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="Private Variables">
+    // <editor-fold  desc="Variables">
     public final KEY[] keys;
     // </editor-fold>
 

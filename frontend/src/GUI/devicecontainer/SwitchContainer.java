@@ -13,7 +13,7 @@ public class SwitchContainer extends DeviceContainer {
     private static final int NUMBER_OF_SWITCHES = 10;
     // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="Private Variables">
+    // <editor-fold desc="Variables">
     public final Switch[] switches;
     // </editor-fold>
 

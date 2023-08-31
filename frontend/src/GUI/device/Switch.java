@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 
 public class Switch extends VBox {
-    // <editor-fold defaultstate="collapsed" desc="Private Variables">
+    // <editor-fold desc="Variables">
     public final CheckBox checkBox;
     // </editor-fold>
 

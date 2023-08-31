@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/intelFPGA_lite/21.1/quartus/DESim/demos/modelsim/systemverilog/ps2_demo/sim
 vAltera_UP_PS2_Command_Out
-Z1 !s110 1693410934
+Z1 !s110 1693510290
 !i10b 1
 !s100 aNPOnoKE9LT_`:OZGRn7L3
 INL8>QJG0WziFT6W3ogE062
@@ -23,7 +23,7 @@ Z5 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z6 !s108 1693410934.000000
+Z6 !s108 1693510290.000000
 Z7 !s107 ../PS2_Controller.ip.v|../PS2_Comm.ip.v|../Hexadecimal_To_Seven_Segment.ip.v|../Altera_UP_PS2_Data_In.ip.v|../Altera_UP_PS2_Command_Out.ip.v|
 Z8 !s90 ../Altera_UP_PS2_Command_Out.ip.v|../Altera_UP_PS2_Data_In.ip.v|../Hexadecimal_To_Seven_Segment.ip.v|../PS2_Comm.ip.v|../PS2_Controller.ip.v|
 !i113 1
