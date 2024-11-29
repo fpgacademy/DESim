@@ -9,7 +9,7 @@ The DESim tool has four parts:
 3) The backend simulator interface
 4) Various demos showcasing the different capabilities of the tool
 
-The DESim tool requires the ModelSim HDL simuator. Preferably, one of the ModelSim-Intel FPGA editions, which has the Intel FPGA IP Core simulation models built-in.
+The DESim tool requires the ModelSim or Questa HDL simuator. Preferably, one of the ModelSim-Intel FPGA editions, which has the Intel FPGA IP Core simulation models built-in.
 
 ## 2 Installation
 1. DESim requires ModelSim (Intel FPGA starter edition 10.5b), which is available at https://fpgasoftware.intel.com/19.1/?edition=lite&platform=windows. Note: going to individual files tabs will allow you to download Modelsim separately from the Quartus Prime software.
