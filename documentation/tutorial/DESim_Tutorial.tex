@@ -1,20 +1,36 @@
-\newcommand{\doctitle}{Using the DESim Application \\ with \hdlName~Designs}
-\newcommand{\dochead}{Using the DESim Application with \hdlName~Designs}
-
-\newcommand{\PDFTitle}{\dochead}
-\newcommand{\commonPath}{../../../Tutorials/Common}
 
 % This include all the settings that we should use for the document
+\newcommand{\PDFTitle}{Using the DESim Application \\ with \hdlName~Designs}
+\newcommand{\commonPath}{../../../Tutorials/Common}
 \input{\commonPath/Docs/defaulttext.tex}
 \input{\commonPath/Docs/preamble.tex}
 
-\newcommand{\red}[1]{{\color{red}\sf{#1}}}
-\newcommand{\blue}[1]{{\color{blue}\sf{#1}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Add title
+\newcommand{\doctitle}{Using the DESim Application \\ with \hdlName~Designs}
+\newcommand{\dochead}{Using the DESim Application \\ with \hdlName~Designs}
+% Usually no need to change these two lines
+\title{\fontfamily{phv}\selectfont{\doctitle} }
+\chead{ \small{\textsc{\bfseries \dochead} } }
+% Customizations
+\newenvironment{ctabbing}%
+{\begin{center}\begin{minipage}{\textwidth}\begin{tabbing}}
+{\end{tabbing}\end{minipage}\end{center}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Allows multiple figures per page
+
+\renewcommand\floatpagefraction{.9}
+\renewcommand\topfraction{.9}
+\renewcommand\bottomfraction{.9}
+\renewcommand\textfraction{.1}   
+\setcounter{totalnumber}{50}
+\setcounter{topnumber}{50}
+\setcounter{bottomnumber}{50}
+\raggedbottom
 
 \definecolor{AppleGreen}{rgb}{0.55, 0.71, 0.0}
 \newcommand{\green}[1]{{\color{AppleGreen}\sf{#1}}}
-
-\definecolor{Brass}{rgb}{0.71, 0.4, 0.11}
 
 %%%%%%%%%%%%%%%%%%
 %%% DOCUMENT START
@@ -158,7 +174,7 @@ port names include \texttt{KEY}, \texttt{SW}, and  \texttt{LEDR}.
 
 The {\it Addern} \hdlModuleName~is instantiated in {\it top.\hdlFileExt} by the statement
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=12,lastline=12]{../../demos/addern/top.\hdlFileExt}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=12,lastline=12]{../../demos/modelsim/\demos/addern/top.\hdlFileExt}}
 	{\lstinputlisting[language=VHDL,numbers=none,firstline=29,lastline=30]{../../demos/addern/top.vhd}}
 %\ifnum \value{\hdlNum}=0 {\lstinputlisting[language=Verilog,numbers=none,firstline=12,lastline=12]{../../demos/addern/top.\hdlFileExt}} \else {{\lstinputlisting[language=VHDL,numbers=none,firstline=12,lastline=12]{../../demos/addern/top.\hdlFileExt}}
 %\ifnum \value{\hdlNum}=0 {Zero} \else {One}
@@ -173,7 +189,7 @@ the carry-out, {\it Cout}, is connected to {\it LEDR}$_4$.
 \begin{center}
 \begin{minipage}[h]{15 cm}
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=8]{../../demos/addern/addern.\hdlFileExt}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=8]{../../demos/modelsim/\demos/addern/addern.\hdlFileExt}}
 	{\lstinputlisting[language=VHDL,numbers=none,firstline=9]{../../demos/addern/addern.vhd}}
 \end{minipage}
 	\caption{The \hdlName~source-code file \texttt{addern.\hdlFileExt}.}
@@ -187,7 +203,7 @@ the carry-out, {\it Cout}, is connected to {\it LEDR}$_4$.
 	{\begin{minipage}[h]{15 cm}}
 	{\begin{minipage}[h]{18 cm}}
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/addern/top.\hdlFileExt}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/modelsim/\demos/addern/top.\hdlFileExt}}
 	{\lstinputlisting[language=VHDL,numbers=none,firstline=8]{../../demos/addern/top.vhd}}
 \ifthenelse{\value{hdlNum}=0}
 	{\end{minipage}}
@@ -203,7 +219,7 @@ found in the \texttt{sim} folder of the {\it addern} project. This script compri
 some {\it ModelSim} commands. The {\it run\_compile.bat} script for Windows is shown below 
 (the {\it run\_compile.sh} script for Linux is similar):
 
-\lstinputlisting[language=command.com]{../../demos/common/sim/run_compile.bat}
+\lstinputlisting[language=command.com]{../../demos/modelsim/\demos/addern/sim/run_compile.bat}
 
 The script executes the {\it vlib} command, which is part of the {\it ModelSim/Questa} software,
 to create a \texttt{work} folder (while first deleting this folder if it already exists).
@@ -240,7 +256,7 @@ declares the testbench \hdlModuleName, which is named {\it tb}.
 The next several lines in the code declare some signals that are used in the testbench. 
 The statement
 
-\lstinputlisting[language=Verilog,numbers=none,firstline=29,lastline=30]{../../demos/addern/tb/tb.v}
+\lstinputlisting[language=Verilog,numbers=none,firstline=29,lastline=30]{../../demos/modelsim/verilog/addern/tb/tb.v}
 
 is unique to the {\it DESim} program. It makes use of a special feature of the
 {\it ModelSim/Questa} software that allows communication with a 
@@ -254,7 +270,8 @@ This capability is known as the {\it Verilog Procedural Interface} (VPI).
 \begin{center}
 \begin{minipage}[t]{16.5 cm}
 %	\lstinputlisting[language=Verilog,numbers=none,firstline=8]{../../demos/addern/tb/tb.v}
-	\lstinputlisting[language=Verilog,numbers=none,linerange={9-31, 34-37, 46}]{../../demos/addern/tb/tb.v}
+	\lstinputlisting[language=Verilog,numbers=none,linerange={9-31, 34-37,
+    46}]{../../demos/modelsim/verilog/addern/tb/tb.v}
 \end{minipage}
 	\caption{The testbench file, {\it tb.v}, for the {\it addern} project.}
 	\label{fig:tb}
@@ -269,7 +286,7 @@ called {\it run\_sim}, which is found in the \texttt{sim} folder of the
 {\it addern} project. This script runs {\it vsim}, the {\it ModelSim/Questa} Verilog
 simulator, using one of the commands:
 
-\lstinputlisting[language=command.com]{../../demos/common/sim/run_sim.bat}
+\lstinputlisting[language=command.com]{../../demos/modelsim/verilog/addern/sim/run_sim.bat}
 
 The \texttt{-pli} argument for the {\it vsim} program instructs it to link to the
 {\it sim\_fpga} software function that has been (previously) compiled into the 
@@ -302,7 +319,7 @@ the \texttt{LEDs}.  Try different settings for the
 \begin{figure}[H]
 \begin{center}
 \begin{minipage}[t]{15 cm}
-	\lstinputlisting[numbers=none]{../../demos/addern/Readme.txt}
+	\lstinputlisting[numbers=none]{../../demos/modelsim/verilog/addern/Readme.txt}
 \end{minipage}
     \caption{The {\it Readme.txt} file for the {\it addern} project.}
 	\label{fig:readme}
@@ -327,7 +344,7 @@ connected to {\it LEDR}.
 \begin{center}
 \begin{minipage}[h]{15 cm}
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=10]{../../demos/counter/Counter.\hdlFileExt}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=10]{../../demos/modelsim/\demos/counter/Counter.\hdlFileExt}}
 	{\lstinputlisting[language=VHDL,numbers=none,firstline=11]{../../demos/counter/Counter.vhd}}
 \end{minipage}
 	\caption{The \hdlName~code for the 24-bit counter.}
@@ -346,7 +363,7 @@ with {\it CLOCK\_50} for the clock signal, and {\it KEY}$_0$ being used for rese
 \begin{center}
 \begin{minipage}[h]{15 cm}
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/counter/Top.\hdlFileExt}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/modelsim/\demos/counter/Top.\hdlFileExt}}
 	{\lstinputlisting[language=VHDL,numbers=none,firstline=8]{../../demos/counter/Top.vhd}}
 \end{minipage}
 	\caption{The {\it top} \hdlModuleName~for the {\it counter} project.}
@@ -425,7 +442,7 @@ eight letters displayed by the circuit.
 \begin{center}
 \begin{minipage}[h]{15 cm}
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=9]{../../demos/display/Display.\hdlFileExt}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=9]{../../demos/modelsim/\demos/display/Display.\hdlFileExt}}
 	{\lstinputlisting[language=VHDL,numbers=none,linerange={10-28, 43-68}]{../../demos/display/Display.vhd}}
 \end{minipage}
 	\caption{The \hdlName~code for the {\it display} project.}
@@ -488,7 +505,7 @@ command. This command executes the project's {\it run\_compile} script, which
 is in its \texttt{sim} folder. This {\it Windows} batch script is shown below (the {\it Linux}
 shell script is similar):
 
-\lstinputlisting[language=command.com]{../../demos/common/sim/run_compile.bat}
+\lstinputlisting[language=command.com]{../../demos/modelsim/\demos/display/sim/run_compile.bat}
 
 Lines 1 to 3 are used to copy the memory initialization file,
 {\it inst\_mem.mif}, from the \texttt{display} project folder into the \texttt{sim}
@@ -517,7 +534,7 @@ is illustrated in Figure~\ref{fig:sim3}.
 \begin{figure}[h]
 \begin{center}
 \begin{minipage}[t]{12.5 cm}
-	\lstinputlisting{../../demos/display/Readme.txt}
+	\lstinputlisting{../../demos/modelsim/\demos/display/Readme.txt}
 \end{minipage}
     \caption{The {\it Readme.txt} file for the {\it display} project.}
 \label{fig:readme2}
