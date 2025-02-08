@@ -72,3 +72,13 @@ work/
 *.vhd~
 *.sv~
 
+# tex files
+*.un~
+*.tex~
+
+*.aux
+*.log
+*.out
+*.gz
+*.gz
+
