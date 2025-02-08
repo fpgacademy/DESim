@@ -64,3 +64,11 @@ hs_err_pid*
 # Software Build/Release Paths
 dist/
 out/
+
+# modelsim and HDL tmp files
+*.vstf
+work/
+*.v~
+*.vhd~
+*.sv~
+
