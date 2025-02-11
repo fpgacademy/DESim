@@ -4,7 +4,7 @@
 // Protect against undefined nets
 `default_nettype none
 
-module Top (SW, GPIO);
+module top (SW, GPIO);
     input  wire [ 9: 0] SW;         // DE-series switches
     inout  wire [31: 0] GPIO;       // DE-series 40-pin header
 

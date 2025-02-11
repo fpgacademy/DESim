@@ -5,7 +5,7 @@
 `default_nettype none
 
 // A multi-bit adder
-module Addern (Cin, X, Y, Sum, Cout);
+module addern (Cin, X, Y, Sum, Cout);
     parameter n = 4;
 
     input  wire         Cin;

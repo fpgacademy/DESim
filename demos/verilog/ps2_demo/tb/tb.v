@@ -52,7 +52,7 @@ module tb();
         end
     end
 
-    Top DUT (CLOCK_50, KEY, SW, 
+    top DUT (CLOCK_50, KEY, SW, 
         HEX0, HEX1, LEDR,
 		ps2_clk, ps2_dat
     );

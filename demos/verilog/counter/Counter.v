@@ -7,21 +7,24 @@
 // This module implements an n-bit counter. Upper bits of the counter, driven by the 
 // 50 MHz clock signal, are displayed on the LEDR lights. The counter can be reset to 0
 // using KEY[0]. 
-module Counter (CLOCK, RESETn, LEDR);
-    input  wire         CLOCK;
-    input  wire         RESETn;
-    output wire [ 9: 0] LEDR;
-
-	parameter n = 24;
+module Counter (CLOCK_50, KEY, LEDR);
+    input wire [0:0] KEY;
+    input wire CLOCK_50;
+    output wire [9:0] LEDR;
+    parameter n = 24;
    
-    reg         [n-1:0] count;
+    reg [n-1:0] Count;
+    wire Clock, Resetn;
+
+    assign Clock = CLOCK_50;
+    assign Resetn = KEY[0];
 
     // the counter
-    always @(posedge CLOCK)
-        if (RESETn  == 1'b0)        // synchronous clear
-            count <= 0;
+    always @(posedge Clock)
+        if (Resetn  == 1'b0)        // synchronous clear
+            Count <= 0;
         else
-            count <= count + 1;
+            Count <= Count + 1;
 
-    assign LEDR = count[n-1:n-10];
+    assign LEDR = Count[n-1:n-10];
 endmodule

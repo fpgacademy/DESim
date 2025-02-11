@@ -1,53 +1,26 @@
-// Copyright (c) 2020 FPGAcademy
-// Please see license at https://github.com/fpgacademy/DESim
+`include "resolution.v" // determine VGA resolution
 
-// Protect against undefined nets
-`default_nettype none
+module top (CLOCK_50, SW, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR, VGA_X, VGA_Y, VGA_COLOR, plot);
 
-module Top (CLOCK_50, KEY, VGA_X, VGA_Y, VGA_COLOR, plot);
-    input  wire         CLOCK_50;   // DE-series 50 MHz clock signal
-    input  wire [ 3: 0] KEY;        // DE-series pushbuttons
+    input CLOCK_50;             // DE-series 50 MHz clock signal
+    input wire [9:0] SW;        // DE-series switches
+    input wire [3:0] KEY;       // DE-series pushbuttons
 
-    output wire [ 7: 0] VGA_X;      // "VGA" column
-    output wire [ 6: 0] VGA_Y;      // "VGA" row
-    output wire [ 2: 0] VGA_COLOR;  // "VGA pixel" colour (0-7)
-    output wire         plot;       // "Pixel" is drawn when this is pulsed
+    output wire [6:0] HEX0;     // DE-series HEX displays
+    output wire [6:0] HEX1;
+    output wire [6:0] HEX2;
+    output wire [6:0] HEX3;
+    output wire [6:0] HEX4;
+    output wire [6:0] HEX5;
 
-    reg         [ 7: 0] x;
-    reg         [ 6: 0] y;
-    reg         [ 2: 0] color;
+    output wire [9:0] LEDR;     // DE-series LEDs   
+    output wire [9:0] VGA_X;
+    output wire [8:0] VGA_Y;
+    output wire [2:0] VGA_COLOR;
+    output wire plot;
 
-    wire                reset;
-
-    assign reset = ~KEY[0];
-
-    always @(posedge CLOCK_50) begin
-        if (reset) begin
-            x <= 0;
-            y <= 0;
-            color <= 3'd1;
-        end
-        else begin
-            if(x == 159) begin
-                x <= 0;
-                if (y == 119) begin
-                    y <= 0;
-                    color <= color + 3'd1;
-                end
-                else begin
-                    y <= y + 1'b1;
-                end
-            end
-            else begin
-                x <= x + 1'b1;
-            end  
-        end
-    end
-
-    assign VGA_X     = x;
-    assign VGA_Y     = y;
-    assign VGA_COLOR = color;
-    assign plot      = 1'b1;
+    parameter n = `ifdef VGA_640_480 10 `elsif VGA_320_240 9 `else 8 `endif ; // VGA x bitwidth
+    vga_demo U1 (CLOCK_50, KEY, VGA_X[n-1:0], VGA_Y[n-2:0], VGA_COLOR, plot);
 
 endmodule
 
