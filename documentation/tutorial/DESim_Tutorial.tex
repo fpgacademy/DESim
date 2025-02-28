@@ -8,7 +8,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 % Add title
 \newcommand{\doctitle}{Using the DESim Application \\ with \hdlName~Designs}
-\newcommand{\dochead}{Using the DESim Application \\ with \hdlName~Designs}
+\newcommand{\dochead}{Using the DESim Application}
 % Usually no need to change these two lines
 \title{\fontfamily{phv}\selectfont{\doctitle} }
 \chead{ \small{\textsc{\bfseries \dochead} } }
@@ -32,6 +32,12 @@
 \definecolor{AppleGreen}{rgb}{0.55, 0.71, 0.0}
 \newcommand{\green}[1]{{\color{AppleGreen}\sf{#1}}}
 
+\renewcommand{\versnum}{18.1, 19.1} %version number quartus/AMP
+\newif\ifquesta
+%\questatrue % comment out to not include Questa
+\newif\iflinux
+%\linuxtrue % comment out to not include Linux
+
 %%%%%%%%%%%%%%%%%%
 %%% DOCUMENT START
 \begin{document}
@@ -51,51 +57,60 @@
  
 \section{Introduction}
 
-This tutorial introduces the {\it DESim} application, which you can use to simulate 
-circuits specified with \hdlName~code. The {\it DESim} application provides a 
-{\it graphical user interface} (GUI) that represents some of the features of a {\it DE1-SoC}
-board. This GUI serves as a ``front end'' for either the {\it ModelSim} or {\it Questa} simulation 
-software. Using the {\it DESim} GUI you can invoke both the software's {\it HDL compiler} and 
-{\it simulator}. Inputs to the simulator can be provided by clicking on features in the
-{\it DESim} GUI, which also shows results produced by the simulator on displays that look
-like the ones on a DE1-SoC board.
+This tutorial introduces the {\it DESim}\textsuperscript{\textregistered} application, 
+which you can use to simulate the implementation of circuits that are specified 
+with \hdlName~code, in an Altera\textsuperscript{\textregistered} FPGA device. 
+The {\it DESim} application provides a {\it graphical user interface} 
+(GUI) that represents some of the features of a {\it DE1-SoC} (or similar) FPGA board, 
+as described in the \texttt{Boards} tab of the 
+{\small \href{https://www.fpgacademy.org/boards.html} {FPGAcademy.org}} website.
+The {\it DESim} application serves as a ``front end'' for 
+\ifquesta {either the {\it ModelSim} or {\it Questa}}
+\else {the {\it ModelSim}} \fi
+Simulator. Using the {\it DESim} GUI you can compile your
+\hdlName~code and then run the Simulator. Its inputs are provided by 
+clicking on features in the {\it DESim} GUI, which also shows results produced by 
+the Simulator on displays that look like the ones on a {\it DE1-SoC} board.
 
 {\bf Contents:}
 \vspace{-1em}
 \begin{itemize}
-\item Getting Started with {\it DESim}
-\item Compiling and Simulating {\it DESim} Sample Projects
-\item Simulating a Circuit that Includes a Memory Module
-\item Making a {\it DESim} Project
-\item Troubleshooting Problems with the {\it DESim} Application
+\item Getting started with the {\it DESim} application
+\item Compiling and simulating {\it DESim} demonstration projects
+\item Simulating a circuit that includes a memory module
+\item Making your own {\it DESim} project
+\item Troubleshooting problems with the {\it DESim} application
 \end{itemize}
 
 {\bf Requirements:}
 \vspace{-1em}
 \begin{itemize}
-	\item A good working knowledge of \hdlName~hardware description language (HDL).
-\item A computer running Microsoft\textsuperscript{\textregistered} Windows\textsuperscript{\textregistered} (version 10 is recommended) 
-	or Ubuntu Linux.
-\item A computer running {\it ModelSim-Intel FPGA} edition software or {\it Questa-Intel FPGA} edition software
-\begin{itemize}
-	\item If using the {\it ModelSim-Intel FPGA Starter} edition software, version 10.5b is required. It is
-		part of the {\it Quartus Prime} suite of CAD tools, versions 18.0, 18.1, 19.0 and 19.1, which are
-		provided by Intel\textsuperscript{\textregistered} Corporation.
-	\item If using the {\it Questa-Intel FPGA Starter} edition software, version 2021.2 is required. It is
-		part of the {\it Quartus Prime} suite of CAD tools, version 21.1, which is
-		provided by Intel\textsuperscript{\textregistered} Corporation.
-\end{itemize}
-\item You should know how to use the simulation software to simulate HDL code using a {\it testbench}. 
-	This material is presented in the tutorials: 
-		{\it Using ModelSim with Testbenches} and 
-		{\it Using Questa with Testbenches}, available from
-		\href{https://www.fpgacademy.org/tutorials.html}{FPGAcademy.org}.
-%		{\it Using the ModelSim-Intel FPGA Simulator with Verilog/VHDL Testbenches} and 
-%		{\it Using the Questa-Intel FPGA Simulator with Verilog/VHDL Testbenches}, available from
-%		\href{https://www.fpgacademy.org/tutorials.html}{FPGAcademy.org}.
-\item The {\it DESim} application. Instructions for downloading and installing the {\it DESim} 
-application are available in the document {\it DESim Installation Guide}, available from
-\url{https://github.com/fpgacademy/DESim/releases}.
+	\item A good working knowledge of the \hdlName~hardware description language (HDL)
+\item A computer running Microsoft\textsuperscript{\textregistered}
+Windows\textsuperscript{\textregistered} (version 10 or 11 is
+recommended)\iflinux{ or Ubuntu Linux}\fi
+\item The {\it DESim} application: an {\it Installation Guide} 
+is available in the \texttt{Software} tab on 
+\href{https://www.fpgacademy.org/tools.html}{FPGAcademy.org}.
+\item 
+\ifquesta
+{{\it ModelSim-Intel FPGA} software or {\it Questa-Intel FPGA} software: instructions for 
+obtaining these Simulators are included in the {\it DESim Installation Guide}. {\it DESim} can 
+be used with the {\it ModelSim} releases that are part of versions 18.1 to 20.1 of the 
+Altera {\it Quartus Prime} CAD system, or any release of {\it Questa} that is provided as
+part of {\it Quartus Prime}.}
+\else
+{{\it ModelSim-Intel FPGA} software: instructions for obtaining the {\it ModelSim}
+Simulator are included in the {\it DESim Installation Guide}. {\it DESim} can be used with 
+the {\it ModelSim} releases that are part of the Altera {\it Quartus Prime} CAD system, 
+versions 18.1 to 20.1.}
+\fi
+\item You should know how to simulate \hdlName~code using a {\it testbench}, as described
+in the tutorial\ifquesta{s}\fi
+{\it~Using ModelSim with Testbenches}\ifquesta{~and {\it Using Questa with
+Testbenches}}\fi. \ifquesta{These tutorials are}\else{This tutorial is}\fi~available in 
+the \texttt{Tutorials} tab on
+\href{https://www.fpgacademy.org/tutorials.html}{FPGAcademy.org}.
 \end{itemize}
 
 \newpage
@@ -109,76 +124,63 @@ properly and should be closed. In this case, see the troubleshooting section at 
 of this document.
 
 On the right-hand side of Figure~\ref{fig:gui}, the \texttt{LEDs} represent the 
-red lights \red{\texttt{LEDR}$_{9-0}$} that are provided on a DE1-SoC board. The
-\texttt{Switches} correspond to the board's \blue{\texttt{SW$_{9-0}$}} slide switches, the 
-\texttt{Push Buttons} to \blue{\texttt{KEY$_{3-0}$}}, and the \texttt{Seven-segment
-Displays} to \red{\texttt{HEX5}}, \red{\texttt{HEX4}}, $\cdots$, \red{\texttt{HEX0}}.
+red lights \red{LEDR$_{9-0}$} that are provided on a DE1-SoC (or similar)
+FPGA board.  The \texttt{Switches} correspond to the board's \blue{SW$_{9-0}$} 
+slide switches, the \texttt{Push Buttons} to \blue{KEY$_{3-0}$}, and the 
+\texttt{Seven-segment Displays} to \red{HEX5}, \red{HEX4}, $\ldots$, \red{HEX0}.
 There are also some additional features in the GUI called \texttt{PS/2 Keyboard}, 
-\texttt{Parallel Ports}, and \texttt{VGA Display}. These features of
-the {\it DESim} GUI are not described in this document. 
+\texttt{Parallel Ports}, and \texttt{VGA Display}. Each of these features is discussed 
+briefly in Section~\ref{sec:advanced}.
 
 \begin{figure}[h]
 	\begin{center}
         \setlength{\fboxsep}{0pt}
-        \fbox{\includegraphics[width = .8\textwidth]{figures/DESim_GUI.png}}
+        \fbox{\includegraphics[width = \textwidth]{figures/DESim_GUI.png}}
 	\end{center}
 		  \caption{The {\it DESim} GUI.}
 	\label{fig:gui}
 \end{figure}
 
-The {\it DESim} tool works in the context of a {\it project}. To introduce the features of the 
-{\it DESim} GUI, we will first open an existing project. This example is a multibit adder 
-named {\it addern}, which is provided as a {\it demo} project that comes with the {\it DESim}
-software. Referring to Figure~\ref{fig:gui}, click on the \texttt{Open Project} command 
-to reach the dialogue displayed in Figure~\ref{fig:open_windows} (Windows) or 
-Figure~\ref{fig:open_linux} (Linux). As shown in the figures, navigate
-to the \texttt{demos} folder, select either \texttt{modelsim/questa} and 
-\texttt{systemverilog/verilog/vhdl}, click to select the \texttt{addern} project, and then 
-click the \texttt{Select Folder} button in Windows or the \texttt{Open} button in Linux.
+The {\it DESim} application works in the context of a {\it project}. To introduce the features of 
+the {\it DESim} GUI, we will first open an existing project. This example is a multibit 
+{\it adder}, which is provided as a {\it demo} project that is installed along with the 
+{\it DESim} software. Referring to Figure~\ref{fig:gui}, click on the \texttt{Open Project} button 
+to reach the dialogue displayed in Figure~\ref{fig:open_windows}. As indicated in the figure, 
+navigate to \ifquesta{either \texttt{demos/modelsim/\demos} (if you are using {\it ModelSim}) or 
+\texttt{demos/questa/\demos} (if you are using {\it Questa}),}
+\else{the {\it DESim} \texttt{demos} folder, }\fi click on
+the \texttt{adder} folder, and then click on the \texttt{Select Folder} button to open the
+project.
 
 \begin{figure}[h]
 	\begin{center}
         \setlength{\fboxsep}{0pt}
-        \fbox{\includegraphics[width = .9\textwidth]{figures/open_addern_windows.png}}
+        \fbox{\includegraphics[width = \textwidth]{figures/open_adder_windows.png}}
 	\end{center}
-		  \caption{Opening the {\it addern} project under Windows.}
+		  \caption{Opening the {\it adder} project.}
 	\label{fig:open_windows}
 \end{figure}
 
-\begin{figure}[h]
-	\begin{center}
-        \setlength{\fboxsep}{0pt}
-        \includegraphics[width = .75\textwidth]{figures/open_addern_linux.png}
-	\end{center}
-		  \caption{Opening the {\it addern} project under Linux.}
-	\label{fig:open_linux}
-\end{figure}
-
-\clearpage
-\newpage
-The {\it addern} project folder, contains the 
-folders named \texttt{sim} and \texttt{tb}, as well as the files called {\it Addern.\hdlFileExt}, 
+The {\it adder} project folder, contains the 
+folders named \texttt{sim} and \texttt{tb}, as well as the files called {\it adder.\hdlFileExt}, 
 and {\it top.\hdlFileExt}. There is also a {\it Readme.txt} file, but it just provides 
 a description of the functionality of this demo and is not really a part of the {\it DESim} project. 
 
-The {\it Addern.\hdlFileExt} file, shown in Figure~\ref{fig:addern}, is the \hdlName~code that will 
+The {\it adder.\hdlFileExt} file, shown in Figure~\ref{fig:addern}, is the \hdlName~code that will 
 be simulated in this part of the tutorial. We will use the {\it DESim} GUI to specify signal 
 values for the adder's inputs, {\it Cin}, {\it X}, and {\it Y}, and then display the
 simulation results produced for the outputs, {\it Sum} and {\it Cout}, on the \texttt{LEDs}. 
 To make connections between the adder's ports and the signals that are associated with the
-{\it DESim} GUI, we {\it instantiate} the {\it Addern} \hdlModuleName~in another \hdlName~\hdlModuleName~
+{\it DESim} GUI, we {\it instantiate} the {\it adder} \hdlModuleName~in another \hdlName~\hdlModuleName~
 called {\it top}. This \hdlModuleName~is defined in the file {\it top.\hdlFileExt}, displayed in 
 Figure~\ref{fig:top}. Its ports use the signal names that are appropriate for a
 top-level \hdlName~\hdlModuleName~which is intended to be implemented on a DE1-SoC board. These
 port names include \texttt{KEY}, \texttt{SW}, and  \texttt{LEDR}.
 
-The {\it Addern} \hdlModuleName~is instantiated in {\it top.\hdlFileExt} by the statement
+The {\it adder} \hdlModuleName~is instantiated in {\it top.\hdlFileExt} by the statement
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=12,lastline=12]{../../demos/modelsim/\demos/addern/top.\hdlFileExt}}
-	{\lstinputlisting[language=VHDL,numbers=none,firstline=29,lastline=30]{../../demos/addern/top.vhd}}
-%\ifnum \value{\hdlNum}=0 {\lstinputlisting[language=Verilog,numbers=none,firstline=12,lastline=12]{../../demos/addern/top.\hdlFileExt}} \else {{\lstinputlisting[language=VHDL,numbers=none,firstline=12,lastline=12]{../../demos/addern/top.\hdlFileExt}}
-%\ifnum \value{\hdlNum}=0 {Zero} \else {One}
-%\ifthenelse{\value{hdlNum}=0}{Zero}{One}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=12,lastline=12]{../../demos/\demos/adder/top.\hdlFileExt}}
+	{\lstinputlisting[language=VHDL,numbers=none,firstline=29,lastline=30]{../../demos/adder/top.vhd}}
 
 This statement connects the switch {\it SW}$_9$ to the multibit adder's carry-in, {\it Cin}, 
 and it connects {\it SW}$_{3-0}$ and  {\it SW}$_{7-4}$ to the adder's {\it X} and {\it Y} 
@@ -189,10 +191,10 @@ the carry-out, {\it Cout}, is connected to {\it LEDR}$_4$.
 \begin{center}
 \begin{minipage}[h]{15 cm}
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=8]{../../demos/modelsim/\demos/addern/addern.\hdlFileExt}}
-	{\lstinputlisting[language=VHDL,numbers=none,firstline=9]{../../demos/addern/addern.vhd}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=8]{../../demos/\demos/adder/adder.\hdlFileExt}}
+	{\lstinputlisting[language=VHDL,numbers=none,firstline=9]{../../demos/adder/adder.vhd}}
 \end{minipage}
-	\caption{The \hdlName~source-code file \texttt{addern.\hdlFileExt}.}
+	\caption{The \hdlName~source-code file \texttt{adder.\hdlFileExt}.}
 	\label{fig:addern}
 \end{center}
 \end{figure}
@@ -203,8 +205,8 @@ the carry-out, {\it Cout}, is connected to {\it LEDR}$_4$.
 	{\begin{minipage}[h]{15 cm}}
 	{\begin{minipage}[h]{18 cm}}
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/modelsim/\demos/addern/top.\hdlFileExt}}
-	{\lstinputlisting[language=VHDL,numbers=none,firstline=8]{../../demos/addern/top.vhd}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/\demos/adder/top.\hdlFileExt}}
+	{\lstinputlisting[language=VHDL,numbers=none,firstline=8]{../../demos/adder/top.vhd}}
 \ifthenelse{\value{hdlNum}=0}
 	{\end{minipage}}
 	{\end{minipage}}
@@ -213,24 +215,24 @@ the carry-out, {\it Cout}, is connected to {\it LEDR}$_4$.
 \end{center}
 \end{figure}
 
-To compile the {\it addern} project in the {\it DESim} GUI, click the \texttt{Compile Testbench}
+To compile the {\it adder} project in the {\it DESim} GUI, click the \texttt{Compile Testbench}
 command. This command executes a script called {\it run\_compile}, which is 
-found in the \texttt{sim} folder of the {\it addern} project. This script comprises
+found in the \texttt{sim} folder of the {\it adder} project. This script comprises
 some {\it ModelSim} commands. The {\it run\_compile.bat} script for Windows is shown below 
 (the {\it run\_compile.sh} script for Linux is similar):
 
-\lstinputlisting[language=command.com]{../../demos/modelsim/\demos/addern/sim/run_compile.bat}
+\lstinputlisting[language=command.com]{../../demos/\demos/adder/sim/run_compile.bat}
 
 The script executes the {\it vlib} command, which is part of the {\it ModelSim/Questa} software,
 to create a \texttt{work} folder (while first deleting this folder if it already exists).
 The script then invokes the simulation software's Verilog compiler, {\it vlog}, twice. The first invocation
-of the compiler, \texttt{vlog ../tb/*.v}, compiles the Verilog source code in the {\it addern}
+of the compiler, \texttt{vlog ../tb/*.v}, compiles the Verilog source code in the {\it adder}
 project's \texttt{tb} folder. This folder holds the {\it testbench} for the project, which is
-described shortly. If the SystemVerilog or Verilog version of the {\it addern} project was opened, the 
-second call to {\it vlog} compiles the source-code of the {\it addern} project, which includes the files 
-{\it Addern.v} and {\it top.v} or {\it Addern.sv} and {\it top.sv}. If instead the SystemVerilog or VHDL 
-versions of the {\it Addern} project was opened, the call to {\it vcom} compiles the source-code of the 
-{\it Addern} project, which includes the files {\it Addern.vhd} and {\it top.vhd}. Any messages produced 
+described shortly. If the SystemVerilog or Verilog version of the {\it adder} project was opened, the 
+second call to {\it vlog} compiles the source-code of the {\it adder} project, which includes the files 
+{\it adder.v} and {\it top.v} or {\it adder.sv} and {\it top.sv}. If instead the SystemVerilog or VHDL 
+versions of the {\it adder} project was opened, the call to {\it vcom} compiles the source-code of the 
+{\it adder} project, which includes the files {\it adder.vhd} and {\it top.vhd}. Any messages produced 
 while executing the {\it run\_compile} script are displayed inside the message pane in the {\it DESim} 
 GUI, as illustrated in Figure~\ref{fig:compile}.
 
@@ -244,19 +246,19 @@ GUI, as illustrated in Figure~\ref{fig:compile}.
 \end{figure}
 
 \newpage
-The testbench file for the {\it addern} project that is compiled by the command 
+The testbench file for the {\it adder} project that is compiled by the command 
 \texttt{vlog ../tb/*.v} is called {\it tb.v}, and is displayed in Figure~\ref{fig:tb}. 
 It is not necessary to modify (or even examine) much of this code to use the {\it
 DESim} software, but we describe some of the code here for completeness.
 The testbench code in the figure has a general structure that 
 allows it to be used to simulate different HDL code
 that might be used in various {\it DESim} projects. Hence, not
-all of the code in the testbench is needed for the {\it addern} project.  The first line 
+all of the code in the testbench is needed for the {\it adder} project.  The first line 
 declares the testbench \hdlModuleName, which is named {\it tb}. 
 The next several lines in the code declare some signals that are used in the testbench. 
 The statement
 
-\lstinputlisting[language=Verilog,numbers=none,firstline=29,lastline=30]{../../demos/modelsim/verilog/addern/tb/tb.v}
+\lstinputlisting[language=Verilog,numbers=none,firstline=29,lastline=30]{../../demos/verilog/adder/tb/tb.v}
 
 is unique to the {\it DESim} program. It makes use of a special feature of the
 {\it ModelSim/Questa} software that allows communication with a 
@@ -271,9 +273,9 @@ This capability is known as the {\it Verilog Procedural Interface} (VPI).
 \begin{minipage}[t]{16.5 cm}
 %	\lstinputlisting[language=Verilog,numbers=none,firstline=8]{../../demos/addern/tb/tb.v}
 	\lstinputlisting[language=Verilog,numbers=none,linerange={9-31, 34-37,
-    46}]{../../demos/modelsim/verilog/addern/tb/tb.v}
+    46}]{../../demos/verilog/adder/tb/tb.v}
 \end{minipage}
-	\caption{The testbench file, {\it tb.v}, for the {\it addern} project.}
+	\caption{The testbench file, {\it tb.v}, for the {\it adder} project.}
 	\label{fig:tb}
 \end{center}
 \end{figure}
@@ -283,10 +285,10 @@ The second last line in the testbench code instantiates the
 Figure~\ref{fig:top}. To execute the testbench using the simulator, click on the
 \texttt{Start Simulation} command in the {\it DESim} GUI. This command executes a script 
 called {\it run\_sim}, which is found in the \texttt{sim} folder of the 
-{\it addern} project. This script runs {\it vsim}, the {\it ModelSim/Questa} Verilog
+{\it adder} project. This script runs {\it vsim}, the {\it ModelSim/Questa} Verilog
 simulator, using one of the commands:
 
-\lstinputlisting[language=command.com]{../../demos/modelsim/verilog/addern/sim/run_sim.bat}
+\lstinputlisting[language=command.com]{../../demos/verilog/adder/sim/run_sim.bat}
 
 The \texttt{-pli} argument for the {\it vsim} program instructs it to link to the
 {\it sim\_fpga} software function that has been (previously) compiled into the 
@@ -297,7 +299,7 @@ run the simulation for the top-level \hdlModuleName, which is {\it tb}. Any mess
 produced while executing the {\it run\_sim} script are displayed inside the message pane in
 the {\it DESim} GUI, as depicted in Figure~\ref{fig:sim}.
 
-As mentioned previously, the {\it addern} project includes a {\it Readme.txt} file that
+As mentioned previously, the {\it adder} project includes a {\it Readme.txt} file that
 documents its usage. This file is displayed in Figure~\ref{fig:readme}. You can follow
 its instructions to see how the switches and lights are used for the project (of course, 
 you can also find this information by looking at the \hdlName~source code). An example
@@ -319,21 +321,21 @@ the \texttt{LEDs}.  Try different settings for the
 \begin{figure}[H]
 \begin{center}
 \begin{minipage}[t]{15 cm}
-	\lstinputlisting[numbers=none]{../../demos/modelsim/verilog/addern/Readme.txt}
+	\lstinputlisting[numbers=none]{../../demos/verilog/adder/Readme.txt}
 \end{minipage}
-    \caption{The {\it Readme.txt} file for the {\it addern} project.}
+    \caption{The {\it Readme.txt} file for the {\it adder} project.}
 	\label{fig:readme}
 \end{center}
 \end{figure}
 
-We have now finished discussing the {\it addern} sample project.
+We have now finished discussing the {\it adder} sample project.
 
 \section{Simulating a Sequential Circuit}
 
 Another {\it DESim} sample project called {\it counter} is included in the {\it DESim}
 \texttt{demos} folder. Use the \texttt{Open Project} command in the {\it DESim} GUI to open this
 project. The contents of the file-system folder for this project look the same as for the 
-{\it addern} project, except that there is a \hdlName~source-code file named {\it Counter.\hdlFileExt}. 
+{\it adder} project, except that there is a \hdlName~source-code file named {\it Counter.\hdlFileExt}. 
 Figure~\ref{fig:counter} shows the contents of the {\it Counter.\hdlFileExt} file. It represents a 
 24-bit counter with synchronous reset. The {\it LEDR} port name corresponds to the red LEDs
 on the DE1-SoC board. Since {\it LEDR} port is a 10-bit signal and the 
@@ -344,7 +346,7 @@ connected to {\it LEDR}.
 \begin{center}
 \begin{minipage}[h]{15 cm}
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=10]{../../demos/modelsim/\demos/counter/Counter.\hdlFileExt}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=10]{../../demos/\demos/counter/Counter.\hdlFileExt}}
 	{\lstinputlisting[language=VHDL,numbers=none,firstline=11]{../../demos/counter/Counter.vhd}}
 \end{minipage}
 	\caption{The \hdlName~code for the 24-bit counter.}
@@ -352,7 +354,7 @@ connected to {\it LEDR}.
 \end{center}
 \end{figure}
 
-As described for the {\it addern} project, the {\it Counter} \hdlModuleName~is {\it instantiated}
+As described for the {\it adder} project, the {\it Counter} \hdlModuleName~is {\it instantiated}
 in another \hdlName~\hdlModuleName~called {\it top}. This \hdlModuleName~is displayed in 
 Figure~\ref{fig:counter_top}. It is similar to the one from Figure~\ref{fig:top}, except that 
 it includes a clock, {\it CLOCK\_50}, input port and instantiates the {\it Counter} \hdlModuleName.
@@ -363,7 +365,7 @@ with {\it CLOCK\_50} for the clock signal, and {\it KEY}$_0$ being used for rese
 \begin{center}
 \begin{minipage}[h]{15 cm}
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/modelsim/\demos/counter/Top.\hdlFileExt}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/\demos/counter/Top.\hdlFileExt}}
 	{\lstinputlisting[language=VHDL,numbers=none,firstline=8]{../../demos/counter/Top.vhd}}
 \end{minipage}
 	\caption{The {\it top} \hdlModuleName~for the {\it counter} project.}
@@ -374,7 +376,7 @@ with {\it CLOCK\_50} for the clock signal, and {\it KEY}$_0$ being used for rese
 To compile the {\it counter} project, in the {\it DESim} GUI click the \texttt{Compile Testbench}
 command. This command executes the {\it run\_compile} script, which
 is found in the \texttt{sim} folder of the {\it counter} project. This script 
-is identical to the one described earlier for the {\it addern} project. 
+is identical to the one described earlier for the {\it adder} project. 
 The testbench file that is compiled by {\it run\_compile} for the {\it counter} project is  
 found in its \texttt{tb} folder. This testbench, {\it tb.v}, is similar to the one shown 
 in Figure~\ref{fig:tb}, except that it includes a \texttt{CLOCK\_50} signal in the DUT instantiation.
@@ -382,7 +384,7 @@ in Figure~\ref{fig:tb}, except that it includes a \texttt{CLOCK\_50} signal in t
 To execute the testbench for the {\it counter} project, click on the
 \texttt{Start Simulation} command in the {\it DESim} GUI. This command executes the
 {\it run\_sim} script. It is identical the one described for the 
-{\it addern} project and runs the {\it vsim} simulator.
+{\it adder} project and runs the {\it vsim} simulator.
 
 The {\it Readme.txt} file for the {\it counter} project specifies:
 
@@ -442,7 +444,7 @@ eight letters displayed by the circuit.
 \begin{center}
 \begin{minipage}[h]{15 cm}
 \ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=9]{../../demos/modelsim/\demos/display/Display.\hdlFileExt}}
+	{\lstinputlisting[language=Verilog,numbers=none,firstline=9]{../../demos/\demos/display/Display.\hdlFileExt}}
 	{\lstinputlisting[language=VHDL,numbers=none,linerange={10-28, 43-68}]{../../demos/display/Display.vhd}}
 \end{minipage}
 	\caption{The \hdlName~code for the {\it display} project.}
@@ -505,7 +507,7 @@ command. This command executes the project's {\it run\_compile} script, which
 is in its \texttt{sim} folder. This {\it Windows} batch script is shown below (the {\it Linux}
 shell script is similar):
 
-\lstinputlisting[language=command.com]{../../demos/modelsim/\demos/display/sim/run_compile.bat}
+\lstinputlisting[language=command.com]{../../demos/\demos/display/sim/run_compile.bat}
 
 Lines 1 to 3 are used to copy the memory initialization file,
 {\it inst\_mem.mif}, from the \texttt{display} project folder into the \texttt{sim}
@@ -518,11 +520,11 @@ HDL code, is the same as for the previously-described {\it DESim} projects, exce
 is written in Verilog, even if the SystemVerilog or VHDL versions were chosen.
 
 The testbench file {\it tb.v} that is compiled by {\it run\_compile} script for the {\it display}
-project is similar to the one used for the {\it addern} project, shown in Figure~\ref{fig:tb}. The
+project is similar to the one used for the {\it adder} project, shown in Figure~\ref{fig:tb}. The
 one difference, is the inclusion of the {\it CLOCK\_50} signal in the \texttt{DUT} instantiation.
 To execute the testbench for the {\it display} project, click on 
 \texttt{Start Simulation}. Its {\it run\_sim} script is the same as the 
-ones used for the {\it addern} and {\it counter} projects.
+ones used for the {\it adder} and {\it counter} projects.
 
 The {\it Readme.txt} file for the {\it display} project is shown in Figure~\ref{fig:readme2}.
 You can follow its instructions to read successive locations out of the memory and
@@ -534,7 +536,7 @@ is illustrated in Figure~\ref{fig:sim3}.
 \begin{figure}[h]
 \begin{center}
 \begin{minipage}[t]{12.5 cm}
-	\lstinputlisting{../../demos/modelsim/\demos/display/Readme.txt}
+	\lstinputlisting{../../demos/\demos/display/Readme.txt}
 \end{minipage}
     \caption{The {\it Readme.txt} file for the {\it display} project.}
 \label{fig:readme2}
@@ -550,7 +552,7 @@ is illustrated in Figure~\ref{fig:sim3}.
 	\label{fig:sim3}
 \end{figure}
 
-\section{Setting up a {\it DESim} Project}
+\section{Setting Up Your Own {\it DESim} Project}
 
 An easy way to set up your own {\it DESim} project is to use one of the example projects in
 the {\it DESim} \texttt{demos} folder as a starting point. You should choose a specific 
@@ -580,6 +582,9 @@ You should not need to make any changes to the files in the \texttt{sim} or \tex
 for your new project in \texttt{my\_folder}. You can now open your new project in the
 {\it DESim} software and proceed to compile/simulate your code. 
 
+\section{Advanced GUI Features}
+\label{sec:advanced}
+
 \newpage
 \section{Troubleshooting Problems with the {\it DESim} Software}
 
@@ -608,16 +613,19 @@ updated to include the location of the {\it ModelSim/Questa} software, or 2) the
 the {\it DESim} software. This script is called {\it DESim\_run} and is found
 in the file-system folder where {\it DESim} is installed. 
 
+\item vsim error: Load of "./simfpga.vpi" failed: File not found
+\item vsim error: Load of "./simfpga.vpi" failed: Bad DLL format
+
 \item Occasionally, when compiling or simulating a project in the {\it DESim} software you may
 see a {\it Warning} message which says that {\it ModelSim/Questa} cannot ``unlink'' a file. 
 For example, if your {\it DESim} project is stored in the folder
-C:$\backslash$DESim$\backslash$demos$\backslash$addern, then this message would report: 
+C:$\backslash$DESim$\backslash$demos$\backslash$adder, then this message would report: 
 
 \noindent
 \begin{minipage}[h]{18 cm}
 \lstset{language=command.com,numbers=none,escapechar=|,moredelim=**[is][\color{RedOrange}]{@}{@}}
 \begin{lstlisting}[]
-@** Warning: (vlog-31) Unable to unlink file "C:/DESim/demos/addern/sim/work/_lock"@
+@** Warning: (vlog-31) Unable to unlink file "C:/DESim/demos/adder/sim/work/_lock"@
 \end{lstlisting}
 \end{minipage}
 
@@ -626,7 +634,7 @@ This problem occurs for unknown reasons and is caused by an issue with the
 also, and not only when using the {\it DESim} tool). If the ``unlink'' issue
 persists (sometime it gets resolved automatically), then a
 solution is to browse with \texttt{File Explorer} into the file-system folder  
-\texttt{C:$\backslash$DESim$\backslash$demos$\backslash$addern$\backslash$sim$\backslash$work}
+\texttt{C:$\backslash$DESim$\backslash$demos$\backslash$adder$\backslash$sim$\backslash$work}
 and manually {\it delete} the file named {\it \_lock}.
 
 \item If you click on the \texttt{Start Simulation} command in the {\it DESim} GUI,

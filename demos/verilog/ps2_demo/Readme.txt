@@ -1,38 +1,32 @@
-This demo shows how to simulate a PS/2 controller in the FPGA. The testbench
-includes an emulated PS/2 keyboard that works with the DESim GUI to provide
-input as if a real PS/2 keyboard was connected to the user circuit.
+This demo shows how you can emulate a PS/2 keyboard using DESim. The demo provides 
+ps2_clk and ps2_dat waveforms that are the same as those that would be provided if 
+pressing keyboard keys on a real PS/2 keyboard. 
 
+The PS/2 keyboard is emulated using a combination of the DESim GUI and the Verilog code
+in the file PS2_keyboard.v, which is included in the testbench (tb) folder.  When you
+enter keystrokes into the DESim GUI (using the PS/2 Keyboard pane), the GUI sends
+corresponding PS/2 scan-code bytes to the testbench. These scan-code bytes are
+stored in a FIFO within the PS2_keyboard module. It then converts each scan code into
+serial PS/2 data (ps2_dat) and clk (ps2_clk) signals via the ps2_clk_dat.v Verilog
+code, which is also included in the testbench folder.  
 
-In this demo:
+In addition to instantiating the PS2_keyboard module, the testbench instantiates the 
+Verilog nodule named top which provides the ps2_clk and ps2_dat signals to the 
+user-level module for this DESim project. The user-level module, instantiated in the 
+user-level top.v code, is called ps2_demo.  It uses the ps2_clk and ps2_dat waveforms
+to extract the scan codes and stores them into a shift register. The results are 
+displayed on both the HEX displays and LEDR lights.  The timing of signals in ps2_clk 
+and ps2_dat provided in this demo are the same as those that would generated if using
+an actual PS/2 keyboard connected to a DE-series board. 
 
--- The PS/2 Keyboard sends a scan code to the FPGA when a key is typed into 
-   the text box.
--- The FPGA sends a command to the PS/2 Keyboard and the Keyboard will 
-   respond correspondingly. To set PS2 locks, send two consective commands.
-
-     Command        code(FPGA)        response(PS/2)
-      Echo             8'hEE              8'hEE
-
-   set PS2 lock(1st)   8'hED              8'hFA
-
-   set PS2 lock(2nd)   8'h1            turn Scroll Lock on
-                       8'h2            turn Num Lock on
-                       8'h4            turn Caps Lock on
-
-   enable keyboard     8'hF4              8'hFA
-   disable keyboard    8'hF5              8'hFA
-
-
--- SW are displayed on LEDR
--- KEY[0] is the synchronous reset
--- set a command to the keyboard using SW[7:0] 
--- send a command to the keyboard using KEY[1]
--- the last byte received from the keyboard is displayed on 
-    HEX[1](higher 4 bits) and HEX[0] (lower 4 bits)
-
-
-
-To use:
+To use this demo:
 1. First press/release KEY[0] to reset the circuit
-2. Type in PS/2 Keyboard
-3. Set SW[7:0] to a command, press/release KEY[1] to send the command to the PS/2 Keyboard
+2. Type a key within the "PS/2 Keyboard" pane of the DESim GUI. The corresponding scan 
+   codes generated (for supported keys) will be shown in the DESim GUI and also on the
+   HEX displays and LEDR lights. 
+
+We also provide a ModelSim folder with this demo. Although this folder is not used at
+all in the DESim project, you can run ModelSim (or Questa) in this folder to see 
+examples of ps2_clk and ps2_dat waveforms. The scan codes for this simulation are 
+specified in the testbench within the ModelSim folder. 
+

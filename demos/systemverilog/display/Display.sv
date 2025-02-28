@@ -6,20 +6,23 @@
 
 // Reset with SW[0]. Clock counter and memory with KEY[0]
 // Each clock cycle reads a character from memory and shows it on the HEX displays
-module Display (CLOCK, RESETn, HEX0, LEDR);
-    input  logic          CLOCK;
-    input  logic          RESETn;
-    output logic  [ 6: 0] HEX0;
-    output logic  [ 9: 0] LEDR;
+module display (CLOCK_50, KEY, HEX0, LEDR);
+    input logic CLOCK_50;
+    input logic [0:0] KEY;
+    output logic [6:0] HEX0;
+    output logic [9:0] LEDR;
 
     parameter A = 8'd65, b = 8'd98, C = 8'd67, d = 8'd100, E = 8'd69, F = 8'd70, 
         g = 8'd103, h = 8'd104;
 
-    logic         [ 2: 0] count;
-    logic         [ 7: 0] char;
+    logic [2:0] count;
+    logic [7:0] char;
+    logic Clock, Resetn;
+    assign Clock = CLOCK_50;
+    assign Resetn = KEY;
 
-    count3 U1 (CLOCK, RESETn, count);
-    inst_mem U2 ({2'b0, count}, CLOCK, char);
+    count3 U1 (Clock, Resetn, count);
+    inst_mem U2 ({2'b0, count}, Clock, char);
     assign LEDR = {2'b0, char};
     
     always_comb
@@ -36,13 +39,13 @@ module Display (CLOCK, RESETn, HEX0, LEDR);
         endcase
 endmodule
 
-module count3 (CLOCK, RESETn, Q);
-    input  logic          CLOCK;
-    input  logic          RESETn;
-    output logic  [ 2: 0] Q;
+module count3 (Clock, Resetn, Q);
+    input logic Clock;
+    input logic Resetn;
+    output logic [2:0] Q;
 
-    always_ff @(posedge CLOCK)
-        if (RESETn == 0)
+    always_ff @(posedge Clock)
+        if (Resetn == 0)
             Q <= 3'b000;
         else
             Q <= Q + 1'b1;
