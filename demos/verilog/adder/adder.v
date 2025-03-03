@@ -12,9 +12,7 @@ module adder (Cin, X, Y, S, Cout);
     output wire Cout;
 
     wire [4:0] sum;
-
     assign sum = X + Y + Cin;   // 5-bit result, with carry-out
     assign S = sum[3:0];
     assign Cout = sum[4];
-
 endmodule

@@ -8,7 +8,7 @@ USE ieee.std_logic_unsigned.all;
 -- This module implements an n-bit counter. Upper bits of the counter, driven by the 
 -- 50 MHz clock signal, are displayed on the LEDR lights. The counter can be reset to 0
 -- using KEY[0]. 
-ENTITY Counter IS 
+ENTITY counter IS 
     GENERIC (
         n    : INTEGER := 24
     );
@@ -17,10 +17,10 @@ ENTITY Counter IS
         RESETn : IN  STD_LOGIC;
         LEDR   : OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
     );
-END Counter;
+END counter;
 
-ARCHITECTURE Behavior OF Counter IS
-    SIGNAL count : STD_LOGIC_VECTOR(n-1 DOWNTO 0);
+ARCHITECTURE Behavior OF counter IS
+    SIGNAL count : STD_LOGIC_VECTOR(n-1 DOWNTO 0) := (OTHERS => '0');
 BEGIN
 
     -- the counter

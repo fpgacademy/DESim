@@ -7,16 +7,15 @@
 // This testbench is designed to hide the details of using the VPI code
 
 module tb();
-
     reg CLOCK_50 = 0;               // DE-series 50 MHz clock
     reg [9:0] SW = 0;               // DE-series SW switches
     reg [3:0] KEY = 0;              // DE-series pushbutton keys
     wire [(8*6)-1:0] HEX;           // HEX displays (six ports)
     wire [9:0] LEDR;                // DE-series LEDs
 
-    reg key_action = 0;
-    reg [7:0] scan_code = 0;
-    wire [2:0] ps2_lock_control;
+    reg key_action = 0;             // the next three signals are used only
+    reg [7:0] scan_code = 0;        // if a PS/2 keyboard is being emulated in
+    wire [2:0] ps2_lock_control;    // the DESim project
 
     wire [9:0] VGA_X;               // "VGA" column
     wire [8:0] VGA_Y;               // "VGA" row
@@ -43,5 +42,4 @@ module tb();
     assign HEX[ 7: 0] = {1'b0, HEX5};
 
     top DUT (SW, LEDR[4:0]);
-
 endmodule

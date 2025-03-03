@@ -5,5 +5,5 @@ if exist work rmdir /S /Q work
 
 vlib work
 vlog ../tb/*.v
-vcom ../counter.vhd ../top.vhd
+vcom ../*.vhd
 

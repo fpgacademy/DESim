@@ -1,9 +1,6 @@
-This circuit is a counter
-
-In this demo:
-
--- KEY[0] is the circuit's reset
+This sample circuit is a 24-bit counter. The ten most-significant bits
+of this counter are displayed on the LEDs. In this demo, KEY[0] is the 
+active-low synchronous reset.
 
 To use:
-
-1. reset the circuit by pressing and releasing KEY[0].
+-- reset the circuit by pressing and releasing KEY[0].
