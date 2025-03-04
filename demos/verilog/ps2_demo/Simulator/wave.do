@@ -2,11 +2,10 @@ onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate -label CLOCK_50 -radix binary /testbench/CLOCK_50
 add wave -noupdate -label KEY -radix binary -expand /testbench/KEY
-add wave -noupdate -label LEDR -radix hexadecimal /testbench/LEDR
 add wave -noupdate -label ps2_clk -radix binary /testbench/ps2_clk
 add wave -noupdate -label ps2_dat -radix binary /testbench/ps2_dat
-add wave -noupdate -divider keyboard_interface
-add wave -noupdate -label Clock -radix binary /testbench/U1/Clock
+add wave -noupdate -divider PS2_keyboard
+add wave -noupdate -label CLOCK_50 -radix binary /testbench/U1/Clock
 add wave -noupdate -label Reset -radix binary /testbench/U1/Resetn
 add wave -noupdate -label key_action -radix binary /testbench/U1/key_action
 add wave -noupdate -label scan_code -radix hexadecimal /testbench/U1/scan_code

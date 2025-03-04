@@ -41,7 +41,7 @@ module ps2_demo (CLOCK_50, KEY, ps2_clk, ps2_dat, LEDR, HEX0, HEX1, HEX2, HEX3, 
         end
     end
 
-    assign LEDR = Serial[31:23];        // PARITY, Data for the last byte received
+    assign LEDR = Serial[32:23];        // STOP, PARITY, Data for the last byte received
     hex7seg H0 (Serial[4:1], HEX0);
     hex7seg H1 (Serial[8:5], HEX1);
     hex7seg H2 (Serial[15:12], HEX2);

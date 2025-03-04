@@ -5,7 +5,7 @@ quit -sim
 vlib work;
 
 # compile the needed Verilog code in the tb folder
-vlog ../tb/PS2_keyboard.v ../tb/ps2_clk_dat.v
+vlog ../tb/PS2_keyboard.v
 # compile the testbench
 vlog testbench.v
 # start the Simulator, including some libraries that may be needed

@@ -29,10 +29,11 @@ module testbench ( );
 		KEY <= 4'hF; key_action <= 1'b0; scan_code <= 8'h00;
 		#20 KEY[0] <= 1'b0; // reset
 		#20 KEY[0] <= 1'b1; // done reset
-		#20 key_action <= 1'b1; scan_code = 8'h1C;      // PS/2 keyboard A key
-		#20 key_action <= 1'b1; scan_code = 8'hF0;      // PS/2 keyboard release
-		#20 key_action <= 1'b0;
-		#3200 key_action <= 1'b1; scan_code = 8'h1A;    // PS/2 keyboard Z key
+		#20 key_action <= 1'b1; scan_code = 8'h1b;      // PS/2 keyboard s key
+        #20 key_action <= 1'b0;
+		#80 key_action <= 1'b1; scan_code = 8'hF0;      // PS/2 keyboard release
+        #20 key_action <= 1'b0;
+		#80 key_action <= 1'b1; scan_code = 8'h1b;      // PS/2 keyboard s key
 		#20 key_action <= 1'b0;
 	end // initial
 

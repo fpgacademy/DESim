@@ -43,8 +43,7 @@ module tb();
     assign HEX[15: 8] = {1'b0, HEX4};
     assign HEX[ 7: 0] = {1'b0, HEX5};
     
-    top DUT (.CLOCK_50(CLOCK_50), .SW(SW), .KEY(KEY), .HEX0(HEX0), .HEX1(HEX1), 
-             .HEX2(HEX2), .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5), .LEDR(LEDR), 
-             .VGA_X(VGA_X), .VGA_Y(VGA_Y), .VGA_COLOR(VGA_COLOR), .plot(plot));
+    top DUT (.CLOCK_50(CLOCK_50), .KEY(KEY), .VGA_X(VGA_X), .VGA_Y(VGA_Y), 
+             .VGA_COLOR(VGA_COLOR), .plot(plot));
 
 endmodule
