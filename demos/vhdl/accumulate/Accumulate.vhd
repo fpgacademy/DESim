@@ -6,33 +6,34 @@ USE ieee.std_logic_1164.all;
 USE ieee.std_logic_unsigned.all;
 
 -- This module represents an accumulator controlled by a down-counter.  The data being 
--- accumulated is from the SW[4:0] switches. KEY[0] is the active-low synchronous load
--- input. When KEY[0] is low the counter is loaded from switches SW[9:5]. When KEY[0] is 
--- high the circuit accumulates each clock cycle until the counter reaches 0
-ENTITY Accumulate IS 
+-- accumulated is from the SW[4:0] switches. Resetn is the active-low synchronous reset/load
+-- input. When Resetn is low the sum is cleared to 0 and the counter is loaded from 
+-- switches SW[9:5]. When Resetn is high the circuit accumulates each clock cycle until 
+-- the counter reaches 0
+ENTITY accumulate IS 
     PORT ( 
-        CLOCK  : IN  STD_LOGIC;
-        RESETn : IN  STD_LOGIC;
+        Clock  : IN  STD_LOGIC;
+        Resetn : IN  STD_LOGIC;
         SW     : IN  STD_LOGIC_VECTOR(9 DOWNTO 0);
         LEDR   : OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
     );
-END Accumulate;
+END accumulate;
 
-ARCHITECTURE Behavior OF Accumulate IS
-    SIGNAL count : STD_LOGIC_VECTOR(4 DOWNTO 0);
-    SIGNAL sum   : STD_LOGIC_VECTOR(9 DOWNTO 0);
-    SIGNAL x, y  : STD_LOGIC_VECTOR(4 DOWNTO 0);
-    SIGNAL z     : STD_LOGIC;
+ARCHITECTURE Behavior OF accumulate IS
+    SIGNAL count : STD_LOGIC_VECTOR(4 DOWNTO 0) := (OTHERS => '0');
+    SIGNAL sum   : STD_LOGIC_VECTOR(9 DOWNTO 0) := (OTHERS => '0');
+    SIGNAL x, y  : STD_LOGIC_VECTOR(4 DOWNTO 0) := (OTHERS => '0');
+    SIGNAL z     : STD_LOGIC := '0';
 BEGIN
 
     x <= SW(4 DOWNTO 0);
     y <= SW(9 DOWNTO 5);
 
     -- the accumulator
-    PROCESS (CLOCK)
+    PROCESS (Clock)
     BEGIN
-        IF (CLOCK'EVENT AND CLOCK = '1') THEN
-            IF (RESETn = '0') THEN
+        IF (Clock'EVENT AND Clock = '1') THEN
+            IF (Resetn = '0') THEN
                 sum <= (OTHERS => '0');
             ELSIF (z = '1') THEN
                 sum <= sum + x;
@@ -41,10 +42,10 @@ BEGIN
     END PROCESS;
 
     -- the counter
-    PROCESS (CLOCK)
+    PROCESS (Clock)
     BEGIN
-        IF (CLOCK'EVENT AND CLOCK = '1') THEN
-            IF (RESETn = '0') THEN
+        IF (Clock'EVENT AND Clock = '1') THEN
+            IF (Resetn = '0') THEN
                 count <= Y;
             ELSIF (z = '1') THEN
                 count <= count - 1;

@@ -9,6 +9,7 @@ ENTITY top IS
     PORT (
         CLOCK_50  : IN    STD_LOGIC;                      -- DE-series 50 MHz clock signal
         KEY       : IN    STD_LOGIC_VECTOR( 3 DOWNTO 0);  -- DE-series pushbuttons
+        SW        : IN    STD_LOGIC_VECTOR( 9 DOWNTO 0);  -- DE-series slide switches
         LEDR      : OUT   STD_LOGIC_VECTOR( 9 DOWNTO 0)   -- DE-series LEDs 
     );
 END top;
@@ -16,18 +17,20 @@ END top;
 ARCHITECTURE Behavior OF top IS
     COMPONENT counter
         PORT ( 
-            CLOCK  : IN STD_LOGIC;
-            RESETn : IN STD_LOGIC;
+            Clock  : IN STD_LOGIC;
+            Resetn : IN STD_LOGIC;
+            En     : IN STD_LOGIC;
             LEDR   : OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
         );
     END COMPONENT;
-    SIGNAL rst_n : STD_LOGIC;
+    SIGNAL Resetn : STD_LOGIC := '1';
+    SIGNAL En : STD_LOGIC := '0';
 BEGIN
 
-    rst_n <= KEY(0);
+    Resetn <= KEY(0);
+    En <= SW(0);
 
-    U1: counter PORT MAP (CLOCK_50, rst_n, LEDR);
-    -- LEDR <= "1110101010";
+    U1: counter PORT MAP (CLOCK_50, Resetn, En, LEDR);
 
 END Behavior;
 

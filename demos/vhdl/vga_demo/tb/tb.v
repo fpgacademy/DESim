@@ -20,8 +20,8 @@ module tb();
     wire            ps2_clk;
     wire            ps2_dat;
 
-    wire    [ 7: 0] VGA_X;        // "VGA" column
-    wire    [ 6: 0] VGA_Y;        // "VGA" row
+    wire    [ 9: 0] VGA_X;        // "VGA" column
+    wire    [ 8: 0] VGA_Y;        // "VGA" row
     wire    [ 2: 0] VGA_COLOR;    // "VGA pixel" colour (0-7)
     wire            plot;         // "Pixel" is drawn when this is pulsed
     wire    [31: 0] GPIO;         // DE-series 40-pin header
@@ -44,6 +44,6 @@ module tb();
     assign HEX[15: 8] = {1'b0, HEX4};
     assign HEX[ 7: 0] = {1'b0, HEX5};
 
-    Top DUT (CLOCK_50, KEY, VGA_X, VGA_Y, VGA_COLOR, plot);
+    top DUT (CLOCK_50, KEY, VGA_X, VGA_Y, VGA_COLOR, plot);
 
 endmodule

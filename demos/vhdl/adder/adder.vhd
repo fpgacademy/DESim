@@ -16,7 +16,7 @@ ENTITY adder IS
 END adder;
 
 ARCHITECTURE Behavior OF adder IS
-    SIGNAL sum : STD_LOGIC_VECTOR(4 DOWNTO 0);
+    SIGNAL sum : STD_LOGIC_VECTOR(4 DOWNTO 0) := (OTHERS => '0');
 BEGIN
 
     sum <= ('0' & X) + Y + Cin;     -- 5-bit result, with carry-out

@@ -8,29 +8,29 @@
 
 module tb();
 
-    reg             CLOCK_50 = 0; // DE-series 50 MHz clock
-    reg     [ 3: 0] KEY = 0;      // DE-series pushbutton keys
-    reg     [ 9: 0] SW = 0;       // DE-series SW switches
-    wire    [47: 0] HEX;          // HEX displays (six ports)
-    wire    [ 9: 0] LEDR;         // DE-series LEDs
+    reg CLOCK_50 = 0;       // DE-series 50 MHz clock
+    reg [3:0] KEY = 0;      // DE-series pushbutton keys
+    reg [9:0] SW = 0;       // DE-series SW switches
+    wire [47:0] HEX;        // HEX displays (six ports)
+    wire [9:0] LEDR;        // DE-series LEDs
 
-    reg             key_action = 0;
-    reg     [ 7: 0] scan_code = 0;
-    wire    [ 2: 0] ps2_lock_control;
-    wire            ps2_clk;
-    wire            ps2_dat;
+    reg key_action = 0;
+    reg [7:0] scan_code = 0;
+    wire [2:0] ps2_lock_control;
+    wire ps2_clk;
+    wire ps2_dat;
 
-    wire    [ 7: 0] VGA_X;        // "VGA" column
-    wire    [ 6: 0] VGA_Y;        // "VGA" row
-    wire    [ 2: 0] VGA_COLOR;    // "VGA pixel" colour (0-7)
-    wire            plot;         // "Pixel" is drawn when this is pulsed
-    wire    [31: 0] GPIO;         // DE-series 40-pin header
+    wire [7:0] VGA_X;       // "VGA" column
+    wire [6:0] VGA_Y;       // "VGA" row
+    wire [2:0] VGA_COLOR;   // "VGA pixel" colour (0-7)
+    wire plot;              // "Pixel" is drawn when this is pulsed
+    wire [31:0] GPIO;       // DE-series 40-pin header
 
     initial $sim_fpga(CLOCK_50, SW, KEY, LEDR, HEX, key_action, scan_code, 
                       ps2_lock_control, VGA_X, VGA_Y, VGA_COLOR, plot, GPIO);
 
     // DE-series HEX0, HEX1, ... ports
-    wire    [ 6: 0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
+    wire [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
 
     // create the 50 MHz clock signal
     always #10
@@ -45,20 +45,15 @@ module tb();
     assign HEX[ 7: 0] = {1'b0, HEX5};
 
     // the key action should only be active for one cycle.
-	// In is set by the VPI, and is unset here.
+	// It is set by the VPI, and is unset here.
     always @(posedge CLOCK_50) begin
-        if(key_action == 1'b1) begin
+        if (key_action == 1'b1) begin
             key_action <= 1'b0;
         end
     end
 
-    Top DUT (CLOCK_50, KEY, SW, 
-        HEX0, HEX1, LEDR,
-		ps2_clk, ps2_dat
-    );
+    top DUT (CLOCK_50, SW, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR, ps2_clk, ps2_dat);
 
-    keyboard_interface KeyBoard(CLOCK_50, ~KEY[0], 
-        key_action, scan_code, ps2_clk, ps2_dat, ps2_lock_control
-    );
+    PS2_keyboard KeyBoard (CLOCK_50, KEY[0], key_action, scan_code, ps2_clk, ps2_dat);
 
 endmodule

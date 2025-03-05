@@ -10,7 +10,7 @@ USE ieee.std_logic_unsigned.all;
 --     KEY[0] is the synchronous reset. It sets the HEX-display selector to 0.
 --     KEY[1] provides the active-low enable for the HEX-display selector
 --     SW[9:7] selects a HEX display (from 0 to 5) 
-ENTITY LED_HEX IS 
+ENTITY SW_HEX IS 
     PORT ( 
         CLOCK  : IN  STD_LOGIC;
         KEY    : IN    STD_LOGIC_VECTOR( 1 DOWNTO 0);
@@ -23,10 +23,10 @@ ENTITY LED_HEX IS
         HEX5   : OUT   STD_LOGIC_VECTOR( 6 DOWNTO 0);
         LEDR   : OUT   STD_LOGIC_VECTOR( 9 DOWNTO 0)
     );
-END LED_HEX;
+END SW_HEX;
 
-ARCHITECTURE Behavior OF LED_HEX IS
-    SIGNAL addr : STD_LOGIC_VECTOR(2 DOWNTO 0);
+ARCHITECTURE Behavior OF SW_HEX IS
+    SIGNAL addr : STD_LOGIC_VECTOR(2 DOWNTO 0) := (OTHERS => '0');
 BEGIN
 
     LEDR <= SW;

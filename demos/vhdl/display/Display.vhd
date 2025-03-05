@@ -40,9 +40,9 @@ ARCHITECTURE Behavior OF Display IS
             q       : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
         );
     END COMPONENT;
-    SIGNAL address : STD_LOGIC_VECTOR(4 DOWNTO 0);
-    SIGNAL count   : STD_LOGIC_VECTOR(2 DOWNTO 0);
-    SIGNAL char    : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL address : STD_LOGIC_VECTOR(4 DOWNTO 0) := (OTHERS => '0');
+    SIGNAL count   : STD_LOGIC_VECTOR(2 DOWNTO 0) := (OTHERS => '0');
+    SIGNAL char    : STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');
 BEGIN
 
     address <= "00" & count;
@@ -81,7 +81,7 @@ ENTITY count3 IS
 END count3;
 
 ARCHITECTURE Behavior OF count3 IS
-    SIGNAL count : STD_LOGIC_VECTOR(2 DOWNTO 0);
+    SIGNAL count : STD_LOGIC_VECTOR(2 DOWNTO 0) := (OTHERS => '0');
 BEGIN
 
     PROCESS (CLOCK)
