@@ -37,8 +37,6 @@
 \questatrue % comment out to not include Questa
 \newif\iflinux
 %\linuxtrue % comment out to not include Linux
-\newif\ifverilog
-\verilogtrue % comment out to use VHDL in this document
 
 %%%%%%%%%%%%%%%%%%
 %%% DOCUMENT START
@@ -60,11 +58,11 @@
 \section{Introduction}
 
 This tutorial introduces the {\it DESim}\textsuperscript{\textregistered} application, 
-which you can use to simulate the implementation of circuits that are specified 
+which you can use to {\it simulate} the implementation of circuits that are specified 
 with \hdlName~code, in an Altera\textsuperscript{\textregistered} FPGA device. 
 The {\it DESim} application provides a {\it graphical user interface} 
 (GUI) that represents some of the features of a {\it DE1-SoC} (or similar) FPGA board, 
-as described in the \texttt{Boards} tab of the 
+as described in the \texttt{Teaching and Projects Boards} section of the 
 {\small \href{https://www.fpgacademy.org/boards.html} {FPGAcademy.org}} website.
 The {\it DESim} application serves as a ``front end'' for 
 \ifquesta {either the {\it ModelSim} or {\it Questa}}
@@ -125,7 +123,7 @@ which is provided in the folder where the {\it DESim} application is installed o
 You should see the {\it DESim} graphical user interface (GUI), as displayed in 
 Figure~\ref{fig:gui}, along with the message ``\green{The server is running...}'' at 
 the top of the {\it message pane} in the GUI. If you do not see this message, but instead 
-you see a message \red{Server setup failed}, then the {\it DESim} software is not working
+see a message \red{Server setup failed...}, then the {\it DESim} software is not working
 properly and should be closed. In this case, refer to the troubleshooting guide that is
 provided in Section \ref{sec:trouble}.
 
@@ -159,9 +157,15 @@ should now see the message ``\green{Project `adder' opened.}''.
 \begin{figure}[h]
 	\begin{center}
         \setlength{\fboxsep}{0pt}
-\ifthenelse{\value{hdlNum}=0}
-        {\fbox{\includegraphics[scale=0.5]{figures/open_adder_windows.png}}}
-        {\fbox{\includegraphics[scale=0.5]{figures/open_adder_vhdl_windows.png}}}
+        \ifverilog 
+            \ifnotSV
+                \fbox{\includegraphics[scale=0.5]{figures/open_adder_windows.png}}
+            \else
+                \fbox{\includegraphics[scale=0.5]{figures/open_adder_windows.png}}
+            \fi
+        \else 
+            \fbox{\includegraphics[scale=0.5]{figures/open_adder_vhdl_windows.png}}
+        \fi
 	\end{center}
 		  \caption{Opening the {\it adder} project.}
 	\label{fig:open_windows}
@@ -171,15 +175,21 @@ All DESim projects have a similar organization of files and folders, which we ca
 by examining the {\it adder} project. Open the {\it File Explorer} (or similar) application in 
 Windows and navigate to the \texttt{demos/\demos/adder} folder, as depicted in 
 Figure~\ref{fig:adder_files}. It contains the folders named \texttt{sim} and \texttt{tb}, 
-as well as the files called {\it adder.\hdlFileExt}, and {\it top.\hdlFileExt}. There is also 
+as well as the files called {\it adder.\hdlFileExt} and {\it top.\hdlFileExt}. There is also 
 a {\it Readme.txt} file, which gives a brief description of the usage of the {\it adder} project.
 
 \begin{figure}[h]
 	\begin{center}
         \setlength{\fboxsep}{0pt}
-\ifthenelse{\value{hdlNum}=0}
-        {\fbox{\includegraphics[scale=0.5]{figures/adder_files.png}}}
-        {\fbox{\includegraphics[scale=0.5]{figures/adder_files_vhdl.png}}}
+        \ifverilog
+            \ifnotSV
+                \fbox{\includegraphics[scale=0.5]{figures/adder_files.png}}
+            \else
+                \fbox{\includegraphics[scale=0.5]{figures/adder_files.png}}
+            \fi
+        \else
+            \fbox{\includegraphics[scale=0.75]{figures/adder_files_vhdl.png}}
+        \fi
 	\end{center}
 		  \caption{Contents of the {\it adder} project.}
 	\label{fig:adder_files}
@@ -198,9 +208,15 @@ top-level \hdlName~\hdlModuleName~which is intended to be implemented on a DE1-S
 For this project the top-level port names are \texttt{SW} and  \texttt{LEDR}.
 
 In {\it top.\hdlFileExt} the {\it adder} \hdlModuleName~is instantiated by the statement
-\ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=11,lastline=11]{../../demos/\demos/adder/top.\hdlFileExt}}
-	{\lstinputlisting[language=VHDL,numbers=none,firstline=29,lastline=30]{../../demos/adder/top.vhd}}
+\ifverilog
+    \ifnotSV
+        \lstinputlisting[language=Verilog,numbers=none,firstline=11,lastline=11]{../../demos/\demos/adder/top.\hdlFileExt}
+    \else
+        \lstinputlisting[language=Verilog,numbers=none,firstline=11,lastline=11]{../../demos/\demos/adder/top.\hdlFileExt}
+    \fi
+\else
+    \lstinputlisting[language=VHDL,numbers=none,firstline=26,lastline=27]{../../demos/\demos/adder/top.vhd}
+\fi
 
 This statement connects the switch {\it SW}$_9$ to the adder's carry-in, {\it Cin}, 
 and it connects {\it SW}$_{3-0}$ and  {\it SW}$_{7-4}$ to the adder's {\it X} and {\it Y} 
@@ -210,9 +226,15 @@ the carry-out, {\it Cout}, is connected to {\it LEDR}$_4$.
 \begin{figure}[h]
 \begin{center}
 \begin{minipage}[h]{15 cm}
-\ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=8]{../../demos/\demos/adder/adder.\hdlFileExt}}
-	{\lstinputlisting[language=VHDL,numbers=none,firstline=9]{../../demos/adder/adder.vhd}}
+    \ifverilog
+        \ifnotSV
+            \lstinputlisting[language=Verilog,numbers=none,firstline=8]{../../demos/\demos/adder/adder.\hdlFileExt}
+        \else
+            \lstinputlisting[language=Verilog,numbers=none,firstline=8]{../../demos/\demos/adder/adder.\hdlFileExt}
+        \fi
+    \else
+        \lstinputlisting[language=VHDL,numbers=none,firstline=9]{../../demos/\demos/adder/adder.vhd}
+    \fi
 \end{minipage}
 	\caption{The \hdlName~source-code file \texttt{adder.\hdlFileExt}.}
 	\label{fig:addern}
@@ -221,29 +243,34 @@ the carry-out, {\it Cout}, is connected to {\it LEDR}$_4$.
 
 \begin{figure}[h]
 \begin{center}
-\ifthenelse{\value{hdlNum}=0}
-	{\begin{minipage}[h]{15 cm}}
-	{\begin{minipage}[h]{18 cm}}
-\ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/\demos/adder/top.\hdlFileExt}}
-	{\lstinputlisting[language=VHDL,numbers=none,firstline=8]{../../demos/adder/top.vhd}}
-\ifthenelse{\value{hdlNum}=0}
-	{\end{minipage}}
-	{\end{minipage}}
-	\caption{The \hdlName~source-code file \texttt{top.\hdlFileExt}.}
+\ifverilog
+\begin{minipage}[h]{15 cm}
+\else
+\begin{minipage}[h]{17 cm}
+\fi
+    \ifverilog
+        \ifnotSV
+            \lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/\demos/adder/top.\hdlFileExt}
+        \else
+            \lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/\demos/adder/top.\hdlFileExt}
+        \fi
+	\else
+        \lstinputlisting[language=VHDL,numbers=none,firstline=8]{../../demos/\demos/adder/top.vhd}
+    \fi
+	\end{minipage}
+	\caption{The \hdlName~ file \texttt{top.\hdlFileExt}.}
 	\label{fig:top}
     \vspace{-0.5cm}
 \end{center}
 \end{figure}
 
+\ifverilog{}\else{\newpage}\fi
 You can compile the {\it adder} project in the {\it DESim} GUI by clicking on the 
 \texttt{Compile Testbench} button. It executes a script called {\it run\_compile}, which is 
 found in the \texttt{sim} folder of the {\it adder} project. The {\it run\_compile} script
 executes the {\it ModelSim} (or {\it Questa}) commands:
 
-\ifthenelse{\value{hdlNum}=0}
-    {\lstinputlisting[language=command.com, firstline=6, lastline=8]{../../demos/\demos/adder/sim/run_compile.bat}}
-    {\lstinputlisting[language=command.com]{../../demos/\demos/adder/sim/run_compile.bat}}
+\lstinputlisting[language=command.com, firstline=6, lastline=8]{../../demos/\demos/adder/sim/run_compile.bat}
 
 \vspace{-0.25cm}
 The {\it vlib} command creates a \texttt{work} folder that is used to hold files generated
@@ -252,7 +279,7 @@ by {\it ModelSim} (or {\it Questa}).  The script then executes the command
 the {\it adder} project's \texttt{tb} folder. This folder holds the {\it testbench} for the 
 project, which we will describe shortly\ifverilog{.}
 \else{ (even for VHDL projects the testbench used by DESim is specified using Verilog
-code).\fi Lastly, the script executes the command 
+code). \fi Lastly, the script executes the command 
 \ifverilog{\texttt{vlog ../*.v}}\else{vcom ../*.vhd}\fi, which runs the \hdlName~compiler 
 to compile the code 
 {\it adder.\hdlFileExt}~and {\it top.\hdlFileExt}. Any messages produced while 
@@ -262,9 +289,15 @@ the message pane of the {\it DESim} GUI, as illustrated in Figure~\ref{fig:compi
 \begin{figure}[H]
 	\begin{center}
         \setlength{\fboxsep}{0pt}
-        \ifthenelse{\value{hdlNum}=0}
-        {\fbox{\includegraphics[width = \textwidth]{figures/run_compile.png}}}
-        {\fbox{\includegraphics[width = \textwidth]{figures/run_compile_vhdl.png}}}
+        \ifverilog
+            \ifnotSV
+                \fbox{\includegraphics[width = \textwidth]{figures/run_compile.png}}
+            \else
+                \fbox{\includegraphics[width = \textwidth]{figures/run_compile.png}}
+            \fi
+        \else
+            \fbox{\includegraphics[width = \textwidth]{figures/run_compile_vhdl.png}}
+        \fi
 	\end{center}
           \caption{Messages produced by executing the {\it run\_compile} script.}
 	\label{fig:compile}
@@ -291,7 +324,7 @@ the {\it tb} \hdlModuleName~declare various signals that are used in the testben
 
 In Figure~\ref{fig:tb}, the statement
 
-\lstinputlisting[language=Verilog,numbers=none,firstline=27,lastline=28]{../../demos/verilog/adder/tb/tb.v}
+\lstinputlisting[language=Verilog,numbers=none,firstline=26,lastline=27]{../../demos/verilog/adder/tb/tb.v}
 
 is unique to the {\it DESim} program. It makes use of a special feature of the
 {\it ModelSim} (or {\it Questa}) software that allows communication with a 
@@ -304,24 +337,25 @@ This capability is known as the {\it Verilog Procedural Interface} (VPI).
 
 The statement
 
-\lstinputlisting[language=Verilog,numbers=none,firstline=45,lastline=45]{../../demos/verilog/adder/tb/tb.v}
+\lstinputlisting[language=Verilog,numbers=none,firstline=44,lastline=44]{../../demos/verilog/adder/tb/tb.v}
 
 in the testbench code instantiates the {\it design under test} (DUT), which is the 
 \hdlName~\hdlModuleName~named {\it top} shown in Figure~\ref{fig:top}. This instantiation
-statement has to provided whatever port connections are needed for a particular {\it DESim}
-project. Hence, if the DESim project were using different/additional ports, then this
+statement has to provide whatever port connections are needed for a particular {\it DESim}
+project. Hence, if the project were using other/additional ports, then this
 instantiation statement would need to be modified accordingly. Examples of different 
 {\it top.\hdlFileExt}~files for other {\it DESim} projects are given later in this tutorial.
 
 To execute the testbench using the simulator, click on the \texttt{Start Simulation} button 
 in the {\it DESim} GUI. This command executes a script called {\it run\_sim}, which is found 
 in the \texttt{sim} folder of the {\it adder} project. This script executes 
-\ifverilog{\it vsim}\else{\it vcom}\fi, which is the {\it ModelSim} (or {\it Questa}) 
+{\it vsim}, which is the {\it ModelSim} (or {\it Questa}) 
 \hdlName~simulator, using the command
 
-\lstinputlisting[language=command.com]{../../demos/verilog/adder/sim/run_sim.bat}
+\ifverilog{\lstinputlisting[language=command.com]{../../demos/verilog/adder/sim/run_sim.bat}}
+\else{\lstinputlisting[language=command.com]{../../demos/vhdl/adder/sim/run_sim.bat}}\fi
 
-The \texttt{-pli} argument for the \ifverilog{\it vsim} \else{\it vcom} \fi program instructs 
+The \texttt{-pli} argument for the {\it vsim} program instructs 
 it to link to the {\it sim\_fpga} custom software function that is provided in the
 {\it modelsim.vpi} (or {\it questa.vpi}) file (the \texttt{DESimPath} and
 \texttt{DESimulator} environment variables are set in the {\it DESim\_run.bat} script that is
@@ -334,7 +368,8 @@ produced while executing the {\it run\_sim} script are displayed inside the mess
 the {\it DESim} GUI, as depicted in Figure~\ref{fig:sim}.
 
 As mentioned previously, the {\it adder} project includes a {\it Readme.txt} file that
-documents its usage. This file is displayed in Figure~\ref{fig:readme}. You can follow
+documents its usage. This file is displayed \ifverilog{in
+Figure~\ref{fig:readme}}\else{below}\fi. You can follow
 its instructions to see how the switches and lights are used for the project (of course, 
 you can also garner this information by looking at the \hdlName~source code). An example
 simulation result is illustrated in Figure~\ref{fig:sim}. It corresponds to {\it Cin} $= 1$,
@@ -346,21 +381,30 @@ to {\it Cout} $= 1$ and {\it S} $= (0001)_2$.  Try different settings for the
 \begin{figure}[h]
 	\begin{center}
         \setlength{\fboxsep}{0pt}
-        \fbox{\includegraphics[width = \textwidth]{figures/run_simulation.png}}
+        \ifverilog{\fbox{\includegraphics[width = \textwidth]{figures/run_simulation.png}}}
+        \else{\fbox{\includegraphics[width = \textwidth]{figures/run_simulation_vhdl.png}}}\fi
 	\end{center}
           \caption{Messages produced by executing the {\it run\_sim.} script.}
 	\label{fig:sim}
 \end{figure}
 
+\ifverilog
 \begin{figure}[H]
 \begin{center}
-\begin{minipage}[t]{18 cm}
-	\lstinputlisting[numbers=none]{../../demos/verilog/adder/Readme.txt}
-\end{minipage}
+    \begin{minipage}[t]{17 cm}
+        \lstinputlisting[numbers=none]{../../demos/verilog/adder/Readme.txt}
+    \end{minipage}
     \caption{The {\it Readme.txt} file for the {\it adder} project.}
 	\label{fig:readme}
 \end{center}
 \end{figure}
+\else
+\begin{center}
+\begin{minipage}[h]{17 cm}
+    \lstinputlisting[numbers=none]{../../demos/vhdl/adder/Readme.txt}
+\end{minipage}
+\end{center}
+\fi
 
 \vspace{-0.25cm}
 We have now finished discussing the {\it adder} sample project.
@@ -381,9 +425,15 @@ connected to {\it LEDR}.
 \begin{figure}[h]
 \begin{center}
 \begin{minipage}[h]{15 cm}
-\ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=10]{../../demos/\demos/counter/Counter.\hdlFileExt}}
-	{\lstinputlisting[language=VHDL,numbers=none,firstline=11]{../../demos/counter/Counter.vhd}}
+    \ifverilog
+        \ifnotSV
+            \lstinputlisting[language=Verilog,numbers=none,firstline=10]{../../demos/\demos/counter/Counter.\hdlFileExt}
+        \else
+            \lstinputlisting[language=Verilog,numbers=none,firstline=10]{../../demos/\demos/counter/Counter.\hdlFileExt}
+        \fi
+    \else
+        \lstinputlisting[language=VHDL,numbers=none,firstline=11]{../../demos/\demos/counter/Counter.vhd}
+    \fi
 \end{minipage}
 	\caption{The \hdlName~code for the 24-bit counter.}
 	\label{fig:counter}
@@ -400,10 +450,17 @@ to signal names on the DE1-SoC board.
 
 \begin{figure}[h]
 \begin{center}
-\begin{minipage}[h]{15 cm}
-\ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/\demos/counter/Top.\hdlFileExt}}
-	{\lstinputlisting[language=VHDL,numbers=none,firstline=8]{../../demos/counter/Top.vhd}}
+\ifverilog
+    \begin{minipage}[h]{15 cm}
+        \ifnotSV
+            \lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/\demos/counter/top.\hdlFileExt}
+        \else
+            \lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/\demos/counter/top.\hdlFileExt}
+        \fi
+\else
+    \begin{minipage}[h]{17 cm}
+    \lstinputlisting[language=VHDL,numbers=none,firstline=8]{../../demos/\demos/counter/top.vhd}
+\fi
 \end{minipage}
 	\caption{The {\it top} \hdlModuleName~for the {\it counter} project.}
 	\label{fig:counter_top}
@@ -415,14 +472,14 @@ button. It executes the {\it run\_compile} script, which
 is found in the \texttt{sim} folder of the {\it counter} project. This script 
 is identical to the one described earlier for the {\it adder} project. 
 The testbench file that is compiled by {\it run\_compile} for the {\it counter} project is  
-found in its \texttt{tb} folder. This testbench, {\it tb.v}, is identical to the one shown 
+found in its \texttt{tb} folder. This testbench, {\it tb.v}, is the same as in
 in Figure~\ref{fig:tb}, except that it uses different ports in the instantiation statement
 for the {\it top} \hdlModuleName, corresponding to those specified in 
 Figure~\ref{fig:counter_top}.
 
 To simulate the testbench for the {\it counter} project, click on the
 \texttt{Start Simulation} button in the {\it DESim} GUI. This command executes the
-{\it run\_sim} script. It is identical the one described for the 
+{\it run\_sim} script. It is identical to that used for the 
 {\it adder} project and runs the {\it vsim} simulator.
 
 The {\it Readme.txt} file for the {\it counter} project, which describes its usage,
@@ -431,13 +488,15 @@ is shown in Figure~\ref{fig:readme_counter}.
 \begin{figure}[H]
 \begin{center}
 \begin{minipage}[t]{15 cm}
-	\lstinputlisting[numbers=none]{../../demos/verilog/counter/Readme.txt}
+	\ifverilog{\lstinputlisting[numbers=none]{../../demos/verilog/counter/Readme.txt}}
+    \else{\lstinputlisting[numbers=none]{../../demos/vhdl/counter/Readme.txt}}\fi
 \end{minipage}
     \caption{The {\it Readme.txt} file for the {\it counter} project.}
 	\label{fig:readme_counter}
 \end{center}
 \end{figure}
 
+\vspace{-0.5cm}
 In the {\it DESim} GUI, when a \texttt{KEY} in the \texttt{Push Buttons} pane shows a check mark,
 that {\it KEY} is set to the value 1. To reset the counter circuit, 
 click on \texttt{KEY}$_0$ to {\it press} this button (this action sets the corresponding 
@@ -450,7 +509,15 @@ Figure~\ref{fig:sim2}.
 \begin{figure}[h]
 	\begin{center}
         \setlength{\fboxsep}{0pt}
-        \fbox{\includegraphics[width = \textwidth]{figures/run_simulation2.png}}
+        \ifverilog
+            \ifnotSV
+                \fbox{\includegraphics[width = \textwidth]{figures/run_simulation2.png}}
+            \else
+                \fbox{\includegraphics[width = \textwidth]{figures/run_simulation2.png}}
+            \fi
+        \else
+            \fbox{\includegraphics[width = \textwidth]{figures/run_simulation2_vhdl.png}}
+        \fi
 	\end{center}
           \caption{Simulating the {\it counter} project.}
 	\label{fig:sim2}
@@ -459,11 +526,11 @@ Figure~\ref{fig:sim2}.
 \section{Simulating a Circuit that Includes a Memory Module}
 
 The {\it DESim} \texttt{demos} folder includes a project called {\it display}. It shows how 
-to instantiate a memory \hdlModuleName, and how to initialize the stored contents of 
-the memory in a {\it DESim} simulation.  Use the \texttt{Open Project} command to open this
+to instantiate a memory module, and how to initialize the stored contents of 
+this memory in a {\it DESim} simulation.  Use the \texttt{Open Project} command to open this
 example project. The contents of the file-system folder for this project look similar to the 
 previous ones, but there are two extra files: {\it inst\_mem.v} and {\it inst\_mem.mif}. These 
-files are used for the memory \hdlModuleName~in the circuit, which is described shortly.
+files are used for the memory module in the circuit, which is described shortly.
 
 Figure~\ref{fig:display} shows the \hdlName~code for {\it display.\hdlFileExt}, which 
 has ports named {\it KEY}, {\it SW}, {\it HEX0}, and {\it LEDR}.
@@ -486,34 +553,39 @@ initialized with the contents of the file {\it inst\_mem.mif},
 which is illustrated in Figure~\ref{fig:mif}. This file contains the ASCII codes for the 
 eight letters displayed by the circuit.
 
-You may wish to examine the {\it top.\hdlFileExt} and {\it tb.\hdlFileExt} files that are 
-used for the {\it display} project.  These files are similar to those shown for the 
-{\it adder} and {\it counter} projects, except that a different set of ports is used for 
+You may wish to examine the {\it top.\hdlFileExt} and {\it tb.v} files that are 
+used for the {\it display} project.  These files are akin to those shown for the 
+{\it adder} and {\it counter} projects, except that different ports are used for 
 connecting to the {\it display} \hdlModuleName. 
 
 \begin{figure}[h]
 \begin{center}
 \begin{minipage}[h]{15 cm}
-\ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=3]{../../demos/\demos/display/display.\hdlFileExt}}
-	{\lstinputlisting[language=VHDL,numbers=none,linerange={10-28, 43-68}]{../../demos/display/display.vhd}}
+\ifverilog
+	\ifnotSV
+        \lstinputlisting[language=Verilog,numbers=none,firstline=3]{../../demos/\demos/display/display.\hdlFileExt}
+    \else
+        \lstinputlisting[language=Verilog,numbers=none,firstline=3]{../../demos/\demos/display/display.\hdlFileExt}
+    \fi
+\else
+	\lstinputlisting[language=VHDL,numbers=none,linerange={8-37}]{figures/display.vhd}
+\fi
 \end{minipage}
-	\caption{The \hdlName~code for the {\it display} project.}
+	\caption{The \hdlName~code for the {\it display} project\ifverilog{}\else{ (Part $a$)}\fi.}
 	\label{fig:display}
 \end{center}
 \end{figure}
 
-\ifthenelse{\value{hdlNum}=0}{}{
-\begin{figure}[h]
-\begin{center}
-\begin{minipage}[h]{15 cm}
-	\lstinputlisting[language=VHDL,numbers=none,firstline=75]{../../demos/display/display.vhd}
-\end{minipage}
-	\caption{The \hdlName~code for the {\it display} project (Part b).}
-	\label{fig:displayb}
-\end{center}
-\end{figure}
-}
+\ifverilog
+{}
+\else
+    \begin{center}
+    \begin{minipage}[h]{15 cm}
+	    \lstinputlisting[language=VHDL,numbers=none,firstline=39]{figures/display.vhd}
+    \end{minipage}
+	    \center{The VHDL code for the {\it display} project (Part $b$).}
+    \end{center}
+\fi
 
 \begin{figure}[t]
 	\begin{center}
@@ -589,7 +661,15 @@ is illustrated in Figure~\ref{fig:sim3}.
 \begin{figure}[t]
 	\begin{center}
         \setlength{\fboxsep}{0pt}
-        \fbox{\includegraphics[width = \textwidth]{figures/run_simulation3.png}}
+        \ifverilog
+            \ifnotSV
+                \fbox{\includegraphics[width = \textwidth]{figures/run_simulation3.png}}
+            \else
+                \fbox{\includegraphics[width = \textwidth]{figures/run_simulation3.png}}
+            \fi
+        \else
+            \fbox{\includegraphics[width = \textwidth]{figures/run_simulation3_vhdl.png}}
+        \fi
 	\end{center}
           \caption{Simulating the {\it display} project.}
 	\label{fig:sim3}
@@ -602,12 +682,12 @@ the {\it DESim} \texttt{demos} folder as a starting point. You may want to choos
 a project that has similar ports to the ones that you need in its {\it top.\hdlFileExt }
 \hdlModuleName~that is instantiated by its testbench. The various projects included in 
 the \texttt{demos} folder may have different top-level ports. In general, once you make a
-copy of one of the example projects, you will only need to make sure that its
+copy of one of the sample projects, you will only need to make sure that its
 {\it top.\hdlFileExt } file has the ports that you need, and modify the code so that it
 instantiates your new design. In the {\it tb} folder you will need 
-to make corresponding changes to the statement in {\it tb.\hdlFileExt } that instantiates your 
-new {\it top} module.  You should not have to make any other modifications to the
-testbench and will not need to make any changes to the {\it sim} folder. 
+to make corresponding changes to the statement in {\it tb.v } that instantiates your 
+new {\it top} module.  You should not have to make any other modifications, either to the
+testbench or to the files in the {\it sim} folder. 
 
 \section{Advanced GUI Features}
 \label{sec:advanced}
@@ -626,10 +706,11 @@ called {\it ps2\_demo}, which has the ports:
 \vspace{-0.5cm}
 \begin{center}
 \begin{minipage}[h]{15 cm}
-\ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,linerange={10-10}]{../../demos/\demos/ps2_demo/ps2_demo.\hdlFileExt}}
-	{\lstinputlisting[language=VHDL,numbers=none,linerange={10-28,
-    43-68}]{../../demos/ps2_demo/ps2_demo.vhd}}
+\ifverilog
+    \lstinputlisting[language=Verilog,numbers=none,linerange={10-10}]{../../demos/\demos/ps2_demo/ps2_demo.\hdlFileExt}
+\else
+	\lstinputlisting[language=VHDL,numbers=none,linerange={12-26}]{../../demos/\demos/ps2_demo/ps2_demo.vhd}
+\fi
 \end{minipage}
 \end{center}
 
@@ -641,7 +722,7 @@ such a keyboard, it generates waveforms on its {\it ps2\_clk} and {\it ps2\_dat}
 transmit a {\it scan code} that represents the pressed key. In the {\it ps2\_demo} project 
 the \texttt{ps2\_clk} and \texttt{ps2\_dat} signals are generated by a combination of the
 {\it DESim} GUI and the testbench used in this sample project. This testbench
-includes a \hdlName~\hdlModuleName~named {\it PS2\_Keyboard}. It processes the {\it scan codes}
+includes a Verilog module named {\it PS2\_Keyboard}. It processes the {\it scan codes}
 generated by the {\it DESim} GUI and produces corresponding {\it serial} data using the
 \texttt{ps2\_clk} and \texttt{ps2\_dat} signals. This serial data is the same as what
 would be received from an actual PS/2 keyboard.
@@ -679,7 +760,7 @@ bit (1).
 
 Unlike other {\it DESim} sample projects, {\it ps2\_demo} includes a separate folder, 
 called {\it Simulator}. It can be used to directly simulate in {\it ModelSim} (or {\it Questa}) 
-the {\it PS2\_Keyboard} \hdlModuleName~that is provided as part of the {\it ps2\_demo} 
+the {\it PS2\_Keyboard} module that is provided as part of the {\it ps2\_demo} 
 testbench. Running such a simulation allows you to examine the timing of the 
 \texttt{ps2\_clk} and \texttt{ps2\_dat} signals that are generated for a scan code, as
 illustrated by the example in Figure~\ref{fig:ps2_clk_dat}. It shows the \texttt{ps2\_clk} 
@@ -691,7 +772,15 @@ of {\it ps2\_clk}. Finally, there is a {\it parity} bit (1) and a {\it stop} bit
 \begin{figure}[t]
 	\begin{center}
         \setlength{\fboxsep}{0pt}
-        \fbox{\includegraphics[width = \textwidth]{figures/ps2_demo.png}}
+        \ifverilog
+            \ifnotSV
+                \fbox{\includegraphics[width = \textwidth]{figures/ps2_demo.png}}
+            \else
+                \fbox{\includegraphics[width = \textwidth]{figures/ps2_demo.png}}
+            \fi
+        \else
+            \fbox{\includegraphics[width = \textwidth]{figures/ps2_demo_vhdl.png}}
+        \fi
 	\end{center}
           \caption{The {\it ps2\_demo} sample project.}
 	\label{fig:ps2}
@@ -746,9 +835,15 @@ retain this color until it is changed again using the plot mechanism.
 \begin{figure}[h]
 \begin{center}
 \begin{minipage}[h]{16 cm}
-\ifthenelse{\value{hdlNum}=0}
-	{\lstinputlisting[language=Verilog,numbers=none,firstline=1]{figures/top.\hdlFileExt}}
-	{\lstinputlisting[language=VHDL,numbers=none,linerange={10-28, 43-68}]{../../demos/display/display.vhd}}
+\ifverilog
+    \ifnotSV
+        \lstinputlisting[language=Verilog,numbers=none,firstline=1]{figures/top.\hdlFileExt}
+    \else
+        \lstinputlisting[language=Verilog,numbers=none,firstline=1]{figures/top.\hdlFileExt}
+    \fi
+\else
+	\lstinputlisting[language=VHDL,numbers=none,firstline=8]{../../demos/\demos/vga_demo/top.\hdlFileExt}
+\fi
 \end{minipage}
 	\caption{The {\it top.\hdlFileExt}~file for the {\it vga\_demo} project.}
 	\label{fig:vga}

@@ -7,10 +7,10 @@ USE ieee.std_logic_unsigned.all;
 
 ENTITY top IS
     PORT (
-        CLOCK_50  : IN    STD_LOGIC;                      -- DE-series 50 MHz clock signal
-        KEY       : IN    STD_LOGIC_VECTOR( 3 DOWNTO 0);  -- DE-series pushbuttons
-        SW        : IN    STD_LOGIC_VECTOR( 9 DOWNTO 0);  -- DE-series slide switches
-        LEDR      : OUT   STD_LOGIC_VECTOR( 9 DOWNTO 0)   -- DE-series LEDs 
+        CLOCK_50 : IN  STD_LOGIC;                      -- 50 MHz clock signal
+        KEY      : IN  STD_LOGIC_VECTOR( 3 DOWNTO 0);  -- pushbuttons
+        SW       : IN  STD_LOGIC_VECTOR( 9 DOWNTO 0);  -- slide switches
+        LEDR     : OUT STD_LOGIC_VECTOR( 9 DOWNTO 0)   -- LEDs 
     );
 END top;
 

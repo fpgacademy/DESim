@@ -1,11 +1,17 @@
 \documentclass[11pt, twoside, pdftex]{article}
 
-\newcounter{hdlNum}
+\newcounter{hdlNum} % Verilog=0, VHDL=1
 
 \setcounter{hdlNum}{1}
 \newcommand{\hdlName}{VHDL}
 \newcommand{\hdlModuleName}{entity}
 \newcommand{\hdlFileExt}{vhd}
+\newcommand{\demos}{vhdl}
+
+\newif\ifverilog
+%\verilogtrue % commented out for VHDL version
+\newif\ifnotSV % not System Verilog
+\notSVtrue % not System Verilog
 
 \input{DESim_Tutorial.tex}
 
