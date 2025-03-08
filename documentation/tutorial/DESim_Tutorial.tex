@@ -1,13 +1,13 @@
 
 % This include all the settings that we should use for the document
-\newcommand{\PDFTitle}{Using the DESim Application \\ with \hdlName~Designs}
+\newcommand{\PDFTitle}{Using the DESim Application \\ with\hdlAdj~\hdlName~Designs}
 \newcommand{\commonPath}{../../../Tutorials/Common}
 \input{\commonPath/Docs/defaulttext.tex}
 \input{\commonPath/Docs/preamble.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 % Add title
-\newcommand{\doctitle}{Using the DESim Application \\ with \hdlName~Designs}
+\newcommand{\doctitle}{Using the DESim Application \\ with\hdlAdj\hdlName~Designs}
 \newcommand{\dochead}{Using the DESim Application}
 % Usually no need to change these two lines
 \title{\fontfamily{phv}\selectfont{\doctitle} }
@@ -59,7 +59,8 @@
 
 This tutorial introduces the {\it DESim}\textsuperscript{\textregistered} application, 
 which you can use to {\it simulate} the implementation of circuits that are specified 
-with \hdlName~code, in an Altera\textsuperscript{\textregistered} FPGA device. 
+with \hdlName~code\ifnotSV{}\else{, including System Verilog extensions}\fi, 
+in an Altera\textsuperscript{\textregistered} FPGA device. 
 The {\it DESim} application provides a {\it graphical user interface} 
 (GUI) that represents some of the features of a {\it DE1-SoC} (or similar) FPGA board, 
 as described in the \texttt{Teaching and Projects Boards} section of the 
@@ -85,7 +86,8 @@ the Simulator on displays that look like the ones on a {\it DE1-SoC} board.
 {\bf Requirements:}
 \vspace{-1em}
 \begin{itemize}
-	\item A good working knowledge of the \hdlName~hardware description language
+	\item A good working knowledge of the \hdlName~hardware description 
+    language\ifnotSV{}\else{, including some of its basic System Verilog extensions}\fi
 \item A computer running Microsoft\textsuperscript{\textregistered}
 Windows\textsuperscript{\textregistered} (version 10 or 11 is
 recommended)\iflinux{ or Ubuntu Linux}\fi
@@ -161,7 +163,7 @@ should now see the message ``\green{Project `adder' opened.}''.
             \ifnotSV
                 \fbox{\includegraphics[scale=0.5]{figures/open_adder_windows.png}}
             \else
-                \fbox{\includegraphics[scale=0.5]{figures/open_adder_windows.png}}
+                \fbox{\includegraphics[scale=0.5]{figures/open_adder_sv_windows.png}}
             \fi
         \else 
             \fbox{\includegraphics[scale=0.5]{figures/open_adder_vhdl_windows.png}}
@@ -173,7 +175,7 @@ should now see the message ``\green{Project `adder' opened.}''.
 
 All DESim projects have a similar organization of files and folders, which we can illustrate
 by examining the {\it adder} project. Open the {\it File Explorer} (or similar) application in 
-Windows and navigate to the \texttt{demos/\demos/adder} folder, as depicted in 
+Windows and navigate to the filesystem folder named \texttt{demos/\demos/adder}, as depicted in 
 Figure~\ref{fig:adder_files}. It contains the folders named \texttt{sim} and \texttt{tb}, 
 as well as the files called {\it adder.\hdlFileExt} and {\it top.\hdlFileExt}. There is also 
 a {\it Readme.txt} file, which gives a brief description of the usage of the {\it adder} project.
@@ -185,7 +187,7 @@ a {\it Readme.txt} file, which gives a brief description of the usage of the {\i
             \ifnotSV
                 \fbox{\includegraphics[scale=0.5]{figures/adder_files.png}}
             \else
-                \fbox{\includegraphics[scale=0.5]{figures/adder_files.png}}
+                \fbox{\includegraphics[scale=0.5]{figures/adder_files_sv.png}}
             \fi
         \else
             \fbox{\includegraphics[scale=0.75]{figures/adder_files_vhdl.png}}
@@ -230,7 +232,7 @@ the carry-out, {\it Cout}, is connected to {\it LEDR}$_4$.
         \ifnotSV
             \lstinputlisting[language=Verilog,numbers=none,firstline=8]{../../demos/\demos/adder/adder.\hdlFileExt}
         \else
-            \lstinputlisting[language=Verilog,numbers=none,firstline=8]{../../demos/\demos/adder/adder.\hdlFileExt}
+            \lstinputlisting[language=Verilog,numbers=none,firstline=8, morekeywords={logic}]{../../demos/\demos/adder/adder.\hdlFileExt}
         \fi
     \else
         \lstinputlisting[language=VHDL,numbers=none,firstline=9]{../../demos/\demos/adder/adder.vhd}
@@ -252,7 +254,7 @@ the carry-out, {\it Cout}, is connected to {\it LEDR}$_4$.
         \ifnotSV
             \lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/\demos/adder/top.\hdlFileExt}
         \else
-            \lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/\demos/adder/top.\hdlFileExt}
+            \lstinputlisting[language=Verilog,numbers=none,firstline=7, morekeywords={logic}]{../../demos/\demos/adder/top.\hdlFileExt}
         \fi
 	\else
         \lstinputlisting[language=VHDL,numbers=none,firstline=8]{../../demos/\demos/adder/top.vhd}
@@ -280,7 +282,7 @@ the {\it adder} project's \texttt{tb} folder. This folder holds the {\it testben
 project, which we will describe shortly\ifverilog{.}
 \else{ (even for VHDL projects the testbench used by DESim is specified using Verilog
 code). \fi Lastly, the script executes the command 
-\ifverilog{\texttt{vlog ../*.v}}\else{vcom ../*.vhd}\fi, which runs the \hdlName~compiler 
+\ifverilog{\texttt{vlog ../*.\hdlFileExt}}\else{vcom ../*.vhd}\fi, which runs the \hdlName~compiler 
 to compile the code 
 {\it adder.\hdlFileExt}~and {\it top.\hdlFileExt}. Any messages produced while 
 executing the {\it run\_compile} script are displayed inside 
@@ -293,7 +295,7 @@ the message pane of the {\it DESim} GUI, as illustrated in Figure~\ref{fig:compi
             \ifnotSV
                 \fbox{\includegraphics[width = \textwidth]{figures/run_compile.png}}
             \else
-                \fbox{\includegraphics[width = \textwidth]{figures/run_compile.png}}
+                \fbox{\includegraphics[width = .98\textwidth]{figures/run_compile_sv.png}}
             \fi
         \else
             \fbox{\includegraphics[width = \textwidth]{figures/run_compile_vhdl.png}}
@@ -381,8 +383,15 @@ to {\it Cout} $= 1$ and {\it S} $= (0001)_2$.  Try different settings for the
 \begin{figure}[h]
 	\begin{center}
         \setlength{\fboxsep}{0pt}
-        \ifverilog{\fbox{\includegraphics[width = \textwidth]{figures/run_simulation.png}}}
-        \else{\fbox{\includegraphics[width = \textwidth]{figures/run_simulation_vhdl.png}}}\fi
+        \ifverilog
+            \ifnotSV
+                \fbox{\includegraphics[width = \textwidth]{figures/run_simulation.png}}
+            \else
+                \fbox{\includegraphics[width = \textwidth]{figures/run_simulation_sv.png}}
+            \fi
+        \else
+            \fbox{\includegraphics[width = \textwidth]{figures/run_simulation_vhdl.png}}
+        \fi
 	\end{center}
           \caption{Messages produced by executing the {\it run\_sim.} script.}
 	\label{fig:sim}
@@ -412,8 +421,8 @@ We have now finished discussing the {\it adder} sample project.
 \section{Simulating a Sequential Circuit}
 
 Another {\it DESim} sample project called {\it counter} is included in the {\it DESim}
-\texttt{demos} folder. Use the \texttt{Open Project} command in the {\it DESim} GUI to open this
-project. The contents of the file-system folder for this project look the same as for the 
+\texttt{demos} folder. Use the \texttt{Open Project} button in the {\it DESim} GUI to open this
+project. The contents of the filesystem folder for this project look the same as for the 
 {\it adder} project, except that this project uses a \hdlName~source-code file named 
 {\it counter.\hdlFileExt}.  Figure~\ref{fig:counter} shows the contents of 
 the {\it counter.\hdlFileExt} file. It represents a 
@@ -429,7 +438,7 @@ connected to {\it LEDR}.
         \ifnotSV
             \lstinputlisting[language=Verilog,numbers=none,firstline=10]{../../demos/\demos/counter/Counter.\hdlFileExt}
         \else
-            \lstinputlisting[language=Verilog,numbers=none,firstline=10]{../../demos/\demos/counter/Counter.\hdlFileExt}
+            \lstinputlisting[language=Verilog,numbers=none,firstline=10, morekeywords={logic, always_ff}]{../../demos/\demos/counter/Counter.\hdlFileExt}
         \fi
     \else
         \lstinputlisting[language=VHDL,numbers=none,firstline=11]{../../demos/\demos/counter/Counter.vhd}
@@ -455,7 +464,7 @@ to signal names on the DE1-SoC board.
         \ifnotSV
             \lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/\demos/counter/top.\hdlFileExt}
         \else
-            \lstinputlisting[language=Verilog,numbers=none,firstline=7]{../../demos/\demos/counter/top.\hdlFileExt}
+            \lstinputlisting[language=Verilog,numbers=none,firstline=7, morekeywords={logic, always_ff}]{../../demos/\demos/counter/top.\hdlFileExt}
         \fi
 \else
     \begin{minipage}[h]{17 cm}
@@ -473,7 +482,7 @@ is found in the \texttt{sim} folder of the {\it counter} project. This script
 is identical to the one described earlier for the {\it adder} project. 
 The testbench file that is compiled by {\it run\_compile} for the {\it counter} project is  
 found in its \texttt{tb} folder. This testbench, {\it tb.v}, is the same as in
-in Figure~\ref{fig:tb}, except that it uses different ports in the instantiation statement
+Figure~\ref{fig:tb}, except that it uses different ports in the instantiation statement
 for the {\it top} \hdlModuleName, corresponding to those specified in 
 Figure~\ref{fig:counter_top}.
 
@@ -488,8 +497,15 @@ is shown in Figure~\ref{fig:readme_counter}.
 \begin{figure}[H]
 \begin{center}
 \begin{minipage}[t]{15 cm}
-	\ifverilog{\lstinputlisting[numbers=none]{../../demos/verilog/counter/Readme.txt}}
-    \else{\lstinputlisting[numbers=none]{../../demos/vhdl/counter/Readme.txt}}\fi
+	\ifverilog
+        \ifnotSV
+            \lstinputlisting[numbers=none]{../../demos/verilog/counter/Readme.txt}
+        \else
+            \lstinputlisting[numbers=none]{../../demos/systemverilog/counter/Readme.txt}
+        \fi
+    \else
+        \lstinputlisting[numbers=none]{../../demos/vhdl/counter/Readme.txt}
+    \fi
 \end{minipage}
     \caption{The {\it Readme.txt} file for the {\it counter} project.}
 	\label{fig:readme_counter}
@@ -513,7 +529,7 @@ Figure~\ref{fig:sim2}.
             \ifnotSV
                 \fbox{\includegraphics[width = \textwidth]{figures/run_simulation2.png}}
             \else
-                \fbox{\includegraphics[width = \textwidth]{figures/run_simulation2.png}}
+                \fbox{\includegraphics[width = \textwidth]{figures/run_simulation2_sv.png}}
             \fi
         \else
             \fbox{\includegraphics[width = \textwidth]{figures/run_simulation2_vhdl.png}}
@@ -528,7 +544,7 @@ Figure~\ref{fig:sim2}.
 The {\it DESim} \texttt{demos} folder includes a project called {\it display}. It shows how 
 to instantiate a memory module, and how to initialize the stored contents of 
 this memory in a {\it DESim} simulation.  Use the \texttt{Open Project} command to open this
-example project. The contents of the file-system folder for this project look similar to the 
+example project. The contents of the filesystem folder for this project look similar to the 
 previous ones, but there are two extra files: {\it inst\_mem.v} and {\it inst\_mem.mif}. These 
 files are used for the memory module in the circuit, which is described shortly.
 
@@ -546,7 +562,7 @@ to 00), and they provide the ASCII codes for letters A, b, C, d, E, F, g, and h.
 decoder produces an appropriate bit-pattern to render each letter on a seven-segment display.
 The ASCII code read from the memory is also displayed, on the LEDs.
 
-The memory used in the logic circuit is depicted in part $b$ of Figure~\ref{fig:memory}. It
+The memory used in the logic circuit is depicted in part ($b$) of Figure~\ref{fig:memory}. It
 is a $32 \times 8$ synchronous read-only memory (ROM), which has a register for holding 
 address values. The memory is specified in the Verilog file {\it inst\_mem.v}, and it is 
 initialized with the contents of the file {\it inst\_mem.mif},
@@ -563,9 +579,9 @@ connecting to the {\it display} \hdlModuleName.
 \begin{minipage}[h]{15 cm}
 \ifverilog
 	\ifnotSV
-        \lstinputlisting[language=Verilog,numbers=none,firstline=3]{../../demos/\demos/display/display.\hdlFileExt}
+        \lstinputlisting[language=Verilog,numbers=none,firstline=9]{../../demos/\demos/display/display.\hdlFileExt}
     \else
-        \lstinputlisting[language=Verilog,numbers=none,firstline=3]{../../demos/\demos/display/display.\hdlFileExt}
+        \lstinputlisting[language=Verilog,numbers=none,firstline=9, morekeywords={logic, always_ff, always_comb}]{../../demos/\demos/display/display.\hdlFileExt}
     \fi
 \else
 	\lstinputlisting[language=VHDL,numbers=none,linerange={8-37}]{figures/display.vhd}
@@ -707,7 +723,11 @@ called {\it ps2\_demo}, which has the ports:
 \begin{center}
 \begin{minipage}[h]{15 cm}
 \ifverilog
-    \lstinputlisting[language=Verilog,numbers=none,linerange={10-10}]{../../demos/\demos/ps2_demo/ps2_demo.\hdlFileExt}
+    \ifnotSV
+        \lstinputlisting[language=Verilog,numbers=none,linerange={10-10}]{../../demos/\demos/ps2_demo/ps2_demo.\hdlFileExt}
+    \else
+        \lstinputlisting[language=Verilog,numbers=none,linerange={10-10}]{../../demos/\demos/ps2_demo/ps2_demo.\hdlFileExt}
+    \fi
 \else
 	\lstinputlisting[language=VHDL,numbers=none,linerange={12-26}]{../../demos/\demos/ps2_demo/ps2_demo.vhd}
 \fi
@@ -737,7 +757,7 @@ Now, click your mouse pointer in the
 on your computer keyboard. This action causes {\it scan codes} \texttt{1C F0 1C} to be 
 displayed inside the \texttt{Read FIFO} box in the \texttt{PS/2 Keyboard} pane. The first
 code \texttt{1C} represents the key that has been pressed, the second code \texttt{F0} indicates
-that a key has been released, and the third code \texttt{1C} specifies which key has
+that a key has been {\it released}, and the third code \texttt{1C} specifies which key has
 been released. Although these scan codes are part of the PS/2 {\it specification}, you can
 change the codes generated for each key if desired, by modifying the contents of a file
 named {\it scancode.csv}. It can be found in the folder where the {\it DESim} application
@@ -765,7 +785,8 @@ testbench. Running such a simulation allows you to examine the timing of the
 \texttt{ps2\_clk} and \texttt{ps2\_dat} signals that are generated for a scan code, as
 illustrated by the example in Figure~\ref{fig:ps2_clk_dat}. It shows the \texttt{ps2\_clk} 
 and \texttt{ps2\_dat} waveforms generated from the scan code \texttt{1b}. In the figure,
-the yellow cursor is aligned with the {\it start} bit that precedes the serial data, and
+the yellow cursor, which is coincident with a falling edge of {\it ps2\_clk},
+is aligned with the {\it start} bit that precedes the serial data, and
 then the eight data bits of the scan code are aligned to subsequent falling edges
 of {\it ps2\_clk}. Finally, there is a {\it parity} bit (1) and a {\it stop} bit (1). 
 
@@ -839,7 +860,7 @@ retain this color until it is changed again using the plot mechanism.
     \ifnotSV
         \lstinputlisting[language=Verilog,numbers=none,firstline=1]{figures/top.\hdlFileExt}
     \else
-        \lstinputlisting[language=Verilog,numbers=none,firstline=1]{figures/top.\hdlFileExt}
+        \lstinputlisting[language=Verilog,numbers=none,firstline=1, morekeywords={logic, always_ff, always_comb}]{figures/top.\hdlFileExt}
     \fi
 \else
 	\lstinputlisting[language=VHDL,numbers=none,firstline=8]{../../demos/\demos/vga_demo/top.\hdlFileExt}
@@ -916,7 +937,7 @@ This problem occurs for unknown reasons and is not caused by the {\it DESim} app
 (it has also been observed when directly using the {\it ModelSim} (or {\it Questa}) Simulators
 outside of the {\it DESim} environment). 
 If the ``unlink'' issue persists (sometime it gets resolved 
-automatically), then a solution is to browse with \texttt{File Explorer} into the file-system
+automatically), then a solution is to browse with \texttt{File Explorer} into the filesystem
 folder  
 \texttt{C:$\backslash$DESim$\backslash$demos$\backslash$adder$\backslash$sim$\backslash$work}
 and manually {\it delete} the file named {\it \_lock}.

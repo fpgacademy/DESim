@@ -1,14 +1,14 @@
 \documentclass[11pt, twoside, pdftex]{article}
 
 \newcommand{\hdlName}{Verilog}
-\newcommand{\hdlAdj}{ }    % for System Verilog only
+\newcommand{\hdlAdj}{ System }    % for System Verilog
 \newcommand{\hdlModuleName}{module}
-\newcommand{\hdlFileExt}{v}
-\newcommand{\demos}{verilog}
+\newcommand{\hdlFileExt}{sv}
+\newcommand{\demos}{systemverilog}
 \newif\ifverilog
 \verilogtrue
 \newif\ifnotSV % not System Verilog
-\notSVtrue % not System Verilog
+\notSVfalse % this IS System Verilog
 
 \input{DESim_Tutorial.tex}
 

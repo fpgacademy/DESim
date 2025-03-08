@@ -12,8 +12,8 @@ module display (CLOCK_50, KEY, HEX0, LEDR);
     output logic [6:0] HEX0;
     output logic [9:0] LEDR;
 
-    parameter A = 8'd65, b = 8'd98, C = 8'd67, d = 8'd100, E = 8'd69, F = 8'd70, 
-        g = 8'd103, h = 8'd104;
+    parameter A = 8'd65, b = 8'd98, C = 8'd67, d = 8'd100, E = 8'd69,
+              F = 8'd70, g = 8'd103, h = 8'd104;
 
     logic [2:0] count;
     logic [7:0] char;

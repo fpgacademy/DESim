@@ -42,6 +42,6 @@ module tb();
     assign HEX[15: 8] = {1'b0, HEX4};
     assign HEX[ 7: 0] = {1'b0, HEX5};
 
-    top DUT (CLOCK_50, KEY, LEDR);
+    top DUT (CLOCK_50, KEY, SW, LEDR);
 
 endmodule

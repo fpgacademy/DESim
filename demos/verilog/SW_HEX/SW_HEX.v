@@ -34,7 +34,7 @@ module SW_HEX (CLOCK_50, KEY, SW, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR);
         else if (KEY[1] == 0)
             Addr <= SW[9:7];
 
-    always @ (posedge CLOCK_50)
+    always @ *
         case (Addr)
             3'b000:  HEX0 <= SW[6:0];
             3'b001:  HEX1 <= SW[6:0];

@@ -42,19 +42,17 @@ BEGIN
         END IF;
     END PROCESS;
 
-    PROCESS (CLOCK)
+    PROCESS (addr)
     BEGIN
-        IF (CLOCK'EVENT AND CLOCK = '1') THEN
-            CASE addr IS
-                WHEN "000"  => HEX0 <= SW(6 DOWNTO 0);
-                WHEN "001"  => HEX1 <= SW(6 DOWNTO 0);
-                WHEN "010"  => HEX2 <= SW(6 DOWNTO 0);
-                WHEN "011"  => HEX3 <= SW(6 DOWNTO 0);
-                WHEN "100"  => HEX4 <= SW(6 DOWNTO 0);
-                WHEN "101"  => HEX5 <= SW(6 DOWNTO 0);
-                WHEN OTHERS => NULL;
-            END CASE;
-        END IF;
+        CASE addr IS
+            WHEN "000"  => HEX0 <= SW(6 DOWNTO 0);
+            WHEN "001"  => HEX1 <= SW(6 DOWNTO 0);
+            WHEN "010"  => HEX2 <= SW(6 DOWNTO 0);
+            WHEN "011"  => HEX3 <= SW(6 DOWNTO 0);
+            WHEN "100"  => HEX4 <= SW(6 DOWNTO 0);
+            WHEN "101"  => HEX5 <= SW(6 DOWNTO 0);
+            WHEN OTHERS => NULL;
+        END CASE;
     END PROCESS;
 
 END Behavior;
