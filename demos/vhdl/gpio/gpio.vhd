@@ -5,14 +5,14 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 USE ieee.std_logic_unsigned.all;
 
-ENTITY top IS
+ENTITY gpio_demo IS
     PORT (
         SW        : IN    STD_LOGIC_VECTOR( 9 DOWNTO 0);  -- DE-series switches
         GPIO      : INOUT STD_LOGIC_VECTOR(31 DOWNTO 0)   -- DE-series 40-pin header
     );
-END top;
+END gpio_demo;
 
-ARCHITECTURE Behavior OF top IS
+ARCHITECTURE Behavior OF gpio_demo IS
 BEGIN
 
     PROCESS (SW, GPIO)

@@ -26,7 +26,7 @@ ENTITY SW_HEX IS
 END SW_HEX;
 
 ARCHITECTURE Behavior OF SW_HEX IS
-    SIGNAL addr : STD_LOGIC_VECTOR(2 DOWNTO 0) := (OTHERS => '0');
+    SIGNAL addr : STD_LOGIC_VECTOR(2 DOWNTO 0) := "000";
 BEGIN
 
     LEDR <= SW;
@@ -35,14 +35,14 @@ BEGIN
     BEGIN
         IF (CLOCK'EVENT AND CLOCK = '1') THEN
             IF (KEY(0) = '0') THEN
-                addr <= (OTHERS => '0');
+                addr <= "000";
             ELSIF (KEY(1) = '0') THEN
                 addr <= SW(9 DOWNTO 7);
             END IF;
         END IF;
     END PROCESS;
 
-    PROCESS (addr)
+    PROCESS (SW, ADDR)
     BEGIN
         CASE addr IS
             WHEN "000"  => HEX0 <= SW(6 DOWNTO 0);
