@@ -353,14 +353,13 @@ in the {\it DESim} GUI. This command executes a script called {\it run\_sim}, wh
 in the \texttt{sim} folder of the {\it adder} project. This script executes 
 {\it vsim}, which is the {\it ModelSim} (or {\it Questa}) 
 \hdlName~simulator, using the command
-
-\ifverilog{\lstinputlisting[language=command.com]{../../demos/verilog/adder/sim/run_sim.bat}}
-\else{\lstinputlisting[language=command.com]{../../demos/vhdl/adder/sim/run_sim.bat}}\fi
+~\\
+\lstinputlisting[language=command.com]{figures/run_sim.bat}
 
 The \texttt{-pli} argument for the {\it vsim} program instructs 
 it to link to the {\it sim\_fpga} custom software function that is provided in the
-{\it modelsim.vpi} (or {\it questa.vpi}) file (the \texttt{DESimPath} and
-\texttt{DESimulator} environment variables are set in the {\it DESim\_run.bat} script that is
+{\it modelsim.vpi} (or {\it questa.vpi}) file (the \texttt{DESimPath} 
+environment variable is set in the {\it DESim\_run.bat} script that is
 used to start the {\it DESim} application, as discussed in Section \ref{sec:getting_started}).
 The \texttt{-L} arguments include some simulation libraries for
 Altera FPGAs that may be needed by the simulator. The \texttt{-t} argument specifies
