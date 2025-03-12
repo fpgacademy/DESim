@@ -33,8 +33,6 @@
 \newcommand{\green}[1]{{\color{AppleGreen}\sf{#1}}}
 
 \renewcommand{\versnum}{~} %version number quartus/AMP
-\newif\ifquesta
-\questatrue % comment out to not include Questa
 \newif\iflinux
 %\linuxtrue % comment out to not include Linux
 
@@ -66,8 +64,7 @@ The {\it DESim} application provides a {\it graphical user interface}
 as described in the \texttt{Teaching and Projects Boards} section of the 
 {\small \href{https://www.fpgacademy.org/boards.html} {FPGAcademy.org}} website.
 The {\it DESim} application serves as a ``front end'' for 
-\ifquesta {either the {\it ModelSim} or {\it Questa}}
-\else {the {\it ModelSim}} \fi
+either the {\it ModelSim} or {\it Questa}
 Simulator. Using the {\it DESim} GUI you can compile your
 \hdlName~code and then run the Simulator. Its inputs are provided by 
 clicking on features in the {\it DESim} GUI, which also shows results produced by 
@@ -95,24 +92,17 @@ recommended)\iflinux{ or Ubuntu Linux}\fi
 is available in the \texttt{Software} tab on 
 \href{https://www.fpgacademy.org/tools.html}{FPGAcademy.org}.
 \item 
-\ifquesta
-{{\it ModelSim-Intel FPGA} software or {\it Questa-Intel FPGA} software: instructions for 
+{\it ModelSim-Intel FPGA} software or {\it Questa-Intel FPGA} software: instructions for 
 obtaining these Simulators are included in the {\it DESim Installation Guide}. {\it DESim} can 
 be used with the {\it ModelSim} releases that are part of versions 18.1 to 20.1 of the 
 Altera {\it Quartus Prime} CAD system, or any release of {\it Questa} that is provided as
-part of {\it Quartus Prime}.} We recommend using {\it ModelSim}, because it does not require a
-license, whereas {\it Questa} has a licensing requirement.
-\else
-{{\it ModelSim-Intel FPGA} software: instructions for obtaining the {\it ModelSim}
-Simulator are included in the {\it DESim Installation Guide}. {\it DESim} can be used with 
-the {\it ModelSim} releases that are part of the Altera {\it Quartus Prime} CAD system, 
-versions 18.1 to 20.1.}
-\fi
+part of {\it Quartus Prime}. We recommend using {\it ModelSim}, because it does not require a
+license, whereas {\it Questa} has a licensing requirement. Also, the free version of 
+{\it ModelSim} appears to provide better performance.
 \item You should know how to simulate \hdlName~code using a {\it testbench}, as described
-in the tutorial\ifquesta{s}\fi
-{\it~Using ModelSim with Testbenches}\ifquesta{~and {\it Using Questa with
-Testbenches}}\fi. \ifquesta{These tutorials are}\else{This tutorial is}\fi~available in 
-the \texttt{Tutorials} tab on
+in the tutorials
+{\it~Using ModelSim with Testbenches} and {\it Using Questa with
+Testbenches}. These tutorials are available in the \texttt{Tutorials} tab on
 \href{https://www.fpgacademy.org/tutorials.html}{FPGAcademy.org}.
 \end{itemize}
 
