@@ -344,7 +344,11 @@ in the \texttt{sim} folder of the {\it adder} project. This script executes
 {\it vsim}, which is the {\it ModelSim} (or {\it Questa}) 
 \hdlName~simulator, using the command
 ~\\
-\lstinputlisting[language=command.com]{figures/run_sim.bat}
+\ifverilog
+    \lstinputlisting[language=command.com]{figures/run_sim.bat}
+\else
+    \lstinputlisting[language=command.com]{figures/run_sim_vhdl.bat}
+\fi
 
 The \texttt{-pli} argument for the {\it vsim} program instructs 
 it to link to the {\it sim\_fpga} custom software function that is provided in the
@@ -353,7 +357,8 @@ environment variable is set in the {\it DESim\_run.bat} script that is
 used to start the {\it DESim} application, as discussed in Section \ref{sec:getting_started}).
 The \texttt{-L} arguments include some simulation libraries for
 Altera FPGAs that may be needed by the simulator. The \texttt{-t} argument specifies
-the simulator time resolution. Finally, the remaining arguments 
+the simulator time resolution. Finally, the remaining arguments \ifverilog{}\else{suppress
+some VHDL warnings (that can cause DESim to fail) and }\fi
 run the simulation for the {\it tb} \hdlModuleName. Any messages 
 produced while executing the {\it run\_sim} script are displayed inside the message pane in
 the {\it DESim} GUI, as depicted in Figure~\ref{fig:sim}.
@@ -553,7 +558,8 @@ The ASCII code read from the memory is also displayed, on the LEDs.
 
 The memory used in the logic circuit is depicted in part ($b$) of Figure~\ref{fig:memory}. It
 is a $32 \times 8$ synchronous read-only memory (ROM), which has a register for holding 
-address values. The memory is specified in the Verilog file {\it inst\_mem.v}, and it is 
+address values. The memory is specified in the 
+\ifverilog{Verilog file {\it inst\_mem.v}}\else{VHDL file {\it inst\_mem.vhd}}\fi, and it is 
 initialized with the contents of the file {\it inst\_mem.mif},
 which is illustrated in Figure~\ref{fig:mif}. This file contains the ASCII codes for the 
 eight letters displayed by the circuit.
@@ -909,7 +915,7 @@ or 2) the location of the {\it ModelSim} (or {\it Questa}) software can be speci
 the batch script that starts the {\it DESim} software. This script is called 
 \texttt{DESim\_run.bat}, as described in Section~\ref{sec:getting_started}.
 
-\item Occasionally, when compiling or simulating a project in the {\it DESim} software you may
+\item When compiling or simulating a project in the {\it DESim} software you may
 see a {\it Warning} message which says that {\it ModelSim} (or {\it Questa}) cannot 
 ``unlink'' a file.  For example, if your {\it DESim} project is stored in the folder
 C:$\backslash$DESim$\backslash$demos$\backslash$adder, then this message would report: 
@@ -922,14 +928,37 @@ C:$\backslash$DESim$\backslash$demos$\backslash$adder, then this message would r
 \end{lstlisting}
 \end{minipage}
 
-This problem occurs for unknown reasons and is not caused by the {\it DESim} application 
-(it has also been observed when directly using the {\it ModelSim} (or {\it Questa}) Simulators
-outside of the {\it DESim} environment). 
-If the ``unlink'' issue persists (sometime it gets resolved 
-automatically), then a solution is to browse with \texttt{File Explorer} into the filesystem
-folder  
+If this ``unlink'' issue persists (sometime it gets resolved automatically), then a solution 
+is to navigate to the filesystem folder  
 \texttt{C:$\backslash$DESim$\backslash$demos$\backslash$adder$\backslash$sim$\backslash$work}
-and manually {\it delete} the file named {\it \_lock}.
+and manually {\it delete} the file named {\it \_lock}. You can also add the option
+\texttt{-nolock} to the calls to \ifverilog{\it vlog }\else{\it vlog} and {\it vcom }\fi in 
+your project's {\it run\_compile.bat} script:
+\begin{center}
+\begin{minipage}[h]{12 cm}
+    \ifverilog
+        \ifnotSV
+            \lstset{language=command.com,numbers=none,escapechar=|}
+            \begin{lstlisting}[]
+                vlog -nolock ../tb/*.v
+                vlog -nolock ../*.v
+            \end{lstlisting}
+        \else
+            \lstset{language=command.com,numbers=none,escapechar=|}
+            \begin{lstlisting}[]
+                vlog -nolock ../tb/*.v
+                vlog -nolock ../*.sv
+            \end{lstlisting}
+        \fi
+    \else
+        \lstset{language=command.com,numbers=none,escapechar=|}
+        \begin{lstlisting}[]
+            vlog -nolock ../tb/*.v
+            vcom -nolock ../*.vhd
+        \end{lstlisting}
+    \fi
+\end{minipage}
+\end{center}
 
 \item When you click on the \texttt{Start Simulation} button in the {\it DESim} GUI,
 you could see an error message such as \red{Load of {\it C:/DESim/modelsim.vpi}
