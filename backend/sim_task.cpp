@@ -98,6 +98,19 @@ static int CheckArgs(vpiHandle handle, PLI_INT32 type, int size) {
 	return 0;
 }
 
+/**
+ * Helper function for MyCompiletf specifically for VGA args, which have a legal range
+ * @return return 1 if the argument is not proper, o/w return 0
+ */
+static int CheckArgsRange(vpiHandle handle, PLI_INT32 type, int lsize, int hsize) {
+    int actual = vpi_get(vpiSize, handle);
+	if (handle == NULL || vpi_get(vpiType, handle) != type || (actual < lsize) || (actual > hsize)){
+		PrintUsageError(handle);
+		return 1;
+	}
+	return 0;
+}
+
 
 static void PrintUsageError(vpiHandle handle) {
 	vpi_printf_helper(USAGE "\n");
@@ -171,15 +184,14 @@ static int MyCompiletf(PLI_BYTE8 *user_data) {
 		return 0;
 	}
 
-
 	// Arguments for VGA
 	vpiHandle x_handle = vpi_scan(args);
-	if(CheckArgs(x_handle, vpiNet, 8)){
+	if(CheckArgsRange(x_handle, vpiNet, 8, 10)){
 		return 0;
 	}
 
 	vpiHandle y_handle = vpi_scan(args);
-	if(CheckArgs(y_handle, vpiNet, 7)){
+	if(CheckArgsRange(y_handle, vpiNet, 7, 9)){
 		return 0;
 	}
 

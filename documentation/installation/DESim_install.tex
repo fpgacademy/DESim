@@ -115,9 +115,14 @@ the statement in Line 25 to start {\it DESim}.  Remove the \texttt{REM} from Lin
 replace \texttt{<SimulatorPath>} with the actual location of the folder where you have
 installed your Simulator.
 
-In most cases you will not need to make any other changes to {\it DESim\_run.bat}, and you 
-should be ready to execute this batch script to start {\it DESim}. Complete instructions for
-using the {\it DESim} application are provided in the {\it docs} folder listed in 
+In most cases you will not need to make any other changes
+\footnote{If your {\it Questa} (or {\it ModelSim}) version requires a license, then you should
+make an \texttt{LM\_LICENSE\_FILE} environment variable that specifies the location of your
+{\it license file}. But if you cannot set this variable, then the {\it DESim\_run.bat} file 
+describes a command-line option that can be used to specify your license-file location.}
+to the {\it DESim\_run.bat} file, and you 
+should be ready to execute this batch script to start the {\it DESim} application. Complete
+instructions for using {\it DESim} are provided in the {\it docs} folder listed in 
 Figure~\ref{fig:install}, and also in the 
 \texttt{DESim} section of {\small \href{https://www.fpgacademy.org/tools.html}
 {FPGAcademy.org}}.
