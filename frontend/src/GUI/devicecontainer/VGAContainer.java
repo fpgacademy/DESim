@@ -25,7 +25,7 @@ public class VGAContainer extends DeviceContainer{
         try {
             final int x = Integer.parseInt(data[0]);
             final int y = Integer.parseInt(data[1]);
-            final char color = data[2].charAt(0);
+            final int color = Integer.parseInt(data[2]);
             vga.setPixel(x, y, color);
         }catch(NumberFormatException | IndexOutOfBoundsException ignored){}
 

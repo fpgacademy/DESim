@@ -141,9 +141,9 @@ void fpga::SendVGAPixelValue(sockfd server){
 
 		char line[80];
 		//write at most size bytes (including '\0')
-		snprintf(line, 80, "c %03d %03d %d\n", x, y, color);
+		snprintf(line, 80, "c %03d %03d %08d\n", x, y, color);
 
-		int rc = send(server, line, 12, 0);
+		int rc = send(server, line, 19, 0);
 		if (rc <= 0) {
 			vpi_printf_helper("Could not send VGA signal to GUI\n");
 			vpi_mcd_flush(1);

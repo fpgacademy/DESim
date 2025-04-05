@@ -196,7 +196,7 @@ static int MyCompiletf(PLI_BYTE8 *user_data) {
 	}
 
 	vpiHandle color_handle =vpi_scan(args);
-	if(CheckArgs(color_handle, vpiNet, 3)){
+	if(CheckArgs(color_handle, vpiNet, 24)){
 		return 0;
 	}
 

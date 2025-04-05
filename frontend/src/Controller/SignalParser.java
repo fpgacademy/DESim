@@ -28,9 +28,9 @@ public final class SignalParser {
             processPS2Lock(line);
         } else if (line.startsWith("c")) {
             /* Parser for individual pixel colours */
-            /* Expected syntax: c ### ### #, where the first three
+            /* Expected syntax: c ### ### ########, where the first three
              * digits are the x coordinate, the next three are the y coordinate,
-             * and the last is the colour, a digit from 0 to 7 */
+             * and the last eight are the colour */
             processVGASignal(line);
         }
     }

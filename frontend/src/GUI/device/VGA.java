@@ -93,17 +93,15 @@ public class VGA extends VBox {
         graphicsContext.fillRect(0, 0, screenWidth, screenHeight);
     }
 
-    public void setPixel(int x, int y, char pixel){
-        if('0' <= pixel && pixel <= '7') {
-            int c = pixel - '0';
-            Color color = Color.rgb(255 * ((c >> 2) & 1), 255 * ((c >> 1) & 1), 255 * (c & 1));
-            if (resolutionLevel == 2) {
-                setPixelHighRes(x, y, color);
-            } else if (resolutionLevel == 1) {
-                setPixelMidRes(x, y, color);
-            } else {
-                setPixelLowRes(x, y, color);
-            }
+    public void setPixel(int x, int y, int pixel){
+        int c = pixel;
+        Color color = Color.rgb(((c >> 16) & 0xFF), ((c >> 8) & 0xFF), (c & 0xFF));
+        if (resolutionLevel == 2) {
+            setPixelHighRes(x, y, color);
+        } else if (resolutionLevel == 1) {
+            setPixelMidRes(x, y, color);
+        } else {
+            setPixelLowRes(x, y, color);
         }
     }
 
