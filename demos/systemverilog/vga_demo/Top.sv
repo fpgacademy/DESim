@@ -16,11 +16,12 @@ module top (CLOCK_50, SW, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR, VGA_X, 
     output logic [9:0] LEDR;     // DE-series LEDs   
     output logic [9:0] VGA_X;
     output logic [8:0] VGA_Y;
-    output logic [2:0] VGA_COLOR;
+    output logic [23:0] VGA_COLOR;
     output logic plot;
 
     parameter n = `ifdef VGA_640_480 10 `elsif VGA_320_240 9 `else 8 `endif ; // VGA x bitwidth
-    vga_demo U1 (CLOCK_50, KEY, VGA_X[n-1:0], VGA_Y[n-2:0], VGA_COLOR, plot);
+    vga_demo U1 (CLOCK_50, KEY, HEX5, HEX4, HEX3, HEX2, HEX1, HEX0, VGA_X[n-1:0], VGA_Y[n-2:0], VGA_COLOR, plot);
+
 
 endmodule
 

@@ -1,0 +1,3 @@
+Note: for version 2.5 onward, the installer is no longer used. DESim is now
+released simply as a DESim.zip archive. The end use just extracts the contents
+of the zip file and does not have to "install" anything.

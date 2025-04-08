@@ -1,0 +1,48 @@
+WIDTH=24;
+DEPTH=256;
+
+ADDRESS_RADIX=HEX;
+DATA_RADIX=HEX;
+
+CONTENT BEGIN
+[0..F] : FF7F00;
+[10..1F] : FF7F00;
+[20..21] : FF7F00;
+[22..2D] : FF00;
+[2E..2F] : FF7F00;
+[30..31] : FF7F00;
+[32..3D] : FF00;
+[3E..3F] : FF7F00;
+[40..41] : FF7F00;
+[42..4D] : FF00;
+[4E..4F] : FF7F00;
+[50..51] : FF7F00;
+[52..5D] : FF00;
+[5E..5F] : FF7F00;
+[60..61] : FF7F00;
+[62..6D] : FF00;
+[6E..6F] : FF7F00;
+[70..71] : FF7F00;
+[72..7D] : FF00;
+[7E..7F] : FF7F00;
+[80..81] : FF7F00;
+[82..8D] : FF00;
+[8E..8F] : FF7F00;
+[90..91] : FF7F00;
+[92..9D] : FF00;
+[9E..9F] : FF7F00;
+[A0..A1] : FF7F00;
+[A2..AD] : FF00;
+[AE..AF] : FF7F00;
+[B0..B1] : FF7F00;
+[B2..BD] : FF00;
+[BE..BF] : FF7F00;
+[C0..C1] : FF7F00;
+[C2..CD] : FF00;
+[CE..CF] : FF7F00;
+[D0..D1] : FF7F00;
+[D2..DD] : FF00;
+[DE..DF] : FF7F00;
+[E0..EF] : FF7F00;
+[F0..FF] : FF7F00;
+END;

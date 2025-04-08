@@ -1,4 +1,4 @@
-The VGA Display switches between all 8 possible colors
+The VGA Display switches between various colors of the rainbow
 
 In this demo:
 

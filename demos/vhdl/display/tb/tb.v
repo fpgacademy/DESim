@@ -20,7 +20,7 @@ module tb();
 
     wire    [ 7: 0] VGA_X;        // "VGA" column
     wire    [ 6: 0] VGA_Y;        // "VGA" row
-    wire    [ 2: 0] VGA_COLOR;    // "VGA pixel" colour (0-7)
+    wire    [23: 0] VGA_COLOR;    // "VGA pixel"
     wire            plot;         // "Pixel" is drawn when this is pulsed
     wire    [31: 0] GPIO;         // DE-series GPIO port
 

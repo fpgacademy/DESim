@@ -17,7 +17,7 @@ module tb();
 
     wire [9:0] VGA_X;               // "VGA" column
     wire [8:0] VGA_Y;               // "VGA" row
-    wire [2:0] VGA_COLOR;           // "VGA pixel" colour (0-7)
+    wire [23:0] VGA_COLOR;           // "VGA pixel" colour (0-7)
     wire plot;                      // "Pixel" is drawn when this is pulsed
     wire [31:0] GPIO;               // DE-series GPIO port
 
@@ -43,7 +43,8 @@ module tb();
     assign HEX[15: 8] = {1'b0, HEX4};
     assign HEX[ 7: 0] = {1'b0, HEX5};
     
-    top DUT (.CLOCK_50(CLOCK_50), .KEY(KEY), .VGA_X(VGA_X), .VGA_Y(VGA_Y), 
+    top DUT (.CLOCK_50(CLOCK_50), .KEY(KEY), .HEX0(HEX0), .HEX1(HEX1), 
+             .HEX2(HEX2), .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5), .VGA_X(VGA_X), .VGA_Y(VGA_Y), 
              .VGA_COLOR(VGA_COLOR), .plot(plot));
 
 endmodule

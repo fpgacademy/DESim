@@ -11,7 +11,7 @@ ENTITY top IS
         KEY       : IN    STD_LOGIC_VECTOR( 3 DOWNTO 0);  -- pushbuttons
         VGA_X     : OUT   STD_LOGIC_VECTOR( 9 DOWNTO 0);  -- column
         VGA_Y     : OUT   STD_LOGIC_VECTOR( 8 DOWNTO 0);  -- row
-        VGA_COLOR : OUT   STD_LOGIC_VECTOR( 2 DOWNTO 0);  -- pixel color
+        VGA_COLOR : OUT   STD_LOGIC_VECTOR(23 DOWNTO 0);  -- pixel color
         plot      : OUT   STD_LOGIC                       -- VGA control
     );
 END top;
@@ -23,7 +23,7 @@ ARCHITECTURE Behavior OF top IS
             KEY       : IN    STD_LOGIC_VECTOR( 3 DOWNTO 0); 
             VGA_X     : OUT   STD_LOGIC_VECTOR( 8 DOWNTO 0); 
             VGA_Y     : OUT   STD_LOGIC_VECTOR( 7 DOWNTO 0); 
-            VGA_COLOR : OUT   STD_LOGIC_VECTOR( 2 DOWNTO 0); 
+            VGA_COLOR : OUT   STD_LOGIC_VECTOR(23 DOWNTO 0); 
             plot      : OUT   STD_LOGIC                      
         );
     END COMPONENT;

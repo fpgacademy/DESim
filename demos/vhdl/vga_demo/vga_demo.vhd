@@ -12,7 +12,7 @@ ENTITY vga_demo IS
 
         VGA_X     : OUT   STD_LOGIC_VECTOR( 8 DOWNTO 0);  -- "VGA" column
         VGA_Y     : OUT   STD_LOGIC_VECTOR( 7 DOWNTO 0);  -- "VGA" row
-        VGA_COLOR : OUT   STD_LOGIC_VECTOR( 2 DOWNTO 0);  -- "VGA pixel" colour (0-7)
+        VGA_COLOR : OUT   STD_LOGIC_VECTOR(23 DOWNTO 0);  -- "VGA pixel" colour
         plot      : OUT   STD_LOGIC                       -- "Pixel" is drawn when this is pulsed
     );
 END vga_demo;
@@ -20,7 +20,7 @@ END vga_demo;
 ARCHITECTURE Behavior OF vga_demo IS
     SIGNAL x      : STD_LOGIC_VECTOR( 8 DOWNTO 0) := (OTHERS => '0');
     SIGNAL y      : STD_LOGIC_VECTOR( 7 DOWNTO 0) := (OTHERS => '0');
-    SIGNAL color  : STD_LOGIC_VECTOR( 2 DOWNTO 0) := "001";
+    SIGNAL color  : STD_LOGIC_VECTOR(23 DOWNTO 0) := X"FF0000";
     SIGNAL Resetn  : STD_LOGIC := '1';
 BEGIN
 
@@ -32,13 +32,37 @@ BEGIN
             IF (Resetn = '0') THEN
                 x     <= (OTHERS => '0');
                 y     <= (OTHERS => '0');
-                color <= "001";
+                color <= X"FF0000";
             ELSE
                 IF (x = "100111111") THEN
                     x <= (OTHERS => '0');
-                    IF (y = "11101111") THEN
+                    IF (y = "10011111") THEN
                         y     <= (OTHERS => '0');
-                        color <= color + 1;
+                        if (color = X"FF0000") THEN
+                            color <= X"FF7700";
+                        ELSIF (color = X"FF7700") THEN
+                            color <= X"FFFF00";
+                        ELSIF (color = X"FFFF00") THEN
+                            color <= X"77FF00";
+                        ELSIF (color = X"77FF00") THEN
+                            color <= X"00FF00";
+                        ELSIF (color = X"00FF00") THEN
+                            color <= X"00FF77";
+                        ELSIF (color = X"00FF77") THEN
+                            color <= X"00FFFF";
+                        ELSIF (color = X"00FFFF") THEN
+                            color <= X"0077FF";
+                        ELSIF (color = X"0077FF") THEN
+                            color <= X"0000FF";
+                        ELSIF (color = X"0000FF") THEN
+                            color <= X"7700FF";
+                        ELSIF (color = X"7700FF") THEN
+                            color <= X"FF00FF";
+                        ELSIF (color = X"FF00FF") THEN
+                            color <= X"FF0077";
+                        ELSIF (color = X"FF0077") THEN
+                            color <= X"FF0000";
+                        END IF;
                     ELSE
                         y     <= y + 1;
                     END IF;
