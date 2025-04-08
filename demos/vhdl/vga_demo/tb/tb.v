@@ -44,6 +44,6 @@ module tb();
     assign HEX[15: 8] = {1'b0, HEX4};
     assign HEX[ 7: 0] = {1'b0, HEX5};
 
-    top DUT (CLOCK_50, KEY, VGA_X, VGA_Y, VGA_COLOR, plot);
+    top DUT (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, VGA_X, VGA_Y, VGA_COLOR, plot);
 
 endmodule
