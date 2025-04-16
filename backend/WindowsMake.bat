@@ -30,7 +30,7 @@ GOTO :select
 :: Init for ModelSim compilation
 :ModelSim
 set simulator=modelsim
-set simulator_dir=C:\intelFPGA\21.1\modelsim_ase\
+set simulator_dir=C:\intelFPGA_lite\18.1\modelsim_ase\
 set mingw_dir=C:\MinGW\bin
 
 set CFLAGS=-m32 -static -c -Wall -g -Iinclude -I%simulator_dir%include
@@ -41,8 +41,8 @@ GOTO :build
 :: Init for Questa compilation
 :Questa
 set simulator=questa
-set simulator_dir=C:\intelFPGA\21.1\questa_fse\
-set mingw_dir=%simulator_dir%gcc-7.4.0-mingw64vc15\bin
+set simulator_dir=C:\intelFPGA_pro\24.1\questa_fse\
+set mingw_dir=%simulator_dir%gcc-7.4.0-mingw64vc16\bin
 
 set CFLAGS=-m64 -static -c -Wall -g -fno-diagnostics-show-caret -fpic -Iinclude -I%simulator_dir%include
 set LDFLAGS=-m64 -static -g -shared -lmtipli -lws2_32 -L%simulator_dir%win64

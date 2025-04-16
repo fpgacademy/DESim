@@ -36,3 +36,4 @@ BEGIN
     U1: vga_demo PORT MAP (CLOCK_50, KEY, HEX5, HEX4, HEX3, HEX2, HEX1, HEX0, 
                            VGA_X(8 DOWNTO 0), VGA_Y(7 DOWNTO 0), VGA_COLOR, plot);
 END Behavior;
+

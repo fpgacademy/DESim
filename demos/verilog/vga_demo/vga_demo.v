@@ -229,13 +229,6 @@ module address_translator(x, y, mem_address);
 	 * Similarly, for 160x120 resolution we write 160 as 128+32.
      * For 640 we use 512 + 128
 	 */
-    assign mem_address = 
-        `ifdef VGA_640_480 
-	        ({1'b0, y, 9'd0} + {1'b0, y, 7'd0} + {1'b0, x});
-        `elsif VGA_320_240 
-	        ({1'b0, y, 8'd0} + {1'b0, y, 6'd0} + {1'b0, x});
-        `else 
-	        ({1'b0, y, 7'd0} + {1'b0, y, 5'd0} + {1'b0, x});
-        `endif
+    assign mem_address = {1'b0, y, {nY{1'b0}}} + {1'b0, y, {nY-2{1'b0}}} + {1'b0, x};
     
 endmodule

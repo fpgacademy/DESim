@@ -873,20 +873,16 @@ Select the \texttt{160x120} resolution and then press/release {\it KEY}$_0$ to i
 the simulation. You should see the VGA ``screen'' filled with different colors of the
 rainbow, starting with red, then progressing to green, and so on. The {\it RGB} color components
 are shown  on the \texttt{Seven-segment Displays}. The image in the figure was
-captured \ifverilog at the end of this \else during this \fi demonstration, when the 
-``screen'' is \ifverilog filled with rainbow colors that are read from a memory 
-module\else partly filled with orange and yellow\fi. You may wish to examine the 
+captured at the end of this demonstration, when the 
+``screen'' is filled with rainbow colors that are read from a memory 
+module. You may wish to examine the 
 \hdlName~code in the file {\it vga\_demo.\hdlFileExt}~to learn more about how this sample
 project works.
 
 \begin{figure}[h]
 	\begin{center}
         \setlength{\fboxsep}{0pt}
-        \ifverilog
-            \fbox{\includegraphics[width = .5\textwidth]{figures/vga_pane.png}}
-        \else
-            \fbox{\includegraphics[width = .5\textwidth]{figures/vga_pane_vhd.png}}
-        \fi
+         \fbox{\includegraphics[width = .5\textwidth]{figures/vga_pane.png}}
 	\end{center}
           \caption{The \texttt{VGA Display} pane.}
 	\label{fig:vga_pane}
