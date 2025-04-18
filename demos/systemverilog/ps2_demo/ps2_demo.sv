@@ -7,10 +7,10 @@
 // This module uses ps2_clk and ps2_dat to capture the last three bytes of data received 
 // from the PS/2 keyboard. It displays this data on the HEX displays, and also displays the
 // last byte of data received, along with its PARITY bit, on LEDR.
-module ps2_demo (CLOCK_50, KEY, ps2_clk, ps2_dat, LEDR, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5);
+module ps2_demo (CLOCK_50, KEY, PS2_CLK, PS2_DAT, LEDR, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5);
     input logic CLOCK_50;
     input logic [0:0] KEY;
-    inout wire ps2_clk, ps2_dat;
+    inout wire PS2_CLK, PS2_DAT;
     output logic [9:0] LEDR;       // DE-series LEDs
     output logic [6:0] HEX0;
     output logic [6:0] HEX1;       // DE-series HEX displays
@@ -20,24 +20,24 @@ module ps2_demo (CLOCK_50, KEY, ps2_clk, ps2_dat, LEDR, HEX0, HEX1, HEX2, HEX3, 
     output logic [6:0] HEX5;       // DE-series HEX displays
 
     logic Resetn, negedge_ps2_clk;
-    logic [32:0] Serial;              // each PS/2 data packet has 11 bits:
-                                    // STOP (1) PARITY d7 d6 d5 d4 d3 d2 d1 d0 START (0)
-    logic prev_ps2_clk;               // ps2_clk value in the previous clock cycle
+    logic [32:0] Serial;           // each PS/2 data packet has 11 bits:
+                                   // STOP (1) PARITY d7 d6 d5 d4 d3 d2 d1 d0 START (0)
+    logic prev_ps2_clk;            // PS2_CLK value in the previous clock cycle
 
     assign Resetn = KEY[0];
 
     always_ff @(posedge CLOCK_50)
-        prev_ps2_clk <= ps2_clk;
+        prev_ps2_clk <= PS2_CLK;
 
-    // check when ps2_clk has changed from 1 to 0
-    assign negedge_ps2_clk = (prev_ps2_clk & !ps2_clk);
+    // check when PS2_CLK has changed from 1 to 0
+    assign negedge_ps2_clk = (prev_ps2_clk & !PS2_CLK);
 
     always_ff @(posedge CLOCK_50) begin    // specify a 33-bit shift register
         if (Resetn == 0)
             Serial <= 33'b0;
         else if (negedge_ps2_clk) begin
             Serial[31:0] <= Serial[32:1];
-            Serial[32] <= ps2_dat;
+            Serial[32] <= PS2_DAT;
         end
     end
 

@@ -1,7 +1,7 @@
 -- Copyright (c) 2020 FPGAcademy
 -- Please see license at https://github.com/fpgacademy/DESim
 
--- This module uses ps2_clk and ps2_dat to capture the last three bytes of data received 
+-- This module uses PS2_CLK and PS2_DAT to capture the last three bytes of data received 
 -- from the PS/2 keyboard. It displays this data on the HEX displays, and also displays the
 -- last byte of data received, along with its PARITY bit, on LEDR.
 
@@ -13,8 +13,8 @@ ENTITY ps2_demo IS
     PORT (
             CLOCK_50  : IN    STD_LOGIC;
             KEY       : IN    STD_LOGIC_VECTOR( 0 DOWNTO 0);
-            ps2_clk   : IN    STD_LOGIC;
-            ps2_dat   : IN    STD_LOGIC;
+            PS2_CLK   : IN    STD_LOGIC;
+            PS2_DAT   : IN    STD_LOGIC;
             LEDR      : OUT   STD_LOGIC_VECTOR( 9 DOWNTO 0);
             HEX0      : OUT   STD_LOGIC_VECTOR( 6 DOWNTO 0);
             HEX1      : OUT   STD_LOGIC_VECTOR( 6 DOWNTO 0);
@@ -38,21 +38,21 @@ ARCHITECTURE Behavior OF ps2_demo IS
     -- Declare shift register to hold the PS/2 data packets. Each one has 11 bits: 
     --     STOP (1) PARITY d7 d6 d5 d4 d3 d2 d1 d0 START (0)
     SIGNAL Serial          : STD_LOGIC_VECTOR(32 DOWNTO 0) := (OTHERS => '0'); 
-    SIGNAL prev_ps2_clk    : STD_LOGIC := '0'; -- ps2_clk in the previous CLOCK_50 cycle
+    SIGNAL prev_ps2_clk    : STD_LOGIC := '0'; -- PS2_CLK in the previous CLOCK_50 cycle
 BEGIN
 
     Resetn <= KEY(0);
 
-    -- record previous ps2_clk 
+    -- record previous PS2_CLK 
     PROCESS (CLOCK_50)
     BEGIN
         IF (CLOCK_50'EVENT AND CLOCK_50 = '1') THEN
-            prev_ps2_clk <= ps2_clk;
+            prev_ps2_clk <= PS2_CLK;
         END IF;
     END PROCESS;
 
     -- check when ps2_clk has changed from 1 to 0
-    negedge_ps2_clk <= prev_ps2_clk AND (NOT ps2_clk);
+    negedge_ps2_clk <= prev_ps2_clk AND (NOT PS2_CLK);
 
     -- the shift register
     PROCESS (CLOCK_50)
@@ -62,7 +62,7 @@ BEGIN
                 Serial <= (OTHERS => '0');
             ELSIF (negedge_ps2_clk = '1') THEN
                 Serial(31 DOWNTO 0) <= Serial(32 DOWNTO 1);
-                Serial(32) <= ps2_dat;
+                Serial(32) <= PS2_DAT;
             END IF;
         END IF;
     END PROCESS;
