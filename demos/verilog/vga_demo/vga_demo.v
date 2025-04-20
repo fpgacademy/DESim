@@ -49,11 +49,11 @@ module vga_demo (CLOCK_50, KEY, HEX5, HEX4, HEX3, HEX2, HEX1, HEX0, VGA_X, VGA_Y
         /* Code to generate rainbow colors.
             Algorithm is to set (two colors at a time) in RBG in this manner:
 
-            RRRRG-RGGGG-GGGGB-GBBBB-BBBBR-BRRRR     saturation level
-               G   R       B   G       R   B   
-              G     R     B     G     R     B
-             G       R   B       G   R       B
-            GBBBB-BBBBR-BRRRR-RRRRG-RGGGG-GGGGB     0 level
+            RRRRG-RGGGG-GGGGB-GBBBB-BBBBR     saturation level
+               G   R       B   G       R 
+              G     R     B     G     R  
+             G       R   B       G   R   
+            GBBBB-BBBBR-BRRRR-RRRRG-RGGGG     0 level
         */   
         else begin
             if(x == COLS-(COLS >> 2)) begin
@@ -97,14 +97,6 @@ module vga_demo (CLOCK_50, KEY, HEX5, HEX4, HEX3, HEX2, HEX1, HEX0, VGA_X, VGA_Y
                             color <= color + (STEP << 16);      // ramp up R
                         else begin
                             ramp <= ramp + 3'b1;
-                            color <= color - STEP;
-                        end
-                    end
-                    else if (ramp == 3'h5) begin
-                        if (color != 24'hFF0000)
-                            color <= color - STEP;              // ramp down B
-                        else begin
-                            ramp <= ramp + 3'b1;
                         end
                     end
                 end
@@ -132,7 +124,7 @@ module vga_demo (CLOCK_50, KEY, HEX5, HEX4, HEX3, HEX2, HEX1, HEX0, VGA_X, VGA_Y
     wire [11:0] MIF_color;  // used when displaying MIF from memory
 
     always @(posedge CLOCK_50)
-        if(ramp < 3'h6) begin       // wait until all colors have been drawn once
+        if(ramp < 3'h5) begin       // wait until all colors have been drawn once
             x_add <= 'b0;
             y_add <= 'b0;
         end
@@ -163,9 +155,9 @@ module vga_demo (CLOCK_50, KEY, HEX5, HEX4, HEX3, HEX2, HEX1, HEX0, VGA_X, VGA_Y
 
     // display either individual colors, or the MIF rainbow of colors. The MIF has 12-bit
     // colors, so these are converted to 24-bit colors
-    assign VGA_X = (ramp < 3'h6) ? x : x_add;
-    assign VGA_Y = (ramp < 3'h6) ? y : y_add;
-    assign VGA_COLOR = (ramp < 3'h6) ? color : 
+    assign VGA_X = (ramp < 3'h5) ? x : x_add;
+    assign VGA_Y = (ramp < 3'h5) ? y : y_add;
+    assign VGA_COLOR = (ramp < 3'h5) ? color : 
         {{2{MIF_color[11:8]}},{2{MIF_color[7:4]}},{2{MIF_color[3:0]}}};
     assign plot = 1'b1;
 

@@ -120,13 +120,6 @@ BEGIN
                                 color <= color + STEP_16;
                             ELSE
                                 ramp <= ramp + "001";
-                                color <= color - STEP;
-                            END IF;
-                        ELSIF (ramp = "101") THEN
-                            IF (color /= X"FF0000") THEN
-                                color <= color - STEP;
-                            ELSE
-                                ramp <= ramp + "001";
                             END IF;
                         END IF;
                     ELSE
@@ -149,7 +142,7 @@ BEGIN
     PROCESS (CLOCK_50)
     BEGIN
         IF (CLOCK_50'EVENT AND CLOCK_50 = '1') THEN
-            IF (ramp < "110") THEN
+            IF (ramp < "101") THEN
                 x_add <= (OTHERS => '0');
                 y_add <= (OTHERS => '0');
             ELSE
@@ -169,9 +162,9 @@ BEGIN
 
     -- display either individual colors, or the MIF rainbow of colors. The MIF has 12-bit
     -- colors, so these are converted to 24-bit colors
-    VGA_X <= x WHEN (ramp < "110") ELSE x_add;
-    VGA_Y <= y WHEN (ramp < "110") ELSE y_add;
-    VGA_COLOR <= color WHEN (ramp < "110") ELSE 
+    VGA_X <= x WHEN (ramp < "101") ELSE x_add;
+    VGA_Y <= y WHEN (ramp < "101") ELSE y_add;
+    VGA_COLOR <= color WHEN (ramp < "101") ELSE 
         (MIF_color(11 DOWNTO 8) & MIF_color(11 DOWNTO 8) &
          MIF_color(7 DOWNTO 4) & MIF_color(7 DOWNTO 4) &
          MIF_color(3 DOWNTO 0) & MIF_color(3 DOWNTO 0));

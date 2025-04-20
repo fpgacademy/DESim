@@ -31,6 +31,7 @@ ARCHITECTURE Behavior OF top IS
     END COMPONENT;
     SIGNAL Resetn : STD_LOGIC;
 BEGIN
+
     VGA_X(9) <= '0';
     VGA_Y(8) <= '0';
     U1: vga_demo PORT MAP (CLOCK_50, KEY, HEX5, HEX4, HEX3, HEX2, HEX1, HEX0, 
