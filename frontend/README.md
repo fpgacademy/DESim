@@ -76,6 +76,6 @@ Now that all the necessary settings have been checked, the frontend may be modif
 
 If modification have been made to the frontend, a new release version should be create. The release version of the DESim frontend is a self contained Java VM. Follow these steps to build the release version:
 1. Click Build -> Rebuild project within IntelliJ. This will compile the latest version of the frontend to the ./out directory.
-2. Run the build_release.bat (on Windows) or build_release.sh (on Linux). This creates the self contained Java with DESim.
-3. To run the release version, see the ../installer/windows/DESim_run.bat or ../installer/linux/DESim.sh
-4. The DESim frontend is now ready to be added to a new version of the installer
+2. Run the build_release.bat (on Windows) or build_release.sh (on Linux). This creates a self contained Java with DESim program. This self-contained Java program will be saved in a folder called ./dist.
+3. To create a new release of DESim you need to copy the Java program in ./dist (step 2., above) into a folder that has the rest of the files needed to run DESim. An easy way to do this is to unzip an existing version of the DESim program from its zip file, then replace the contents of the java folder in this unzipped folder with the new contents of .dist.
+4. To create a new release of DESim for linux, perform the same steps as for Windows (step 3., above), except use the tar program to uncompress and compress files.
