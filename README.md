@@ -10,3 +10,7 @@ The DESim tool has four parts:
 4) Various demos showcasing the different capabilities of the tool
 
 The DESim tool requires the ModelSim-FPGA or Questa-FPGA simuator, which can be downloaded via www.altera.com.
+
+## 2 Installtion and Usage
+
+Instructions for installing and using the DESim application are provided in the Releases section of this repository.
