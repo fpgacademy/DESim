@@ -4,7 +4,7 @@ The frontend graphical user interface (GUI) for DESim allows the user to toggle 
 
 ## Modifying the DESim Frontend
 
-The GUI is written in Java 17.0.1 using IntelliJ IDEA 2021.3.1 (Community Edition). Complete each of the following sections to modify and update the DESim frontend. Currently, only MS Windows is supported. Linux support is to be added soon.
+The GUI is written in Java 17.0.1 using IntelliJ IDEA 2021.3.1 (Community Edition). Complete each of the following sections to modify and update the DESim frontend. Currently, only MS Windows is supported. Linux support may be added in the future.
 
 ### Source Code
 
