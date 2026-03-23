@@ -23,13 +23,13 @@ rm -f -r dist
 
 \cp src/module-info.java.txt src/module-info.java
 find ./src -type f -name *.java > sources.txt
-../../Java/jdk-17.0.1/bin/javac --module-path ../../Java/javafx-sdk-17.0.1/lib -d ./mods/DESim @sources.txt
+../../Java/jdk-17.0.1/bin/javac --module-path ../../Java/javafx-sdk-17.0.18/lib -d ./mods/DESim @sources.txt
 
 #  ----------------------------------------------------------------------
 #  Create a version of Java with the DESim module built-in
 #  ----------------------------------------------------------------------
 
-../../Java/jdk-17.0.1/bin/jlink --module-path "../../Java/javafx-jmods-17.0.1:./mods" --add-modules DESim --output dist
+../../Java/jdk-17.0.1/bin/jlink --module-path "../../Java/javafx-jmods-17.0.18:./mods" --add-modules DESim --output dist
 
 #  ----------------------------------------------------------------------
 #  Clean up temp files

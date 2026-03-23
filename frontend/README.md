@@ -4,7 +4,7 @@ The frontend graphical user interface (GUI) for DESim allows the user to toggle 
 
 ## Modifying the DESim Frontend
 
-The GUI is written in Java 17.0.1 using IntelliJ IDEA 2021.3.1 (Community Edition). Complete each of the following sections to modify and update the DESim frontend. Currently, only MS Windows is supported. Linux support may be added in the future.
+The GUI is written in Java 17.0.1 using IntelliJ IDEA 2021.3.1 (Community Edition). Complete each of the following sections to modify and update the DESim frontend. Currently, only MS Windows is supported. Linux support is to be added soon.
 
 ### Source Code
 
@@ -12,7 +12,7 @@ Download a copy of this _DESim GitHub Repository_ to your computer, using a tool
 
 ### Java
 
-DESim requires _JDK_, _JavaFX_ and _JMods_. You can obtain _Open JDK_ from https://jdk.java.net/archive/.  On that website, scroll down to locate Verson 17.0.1. Click to download the appropriate format that matches your computer operating system. Now, to obtain _Open JavaFX SDK_ and _JMods_, navigagte to the website https://openjfx.io. Click the _Download_ link, which will open a download page, then use the provided dropdown menu to select _Version 17.0.15_ (or similar). You need to download both the JDK and JMods archives; download the appropriate format of both files that matches your computer operating system. Uncompress all three packages (JDK/JavaFX SDK/JMods) to a directory named Java. This Java directory should be in your GitHub folder alongside DESim; your directory structure should be similar to:
+DESim requires _JDK_, _JavaFX_ and _JMods_. You can obtain _Open JDK_ from https://jdk.java.net/archive/.  On that website, scroll down to locate Verson 17.0.1. Click to download the appropriate format that matches your computer operating system. Now, to obtain _Open JavaFX SDK_ and _JMods_, navigagte to the website https://openjfx.io. Click the _Download_ link, which will open a download page, then use the provided dropdown menu to select _Version 17.0.18_ (or similar). You need to download both the JDK and JMods archives; download the appropriate format of both files that matches your computer operating system. Uncompress all three packages (JDK/JavaFX SDK/JMods) to a directory named Java. This Java directory should be in your GitHub folder alongside DESim; your directory structure should be similar to:
 
 <pre>
 ./
@@ -23,8 +23,8 @@ DESim requires _JDK_, _JavaFX_ and _JMods_. You can obtain _Open JDK_ from https
 |  +--frontend/
 |  +--installer/
 +--Java/
-   +--javafx-jmods-17.0.15/
-   +--javafx-sdk-17.0.15/
+   +--javafx-jmods-17.0.18/
+   +--javafx-sdk-17.0.18/
    +--jdk-17.0.1/
 </pre>
 
@@ -48,27 +48,27 @@ Start the IntelliJ software, and then open the _frontend_ project. The IntelliJ 
 2. Libraries
     1. Open File -> Project Structure.
     2. Check Project Settings -> Libraries has a library named _lib_ for _JavaFX_
-    3. If the library does not exist (because you installed Java into a different folder from the one we suggested, or you installed a version other than 17.0.15), create a new one.
+    3. If the library does not exist (because you installed Java into a different folder from the one we suggested, or you installed a version other than 17.0.18), create a new one.
         1. Click the + (New Project Library)
         2. Choose Java
-        3. Navigate to and select the Java/javafx-sdk-17.0.15/lib/ directory
+        3. Navigate to and select the Java/javafx-sdk-17.0.18/lib/ directory
         4. Click the OK button
         5. The Java FX SDK should now be in the library list
 3. Module-path
     1. Open Run -> Edit Configurations...
     2. Click on the _Modify Options_ dropdown and ensure that there is a checkmark beside _Add VM options_.
     3. Identify the VM Options Arguments box (it is the box with a lot of text inside it). On the righthand side of this box, click on the arrows to expand the size of the box.
-    4. The first item in the VM Options Arguments should be "C:/GitHub/Java/javafx-sdk-17.0.15/lib". If this folder does not match the one where your Java library is installed, then modify it acccordingly.
+    4. The first item in the VM Options Arguments should be "C:/GitHub/Java/javafx-sdk-17.0.18/lib". If this folder does not match the one where your Java library is installed, then modify it acccordingly.
     5. Click OK in the Edit Configurations to save your changes
 4. Install the _DESim_ Application to your computer. This step is needed because it provides some files that will be read by DESim when run within IntelliJ.
      1. Navigate on the Internet to the URL https://fpgacademy.org/tools.html. In the DESim section select version 24.1 and then click to download the ZIP file labelled _Installation Files for Windows_.
-     2. Uncompress the _DESim.zip_ file to your computer. We recommend storing this file in the location C:\DESim.
+     2. Uncompress the _DESim.zip_ file to your computer. From this uncompressed archive, copy the files modelsim.vpi and questa.vpi into your DESim installation folder (C:\GitHub\DESim).
 5. Install the simulator that you will be using with DESim. We recommend ModelSim, because it does not require a license, but you could also choose Questa, which is a more recent version. Instructions for installing ModelSim (or Questa) are provided on the Software tab of the website https://fpgacademy.org/tools.html. Ensure that your simulator can be found in your operating system's _Path_ environment variable, as this will be needed by IntelliJ. For example, your _Path_ might include C:\intelFPGA\20.1\modelsim_ase\win32aloem, or C:\intelFPGA_pro\24.1\questa_fse\win64
 6. Configure Run-Time Options in IntelliJ
    1. As you did in Step 3. above, Open Run -> Edit Configurations
-   2. Ensure that the Working Directory is set to C:\DESim (or whatever location you have used in Step 4.2 above)
+   2. Ensure that the Working Directory is set to C:\GitHub\DESim (or whatever location you have used in Step 4.2 above)
    3. Click on the _Modify Options_ dropdown and ensure that there is a checkmark beside _Environment variables_.
-   4. Ensure that the Enviorment Variables include both DESimPath and DESimulator, such as: DESimPath=C:\DESim;DESimulator=modelsim. If you installed DESim to a folder other than C:\DESim, then set DESimPath to that folder instead. Also, if are using the Questa simulator, then change this setting to DESimulator=questa.
+   4. Ensure that the Enviorment Variables include both DESimPath and DESimulator, such as: DESimPath=C:\GitHub\DESim;DESimulator=modelsim. If you installed DESim to a folder other than C:\GitHub\DESim, then set DESimPath to that folder instead. Also, if are using the Questa simulator, then change this setting to DESimulator=questa.
 
 Now that all the necessary settings have been checked, the frontend may be modified and tested using IntelliJ.
 
@@ -76,6 +76,6 @@ Now that all the necessary settings have been checked, the frontend may be modif
 
 If modification have been made to the frontend, a new release version should be create. The release version of the DESim frontend is a self contained Java VM. Follow these steps to build the release version:
 1. Click Build -> Rebuild project within IntelliJ. This will compile the latest version of the frontend to the ./out directory.
-2. Run the build_release.bat (on Windows) or build_release.sh (on Linux). This creates a self contained Java with DESim program. This self-contained Java program will be saved in a folder called ./dist.
-3. To create a new release of DESim you need to copy the Java program in ./dist (step 2., above) into a folder that has the rest of the files needed to run DESim. An easy way to do this is to unzip an existing version of the DESim program from its zip file, then replace the contents of the java folder in this unzipped folder with the new contents of .dist.
-4. To create a new release of DESim for linux, perform the same steps as for Windows (step 3., above), except use the tar program to uncompress and compress files.
+2. Run the build_release.bat (on Windows) or build_release.sh (on Linux). This creates the self contained Java with DESim.
+3. To run the release version, see the ../installer/windows/DESim_run.bat or ../installer/linux/DESim.sh
+4. The DESim frontend is now ready to be added to a new version of the installer
