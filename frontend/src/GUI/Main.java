@@ -252,8 +252,8 @@ public class Main extends Application {
         nodeMap.put("KeyboardContainer", keyboardContainer);
         nodeMap.put("GPIOContainer", gpioContainer);
 
-        Image icon = new Image(getClass().getResourceAsStream("DESim.png"));
-        primaryStage.getIcons().add(icon);
+        // Image icon = new Image(getClass().getResourceAsStream("DESim.png"));
+        // primaryStage.getIcons().add(icon);
         
         primaryStage.setScene(new Scene(vbox, 1000, 750));
         primaryStage.sizeToScene();
