@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bd6fb5bc-f8c9-443a-9a19-3bc6587f9e9a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DESim_run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/../DESim_run.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/../LICENSE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/Makefile" afterDir="false" />
@@ -240,7 +241,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DESimGUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DESimGUI.iml" afterDir="false" />
@@ -290,6 +290,7 @@
       <change beforePath="$PROJECT_DIR$/../installer/linux/create_installer.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../installer/linux/create_installer.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../installer/windows/DESim_run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/../installer/windows/DESim_run.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../installer/windows/installer.nsi" beforeDir="false" afterPath="$PROJECT_DIR$/../installer/windows/installer.nsi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../scancode.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../scancode.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
